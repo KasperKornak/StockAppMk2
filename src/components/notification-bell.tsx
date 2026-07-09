@@ -1,0 +1,108 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { markAllNotificationsRead, markNotificationRead } from "@/app/dashboard/notifications-actions";
+import { formatPln } from "@/lib/format";
+import type { NotificationItem } from "@/lib/notifications/types";
+
+export function NotificationBell({ notifications }: { notifications: NotificationItem[] }) {
+  const [open, setOpen] = useState(false);
+  const router = useRouter();
+  const unreadCount = notifications.filter((n) => !n.read).length;
+
+  async function handleMarkRead(id: string) {
+    await markNotificationRead(id);
+    router.refresh();
+  }
+
+  async function handleMarkAllRead() {
+    await markAllNotificationsRead();
+    router.refresh();
+  }
+
+  return (
+    <div className="relative">
+      <button
+        onClick={() => setOpen((o) => !o)}
+        aria-label="Notifications"
+        className="relative flex h-8 w-8 items-center justify-center rounded-full border border-neutral-700 text-neutral-300 transition-colors hover:border-emerald-500/50 hover:text-emerald-400"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth={2}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="h-4 w-4"
+          aria-hidden
+        >
+          <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+          <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+        </svg>
+        {unreadCount > 0 && (
+          <span className="absolute -top-1 -right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-emerald-500 px-1 text-[10px] font-bold text-neutral-950">
+            {unreadCount}
+          </span>
+        )}
+      </button>
+
+      {open && (
+        <>
+          {/* Click-outside-to-close backdrop */}
+          <div className="fixed inset-0 z-10" onClick={() => setOpen(false)} />
+          <div className="absolute right-0 z-20 mt-2 w-80 rounded-xl border border-neutral-800 bg-neutral-950 shadow-xl">
+            <div className="flex items-center justify-between border-b border-neutral-800 px-4 py-3">
+              <span className="text-sm font-medium text-neutral-300">Notifications</span>
+              {unreadCount > 0 && (
+                <button
+                  onClick={handleMarkAllRead}
+                  className="text-xs text-emerald-400 hover:text-emerald-300"
+                >
+                  Mark all read
+                </button>
+              )}
+            </div>
+            <div className="max-h-96 overflow-y-auto">
+              {notifications.length === 0 ? (
+                <p className="px-4 py-6 text-center text-sm text-neutral-500">
+                  No notifications yet.
+                </p>
+              ) : (
+                notifications.map((n) => (
+                  <button
+                    key={n.id}
+                    onClick={() => handleMarkRead(n.id)}
+                    className={`block w-full border-b border-neutral-800/70 px-4 py-3 text-left last:border-b-0 hover:bg-neutral-900/40 ${
+                      n.read ? "opacity-60" : ""
+                    }`}
+                  >
+                    <div className="flex items-center gap-2 text-sm font-medium text-neutral-100">
+                      {!n.read && <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />}
+                      {n.ticker}
+                      <span className="text-xs font-normal text-neutral-500">
+                        {n.type === "upcoming" ? "upcoming dividend" : "dividend confirmed"}
+                      </span>
+                    </div>
+                    <div className="mt-1 text-xs text-neutral-400">
+                      {n.grossAmountForeign !== null &&
+                        `${n.grossAmountForeign.toFixed(2)} ${n.foreignCurrency ?? ""}`}
+                      {n.amountToSetAsidePln !== null && (
+                        <> · set aside {formatPln(n.amountToSetAsidePln)}</>
+                      )}
+                    </div>
+                    {n.payDate && (
+                      <div className="mt-0.5 text-xs text-neutral-500">Pay date: {n.payDate}</div>
+                    )}
+                  </button>
+                ))
+              )}
+            </div>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
