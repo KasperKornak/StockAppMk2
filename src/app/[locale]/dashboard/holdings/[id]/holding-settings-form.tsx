@@ -38,10 +38,8 @@ export function HoldingSettingsForm({
           <input
             id="withholdingRateOverride"
             name="withholdingRateOverride"
-            type="number"
-            step="any"
-            min="0"
-            max="100"
+            type="text"
+            inputMode="decimal"
             defaultValue={withholdingRateOverride !== null ? withholdingRateOverride * 100 : ""}
             className="w-48 rounded-md border border-neutral-700 bg-neutral-900 px-3 py-2 text-neutral-100 focus:border-emerald-500/50 focus:outline-none"
           />

@@ -87,9 +87,8 @@ function AddHoldingFormContent({ onClose }: { onClose: () => void }) {
           <input
             id="quantity"
             name="quantity"
-            type="number"
-            step="any"
-            min="0"
+            type="text"
+            inputMode="decimal"
             required
             className={inputClasses}
           />
@@ -98,7 +97,7 @@ function AddHoldingFormContent({ onClose }: { onClose: () => void }) {
           <label htmlFor="price" className="text-sm text-neutral-500">
             {t("pricePaidLabel")}
           </label>
-          <input id="price" name="price" type="number" step="any" min="0" className={inputClasses} />
+          <input id="price" name="price" type="text" inputMode="decimal" className={inputClasses} />
         </div>
         <div className="flex flex-col gap-1">
           <label htmlFor="acquiredDate" className="text-sm text-neutral-500">

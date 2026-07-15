@@ -40,9 +40,8 @@ export function AddTransactionForm({ holdingId }: { holdingId: string }) {
           <input
             id="txQuantity"
             name="quantity"
-            type="number"
-            step="any"
-            min="0"
+            type="text"
+            inputMode="decimal"
             required
             className={inputClasses}
           />
@@ -51,7 +50,7 @@ export function AddTransactionForm({ holdingId }: { holdingId: string }) {
           <label htmlFor="txPrice" className="text-sm text-neutral-500">
             {t("priceLabel")}
           </label>
-          <input id="txPrice" name="price" type="number" step="any" min="0" className={inputClasses} />
+          <input id="txPrice" name="price" type="text" inputMode="decimal" className={inputClasses} />
         </div>
         <div className="flex flex-col gap-1">
           <label htmlFor="txDate" className="text-sm text-neutral-500">

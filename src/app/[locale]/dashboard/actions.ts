@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { getLocale, getTranslations } from "next-intl/server";
 import { redirect } from "@/i18n/navigation";
+import { parseDecimal } from "@/lib/format";
 import { massiveProvider } from "@/lib/market-data/massive-provider";
 import { createClient } from "@/lib/supabase/server";
 
@@ -24,9 +25,9 @@ export async function addHolding(
   const ticker = String(formData.get("ticker") ?? "")
     .trim()
     .toUpperCase();
-  const quantity = Number(formData.get("quantity"));
+  const quantity = parseDecimal(String(formData.get("quantity") ?? ""));
   const priceRaw = formData.get("price");
-  const price = priceRaw ? Number(priceRaw) : null;
+  const price = priceRaw ? parseDecimal(String(priceRaw)) : null;
   const acquiredDate = String(formData.get("acquiredDate") ?? "").trim();
   const w8benConfirmed = formData.get("w8benConfirmed") === "on";
 

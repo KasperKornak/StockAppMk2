@@ -103,7 +103,7 @@
     "tickerLabel": "Ticker",
     "tickerPlaceholder": "AAPL",
     "quantityLabel": "Ilość",
-    "pricePaidLabel": "Cena zakupu (opcjonalnie)",
+    "pricePaidLabel": "Cena zakupu za akcję (opcjonalnie)",
     "dateAcquiredLabel": "Data nabycia",
     "w8benLabel": "W-8BEN potwierdzony (pozycje z USA)",
     "submit": "Dodaj pozycję",
@@ -177,7 +177,7 @@
     "buy": "Kupno",
     "sell": "Sprzedaż",
     "quantityLabel": "Ilość",
-    "priceLabel": "Cena (opcjonalnie)",
+    "priceLabel": "Cena za akcję (opcjonalnie)",
     "dateLabel": "Data",
     "submit": "Dodaj transakcję",
     "submitting": "Dodawanie…"

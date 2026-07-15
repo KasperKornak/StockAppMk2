@@ -103,7 +103,7 @@
     "tickerLabel": "Ticker",
     "tickerPlaceholder": "AAPL",
     "quantityLabel": "Quantity",
-    "pricePaidLabel": "Price paid (optional)",
+    "pricePaidLabel": "Price paid per share (optional)",
     "dateAcquiredLabel": "Date acquired",
     "w8benLabel": "W-8BEN confirmed (US holdings)",
     "submit": "Add holding",
@@ -177,7 +177,7 @@
     "buy": "Buy",
     "sell": "Sell",
     "quantityLabel": "Quantity",
-    "priceLabel": "Price (optional)",
+    "priceLabel": "Price per share (optional)",
     "dateLabel": "Date",
     "submit": "Add transaction",
     "submitting": "Adding…"

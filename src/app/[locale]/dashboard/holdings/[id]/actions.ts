@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { getTranslations } from "next-intl/server";
+import { parseDecimal } from "@/lib/format";
 import { computeQuantityAtDate, type HoldingTransaction } from "@/lib/holdings/position";
 import { createClient } from "@/lib/supabase/server";
 
@@ -13,7 +14,7 @@ export async function updateHoldingSettings(formData: FormData): Promise<void> {
 
   const w8benConfirmed = formData.get("w8benConfirmed") === "on";
   const overrideRaw = formData.get("withholdingRateOverride");
-  const overridePercent = overrideRaw ? Number(overrideRaw) : null;
+  const overridePercent = overrideRaw ? parseDecimal(String(overrideRaw)) : null;
   const withholdingRateOverride =
     overridePercent !== null && Number.isFinite(overridePercent) ? overridePercent / 100 : null;
 
@@ -38,9 +39,9 @@ export async function addTransaction(
   const t = await getTranslations("AddTransactionErrors");
   const holdingId = String(formData.get("holdingId") ?? "");
   const transactionType = String(formData.get("transactionType") ?? "buy");
-  const quantity = Number(formData.get("quantity"));
+  const quantity = parseDecimal(String(formData.get("quantity") ?? ""));
   const priceRaw = formData.get("price");
-  const price = priceRaw ? Number(priceRaw) : null;
+  const price = priceRaw ? parseDecimal(String(priceRaw)) : null;
   const transactionDate = String(formData.get("transactionDate") ?? "").trim();
 
   if (!holdingId) {
