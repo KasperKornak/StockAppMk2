@@ -13,12 +13,26 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+// Falls back safely if NEXT_PUBLIC_SITE_URL is unset, empty, or missing its
+// scheme (e.g. left blank in a deployment's env vars) — `new URL()` throws
+// on any of those, and this runs at module load, so it would otherwise take
+// the whole app down instead of just leaving metadataBase wrong.
+function resolveSiteUrl(): URL {
+  const raw = process.env.NEXT_PUBLIC_SITE_URL;
+  if (raw) {
+    try {
+      return new URL(raw);
+    } catch {
+      // fall through to the default below
+    }
+  }
+  return new URL("http://localhost:3000");
+}
 
 // Title/description are locale-aware — see [locale]/layout.tsx's
 // generateMetadata, which Next.js merges with this.
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
+  metadataBase: resolveSiteUrl(),
 };
 
 export default async function RootLayout({
