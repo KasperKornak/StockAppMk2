@@ -29,6 +29,7 @@ interface SecurityDividendRow {
 export interface SyncResult {
   tickersSynced: number;
   eventsCreated: number;
+  eventsQualified: number;
   eventsFinalized: number;
   /** Dividends whose date predates any transaction on the holding — correctly excluded. */
   eventsSkippedNoShares: number;
@@ -155,9 +156,16 @@ export async function syncDividendsForAllHoldings(
     }
   }
 
+  const eventsQualified = await qualifyMaturedExDates(supabase);
   const eventsFinalized = await finalizeMaturedDividendEvents(supabase, lookupNbpRate);
 
-  return { tickersSynced: tickers.length, eventsCreated, eventsFinalized, eventsSkippedNoShares };
+  return {
+    tickersSynced: tickers.length,
+    eventsCreated,
+    eventsQualified,
+    eventsFinalized,
+    eventsSkippedNoShares,
+  };
 }
 
 async function createNewDividendEvents(
@@ -197,15 +205,16 @@ async function createNewDividendEvents(
       continue;
     }
 
-    const status = determineEventStatus(dividend.pay_date);
+    const status = determineEventStatus(dividend.ex_dividend_date, dividend.pay_date);
     const grossAmountForeign = dividend.cash_amount * quantityAtDate;
 
-    // Confirmed events use the exact day-before-pay-date rate (FR-TAX-001);
-    // upcoming events use the most recent available rate as an estimate
-    // (FR-DIV-002) since NBP has no rate for a date that hasn't happened yet.
-    const rateLookupDate = status === "confirmed" && dividend.pay_date ? dividend.pay_date : today;
+    // FX rate and PLN tax figures are only knowable once the dividend is
+    // confirmed — NBP publishes no rate for a date that hasn't happened yet,
+    // so upcoming/qualified events show the foreign-currency gross only.
     const fxRate =
-      effectiveRate !== null ? await lookupNbpRate(dividend.currency, rateLookupDate) : null;
+      status === "confirmed" && dividend.pay_date && effectiveRate !== null
+        ? await lookupNbpRate(dividend.currency, dividend.pay_date)
+        : null;
 
     const taxFields =
       fxRate !== null && effectiveRate !== null
@@ -223,6 +232,7 @@ async function createNewDividendEvents(
         holding_id: holding.id,
         security_dividend_id: dividend.id,
         status,
+        ex_dividend_date: dividend.ex_dividend_date,
         pay_date: dividend.pay_date,
         gross_amount_foreign: grossAmountForeign,
         foreign_currency: dividend.currency,
@@ -239,10 +249,15 @@ async function createNewDividendEvents(
     if (insertError) throw insertError;
     created++;
 
-    // FR-DIV-002/004: notify for whichever state the event was created in
-    // (usually "upcoming", but a dividend paid the same day it's first
-    // synced would go straight to "confirmed").
-    await createNotificationIfEnabled(supabase, holding.user_id, insertedEvent.id, status);
+    // FR-DIV-002/004: notify for whichever state the event was created in.
+    // Notifications only distinguish upcoming-vs-confirmed — "qualified" is
+    // a display nuance on the same not-yet-paid notification.
+    await createNotificationIfEnabled(
+      supabase,
+      holding.user_id,
+      insertedEvent.id,
+      status === "confirmed" ? "confirmed" : "upcoming",
+    );
   }
 
   return { created, skippedNoShares };
@@ -258,7 +273,7 @@ async function finalizeMaturedDividendEvents(
     .select(
       "id, holding_id, pay_date, gross_amount_foreign, foreign_currency, foreign_withholding_rate, treaty_credit_rate",
     )
-    .eq("status", "upcoming")
+    .in("status", ["upcoming", "qualified"])
     .lte("pay_date", today);
   if (error) throw error;
 
@@ -304,6 +319,24 @@ async function finalizeMaturedDividendEvents(
   }
 
   return finalized;
+}
+
+/**
+ * FR-DIV-001: events created before their ex-dividend date start out
+ * "upcoming"; once that date passes (shares are locked in) they flip to
+ * "qualified" while still awaiting payment. No FX/tax fields change here —
+ * those only get filled in once finalizeMaturedDividendEvents confirms.
+ */
+async function qualifyMaturedExDates(supabase: SupabaseClient): Promise<number> {
+  const today = new Date().toISOString().slice(0, 10);
+  const { data, error } = await supabase
+    .from("dividend_events")
+    .update({ status: "qualified" })
+    .eq("status", "upcoming")
+    .lte("ex_dividend_date", today)
+    .select("id");
+  if (error) throw error;
+  return (data ?? []).length;
 }
 
 function resolveEffectiveRate(

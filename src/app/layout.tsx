@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { getLocale } from "next-intl/server";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -14,24 +15,24 @@ const geistMono = Geist_Mono({
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
+// Title/description are locale-aware — see [locale]/layout.tsx's
+// generateMetadata, which Next.js merges with this.
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: {
-    default: "Dividend Tax Tracker",
-    template: "%s | Dividend Tax Tracker",
-  },
-  description:
-    "Track your dividend-paying holdings and know exactly how much Polish tax to set aside on every payout.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Resolved from the request context next-intl's plugin sets up — works
+  // even here, above the [locale] route segment.
+  const locale = await getLocale();
+
   return (
     <html
-      lang="en"
+      lang={locale}
       style={{ colorScheme: "dark" }}
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >

@@ -1,0 +1,250 @@
+{
+  "metadata": {
+    "title": "Dividend Tax Tracker",
+    "description": "Track your dividend-paying holdings and know exactly how much Polish tax to set aside on every payout."
+  },
+  "SiteHeader": {
+    "howItWorks": "How it works",
+    "login": "Log in",
+    "signup": "Sign up"
+  },
+  "SiteFooter": {
+    "appName": "Dividend Tax Tracker",
+    "disclaimer": "Not tax advice — always verify with a professional.",
+    "madeIn": "Made in Bronowice with ❤️"
+  },
+  "Feedback": {
+    "button": "Feedback",
+    "title": "Feedback",
+    "description": "Bug, feature request, question about your data — whatever it is, goes straight here.",
+    "messagePlaceholder": "What's on your mind?",
+    "emailLabel": "Email (optional — only if you want a reply)",
+    "emailPlaceholder": "you@example.com",
+    "send": "Send",
+    "sending": "Sending…",
+    "success": "Thanks — got it.",
+    "close": "Close",
+    "errorEmpty": "Please enter a message.",
+    "errorTooLong": "That's a bit long — please keep it under 4000 characters.",
+    "errorGeneric": "Something went wrong sending that — please try again."
+  },
+  "LanguageSwitcher": {
+    "en": "English",
+    "pl": "Polski"
+  },
+  "Landing": {
+    "eyebrow": "For Polish dividend investors",
+    "title": "Know exactly how much tax to set aside on every dividend.",
+    "subtitle": "Add your holdings, and get notified before and after every payout with the exact PLN amount owed after foreign withholding tax credits — calculated using the official NBP exchange rate.",
+    "getStarted": "Get started",
+    "login": "Log in",
+    "howItWorksTitle": "How it works",
+    "step1Title": "Add your holdings",
+    "step1Description": "Ticker and quantity — we look up the domicile and default withholding rate for you.",
+    "step2Title": "We track every payout",
+    "step2Description": "Upcoming and confirmed dividends detected automatically, converted at the official NBP rate.",
+    "step3Title": "Know what to set aside",
+    "step3Description": "See the exact PLN owed after foreign tax credits — before it's time to file."
+  },
+  "Login": {
+    "title": "Log in",
+    "emailPlaceholder": "Email",
+    "passwordPlaceholder": "Password",
+    "submit": "Log in",
+    "google": "Continue with Google",
+    "noAccount": "No account?",
+    "signUpLink": "Sign up"
+  },
+  "Signup": {
+    "title": "Create an account",
+    "checkEmailTitle": "Check your email",
+    "checkEmailBody": "We sent a verification link to {email}.",
+    "emailPlaceholder": "Email",
+    "passwordPlaceholder": "Password",
+    "submit": "Sign up",
+    "alreadyHaveAccount": "Already have an account?",
+    "loginLink": "Log in"
+  },
+  "DashboardNav": {
+    "holdings": "Holdings",
+    "taxYears": "Tax Years",
+    "settings": "Settings",
+    "logout": "Log out",
+    "backToDashboard": "← Back to dashboard"
+  },
+  "DashboardLayout": {
+    "disclaimer": "Estimates only, not tax advice — verify with a professional before filing.",
+    "verifyEmailTitle": "Verify your email to continue",
+    "verifyEmailBody": "We sent a verification link to {email}. Confirm it to unlock your holdings and dividend tracking."
+  },
+  "Dashboard": {
+    "receivedThisYear": "Received this year",
+    "setAsideForTax": "Set aside for tax",
+    "holdingsTitle": "Holdings",
+    "colTicker": "Ticker",
+    "colDomicile": "Domicile",
+    "colQty": "Qty",
+    "colAvgPrice": "Avg price",
+    "colMarketValue": "Market value",
+    "colYtdDividends": "YTD dividends",
+    "colYtdDividendsTooltip": "Gross dividends received this year, before tax",
+    "colTaxSetAside": "Tax set aside",
+    "colTaxSetAsideTooltip": "Estimated PLN to set aside for Belka tax on this year's dividends",
+    "whtOverrideMark": "Withholding rate overridden to {rate}",
+    "emptyHoldings": "No holdings yet. Add your first ticker to start tracking dividends.",
+    "recentActivity": "Recent dividend activity",
+    "viewByTaxYear": "View by tax year →",
+    "emptyRecentActivity": "No dividend activity yet — this fills in once the daily sync finds payouts for your holdings."
+  },
+  "AddHoldingForm": {
+    "openButton": "+ Add holding",
+    "title": "Add a holding",
+    "description": "This records your first transaction for the ticker — dividends paid before this date won't be counted, since we don't know how many shares you held then.",
+    "tickerLabel": "Ticker",
+    "tickerPlaceholder": "AAPL",
+    "quantityLabel": "Quantity",
+    "pricePaidLabel": "Price paid (optional)",
+    "dateAcquiredLabel": "Date acquired",
+    "w8benLabel": "W-8BEN confirmed (US holdings)",
+    "submit": "Add holding",
+    "submitting": "Adding…",
+    "requestSupport": "Request support for {ticker}"
+  },
+  "AddHoldingErrors": {
+    "tickerAndQuantityRequired": "Ticker and a positive quantity are required",
+    "dateRequired": "Date acquired is required",
+    "loginRequired": "Please log in to continue",
+    "unsupportedTicker": "This ticker isn't supported yet",
+    "duplicateTicker": "You already have a holding for this ticker",
+    "insertFailed": "Something went wrong adding this holding",
+    "transactionFailed": "Holding was created, but recording the initial transaction failed"
+  },
+  "DividendEventsTable": {
+    "colTicker": "Ticker",
+    "colStatus": "Status",
+    "colPayDate": "Pay date",
+    "colGross": "Gross",
+    "colAfterTaxes": "After taxes",
+    "colAfterTaxesPln": "After taxes (PLN)",
+    "colSetAside": "Set aside",
+    "statusUpcoming": "upcoming",
+    "statusQualified": "qualified",
+    "statusConfirmed": "confirmed",
+    "infoButtonLabel": "How this was calculated"
+  },
+  "DividendCalculationInfo": {
+    "title": "How this was calculated",
+    "close": "Close",
+    "notFinalized": "Not yet finalized — the PLN figures depend on the NBP exchange rate for the day before the pay date, which NBP does not publish until then. They will fill in once the dividend is paid.",
+    "grossDividend": "Gross dividend: {amount} {currency}",
+    "nbpRate": "× NBP rate (day before pay date): {rate}",
+    "grossPlnLabel": "= Gross in PLN:",
+    "polishTaxDue": "Polish tax due (19% of gross PLN): {amount}",
+    "foreignWithholding": "Foreign withholding at source: {rate}",
+    "treatyNote": " (capped at the {rate} treaty rate for credit purposes)",
+    "creditable": "Creditable against Polish tax: {amount}",
+    "setAsideFormula": "Set aside = tax due − creditable = {amount}"
+  },
+  "HoldingDetail": {
+    "backLink": "← Holdings",
+    "domicileUnknown": "Domicile unknown",
+    "statQuantity": "Quantity",
+    "statAvgPrice": "Avg price",
+    "statMarketValue": "Market value",
+    "statYtdReceived": "YTD received",
+    "transactionsTitle": "Transactions",
+    "colDate": "Date",
+    "colType": "Type",
+    "colQuantity": "Quantity",
+    "colPrice": "Price",
+    "delete": "Delete",
+    "emptyTransactions": "No transactions yet.",
+    "deleteHoldingButton": "Delete holding",
+    "deleteHoldingDeleting": "Deleting…",
+    "deleteHoldingConfirm": "Delete {ticker}? This removes the holding and all its transactions and dividend history."
+  },
+  "HoldingSettingsForm": {
+    "title": "Tax settings",
+    "suggestedRate": "Suggested withholding rate: {rate}",
+    "noDefaultRate": "no default for this domicile — set an override below",
+    "w8benLabel": "W-8BEN confirmed (US holdings)",
+    "overrideLabel": "Override rate % (blank = use suggested)",
+    "save": "Save"
+  },
+  "AddTransactionForm": {
+    "title": "Add a transaction",
+    "typeLabel": "Type",
+    "buy": "Buy",
+    "sell": "Sell",
+    "quantityLabel": "Quantity",
+    "priceLabel": "Price (optional)",
+    "dateLabel": "Date",
+    "submit": "Add transaction",
+    "submitting": "Adding…"
+  },
+  "AddTransactionErrors": {
+    "missingHolding": "Missing holding",
+    "quantityPositive": "Quantity must be a positive number",
+    "dateRequired": "Date is required",
+    "invalidType": "Invalid transaction type",
+    "exceedsHeld": "Can't sell {quantity} shares — only {held} held as of that date",
+    "insertFailed": "Something went wrong adding this transaction"
+  },
+  "TaxYears": {
+    "title": "Tax years",
+    "receivedIn": "Received in {year}",
+    "setAsideFor": "Set aside for {year}",
+    "byHoldingTitle": "By holding",
+    "colTicker": "Ticker",
+    "colPayouts": "Payouts",
+    "colReceived": "Received",
+    "colSetAside": "Set aside",
+    "allConfirmedPayouts": "All confirmed payouts in {year}",
+    "emptyMessage": "No confirmed dividend payouts in {year}."
+  },
+  "Settings": {
+    "title": "Settings",
+    "notifPrefsTitle": "Notification preferences",
+    "notifPrefsDesc": "Choose how you want to hear about upcoming and confirmed dividend payouts.",
+    "emailNotifications": "Email notifications",
+    "inAppNotifications": "In-app notifications",
+    "save": "Save",
+    "yourDataTitle": "Your data",
+    "yourDataDesc": "Export everything we store about you, or permanently delete your account.",
+    "exportButton": "Export my data",
+    "exporting": "Exporting…",
+    "deleteButton": "Delete my account",
+    "deleting": "Deleting…",
+    "deleteConfirm": "Delete your account? This permanently removes your holdings, transactions, dividend history, and login. This cannot be undone.",
+    "privacyLink": "Privacy Policy"
+  },
+  "Privacy": {
+    "title": "Privacy Policy",
+    "draftNotice": "Draft — last updated {date}. This has not yet been reviewed by a lawyer.",
+    "whoWeAreTitle": "Who we are",
+    "whoWeAreBody": "Dividend Tax Tracker is operated by [YOUR NAME], an individual based in Poland — not yet a registered company. Until that changes, [YOUR NAME] is the data controller for the personal data this app processes.",
+    "whatWeCollectTitle": "What we collect",
+    "whatWeCollectBody": "Your email address (and, if you sign in with Google, the basic profile info Google shares); the holdings, transactions, and tickers you enter; and the dividend and tax figures we calculate from that data using public market and exchange-rate sources.",
+    "whoElseSeesItTitle": "Who else sees it",
+    "whoElseSeesItBody": "A third-party database and authentication provider hosts our infrastructure and processes your account and holdings data on our behalf. A market data provider receives the ticker symbols you track, not your identity. Poland's central bank exchange-rate service receives no personal data at all — those lookups don't reference you or your holdings.",
+    "howLongTitle": "How long we keep it",
+    "howLongBody": "Until you delete your account. Tax-relevant records are worth keeping for at least 6 years to match typical Polish tax documentation retention norms, but that's your call, not something we enforce.",
+    "yourRightsTitle": "Your rights",
+    "yourRightsBefore": "You can export everything we store about you, or permanently delete your account and all associated data, at any time from",
+    "yourRightsAfter": ". You can correct or remove individual holdings yourself from the dashboard.",
+    "notTaxAdviceTitle": "Not tax advice",
+    "notTaxAdviceBody": "Everything this app calculates is an estimate to help you plan — it is not professional tax advice and may not reflect every treaty nuance. Verify with a qualified professional before filing.",
+    "contactTitle": "Contact",
+    "contactBefore": "Questions about your data, or anything else — use the",
+    "contactAfter": "link in the footer below."
+  },
+  "Notifications": {
+    "title": "Notifications",
+    "empty": "No notifications yet.",
+    "markAllRead": "Mark all read",
+    "upcoming": "upcoming dividend",
+    "confirmed": "dividend confirmed",
+    "payDate": "Pay date: {date}",
+    "setAside": "set aside {amount}"
+  }
+}

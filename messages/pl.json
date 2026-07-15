@@ -1,0 +1,250 @@
+{
+  "metadata": {
+    "title": "Dividend Tax Tracker",
+    "description": "Śledź swoje pozycje dywidendowe i wiedz dokładnie, ile podatku odłożyć od każdej wypłaty."
+  },
+  "SiteHeader": {
+    "howItWorks": "Jak to działa",
+    "login": "Zaloguj się",
+    "signup": "Zarejestruj się"
+  },
+  "SiteFooter": {
+    "appName": "Dividend Tax Tracker",
+    "disclaimer": "To nie jest porada podatkowa — zawsze skonsultuj się ze specjalistą.",
+    "madeIn": "Zrobione w Bronowicach z ❤️"
+  },
+  "Feedback": {
+    "button": "Opinie",
+    "title": "Opinie",
+    "description": "Błąd, propozycja funkcji, pytanie o Twoje dane — cokolwiek to jest, trafia prosto tutaj.",
+    "messagePlaceholder": "Co masz na myśli?",
+    "emailLabel": "E-mail (opcjonalnie — tylko jeśli chcesz odpowiedź)",
+    "emailPlaceholder": "ty@przyklad.pl",
+    "send": "Wyślij",
+    "sending": "Wysyłanie…",
+    "success": "Dzięki — dotarło.",
+    "close": "Zamknij",
+    "errorEmpty": "Wpisz wiadomość.",
+    "errorTooLong": "To trochę za długie — zmieść się w 4000 znakach.",
+    "errorGeneric": "Coś poszło nie tak przy wysyłaniu — spróbuj ponownie."
+  },
+  "LanguageSwitcher": {
+    "en": "English",
+    "pl": "Polski"
+  },
+  "Landing": {
+    "eyebrow": "Dla polskich inwestorów dywidendowych",
+    "title": "Wiedz dokładnie, ile podatku odłożyć od każdej dywidendy.",
+    "subtitle": "Dodaj swoje pozycje, a przed i po każdej wypłacie otrzymasz powiadomienie z dokładną kwotą w PLN należną po uwzględnieniu ulgi z tytułu podatku zapłaconego za granicą — wyliczoną według oficjalnego kursu NBP.",
+    "getStarted": "Zacznij teraz",
+    "login": "Zaloguj się",
+    "howItWorksTitle": "Jak to działa",
+    "step1Title": "Dodaj swoje pozycje",
+    "step1Description": "Ticker i ilość — resztę, czyli rezydencję podatkową i domyślną stawkę podatku u źródła, ustalimy za Ciebie.",
+    "step2Title": "Śledzimy każdą wypłatę",
+    "step2Description": "Nadchodzące i potwierdzone dywidendy wykrywane automatycznie, przeliczane po oficjalnym kursie NBP.",
+    "step3Title": "Wiedz, ile odłożyć",
+    "step3Description": "Zobacz dokładną kwotę w PLN należną po uwzględnieniu ulgi z tytułu podatku zagranicznego — zanim przyjdzie czas rozliczenia."
+  },
+  "Login": {
+    "title": "Zaloguj się",
+    "emailPlaceholder": "E-mail",
+    "passwordPlaceholder": "Hasło",
+    "submit": "Zaloguj się",
+    "google": "Kontynuuj z Google",
+    "noAccount": "Nie masz konta?",
+    "signUpLink": "Zarejestruj się"
+  },
+  "Signup": {
+    "title": "Utwórz konto",
+    "checkEmailTitle": "Sprawdź skrzynkę e-mail",
+    "checkEmailBody": "Wysłaliśmy link weryfikacyjny na adres {email}.",
+    "emailPlaceholder": "E-mail",
+    "passwordPlaceholder": "Hasło",
+    "submit": "Zarejestruj się",
+    "alreadyHaveAccount": "Masz już konto?",
+    "loginLink": "Zaloguj się"
+  },
+  "DashboardNav": {
+    "holdings": "Pozycje",
+    "taxYears": "Lata podatkowe",
+    "settings": "Ustawienia",
+    "logout": "Wyloguj się",
+    "backToDashboard": "← Powrót do panelu"
+  },
+  "DashboardLayout": {
+    "disclaimer": "Wyłącznie szacunki, to nie jest porada podatkowa — zweryfikuj ze specjalistą przed rozliczeniem.",
+    "verifyEmailTitle": "Potwierdź adres e-mail, aby kontynuować",
+    "verifyEmailBody": "Wysłaliśmy link weryfikacyjny na adres {email}. Potwierdź go, aby odblokować śledzenie pozycji i dywidend."
+  },
+  "Dashboard": {
+    "receivedThisYear": "Otrzymano w tym roku",
+    "setAsideForTax": "Do odłożenia na podatek",
+    "holdingsTitle": "Pozycje",
+    "colTicker": "Ticker",
+    "colDomicile": "Rezydencja",
+    "colQty": "Ilość",
+    "colAvgPrice": "Śr. cena",
+    "colMarketValue": "Wartość rynkowa",
+    "colYtdDividends": "Dywidendy od pocz. roku",
+    "colYtdDividendsTooltip": "Dywidendy brutto otrzymane w tym roku, przed opodatkowaniem",
+    "colTaxSetAside": "Do odłożenia na podatek",
+    "colTaxSetAsideTooltip": "Szacowana kwota w PLN do odłożenia na podatek Belki od tegorocznych dywidend",
+    "whtOverrideMark": "Stawka podatku u źródła nadpisana na {rate}",
+    "emptyHoldings": "Brak pozycji. Dodaj pierwszy ticker, aby zacząć śledzić dywidendy.",
+    "recentActivity": "Ostatnia aktywność dywidendowa",
+    "viewByTaxYear": "Zobacz według roku podatkowego →",
+    "emptyRecentActivity": "Brak aktywności dywidendowej — pojawi się, gdy codzienna synchronizacja znajdzie wypłaty dla Twoich pozycji."
+  },
+  "AddHoldingForm": {
+    "openButton": "+ Dodaj pozycję",
+    "title": "Dodaj pozycję",
+    "description": "To zapisuje pierwszą transakcję dla tego tickera — dywidendy wypłacone przed tą datą nie zostaną uwzględnione, ponieważ nie wiemy, ile akcji posiadałeś/aś wtedy.",
+    "tickerLabel": "Ticker",
+    "tickerPlaceholder": "AAPL",
+    "quantityLabel": "Ilość",
+    "pricePaidLabel": "Cena zakupu (opcjonalnie)",
+    "dateAcquiredLabel": "Data nabycia",
+    "w8benLabel": "W-8BEN potwierdzony (pozycje z USA)",
+    "submit": "Dodaj pozycję",
+    "submitting": "Dodawanie…",
+    "requestSupport": "Zgłoś zapotrzebowanie na {ticker}"
+  },
+  "AddHoldingErrors": {
+    "tickerAndQuantityRequired": "Ticker i dodatnia ilość są wymagane",
+    "dateRequired": "Data nabycia jest wymagana",
+    "loginRequired": "Zaloguj się, aby kontynuować",
+    "unsupportedTicker": "Ten ticker nie jest jeszcze obsługiwany",
+    "duplicateTicker": "Masz już pozycję dla tego tickera",
+    "insertFailed": "Coś poszło nie tak przy dodawaniu tej pozycji",
+    "transactionFailed": "Pozycja została utworzona, ale zapisanie pierwszej transakcji się nie powiodło"
+  },
+  "DividendEventsTable": {
+    "colTicker": "Ticker",
+    "colStatus": "Status",
+    "colPayDate": "Data wypłaty",
+    "colGross": "Brutto",
+    "colAfterTaxes": "Po opodatkowaniu",
+    "colAfterTaxesPln": "Po opodatkowaniu (PLN)",
+    "colSetAside": "Do odłożenia",
+    "statusUpcoming": "nadchodząca",
+    "statusQualified": "zakwalifikowana",
+    "statusConfirmed": "potwierdzona",
+    "infoButtonLabel": "Jak to obliczono"
+  },
+  "DividendCalculationInfo": {
+    "title": "Jak to obliczono",
+    "close": "Zamknij",
+    "notFinalized": "Jeszcze niesfinalizowane — kwoty w PLN zależą od kursu NBP z dnia poprzedzającego dzień wypłaty, którego NBP nie publikuje wcześniej. Uzupełnią się, gdy dywidenda zostanie wypłacona.",
+    "grossDividend": "Dywidenda brutto: {amount} {currency}",
+    "nbpRate": "× kurs NBP (dzień przed wypłatą): {rate}",
+    "grossPlnLabel": "= Brutto w PLN:",
+    "polishTaxDue": "Polski podatek należny (19% brutto w PLN): {amount}",
+    "foreignWithholding": "Podatek u źródła za granicą: {rate}",
+    "treatyNote": " (ograniczony do stawki traktatowej {rate} dla celów ulgi)",
+    "creditable": "Podlega odliczeniu od polskiego podatku: {amount}",
+    "setAsideFormula": "Do odłożenia = podatek należny − odliczenie = {amount}"
+  },
+  "HoldingDetail": {
+    "backLink": "← Pozycje",
+    "domicileUnknown": "Rezydencja nieznana",
+    "statQuantity": "Ilość",
+    "statAvgPrice": "Śr. cena",
+    "statMarketValue": "Wartość rynkowa",
+    "statYtdReceived": "Otrzymano od pocz. roku",
+    "transactionsTitle": "Transakcje",
+    "colDate": "Data",
+    "colType": "Typ",
+    "colQuantity": "Ilość",
+    "colPrice": "Cena",
+    "delete": "Usuń",
+    "emptyTransactions": "Brak transakcji.",
+    "deleteHoldingButton": "Usuń pozycję",
+    "deleteHoldingDeleting": "Usuwanie…",
+    "deleteHoldingConfirm": "Usunąć {ticker}? To usuwa pozycję oraz wszystkie jej transakcje i historię dywidend."
+  },
+  "HoldingSettingsForm": {
+    "title": "Ustawienia podatkowe",
+    "suggestedRate": "Sugerowana stawka podatku u źródła: {rate}",
+    "noDefaultRate": "brak domyślnej stawki dla tej rezydencji — ustaw nadpisanie poniżej",
+    "w8benLabel": "W-8BEN potwierdzony (pozycje z USA)",
+    "overrideLabel": "Nadpisana stawka % (puste = użyj sugerowanej)",
+    "save": "Zapisz"
+  },
+  "AddTransactionForm": {
+    "title": "Dodaj transakcję",
+    "typeLabel": "Typ",
+    "buy": "Kupno",
+    "sell": "Sprzedaż",
+    "quantityLabel": "Ilość",
+    "priceLabel": "Cena (opcjonalnie)",
+    "dateLabel": "Data",
+    "submit": "Dodaj transakcję",
+    "submitting": "Dodawanie…"
+  },
+  "AddTransactionErrors": {
+    "missingHolding": "Brak pozycji",
+    "quantityPositive": "Ilość musi być liczbą dodatnią",
+    "dateRequired": "Data jest wymagana",
+    "invalidType": "Nieprawidłowy typ transakcji",
+    "exceedsHeld": "Nie można sprzedać {quantity} akcji — na tę datę posiadano tylko {held}",
+    "insertFailed": "Coś poszło nie tak przy dodawaniu tej transakcji"
+  },
+  "TaxYears": {
+    "title": "Lata podatkowe",
+    "receivedIn": "Otrzymano w {year}",
+    "setAsideFor": "Do odłożenia za {year}",
+    "byHoldingTitle": "Według pozycji",
+    "colTicker": "Ticker",
+    "colPayouts": "Wypłaty",
+    "colReceived": "Otrzymano",
+    "colSetAside": "Do odłożenia",
+    "allConfirmedPayouts": "Wszystkie potwierdzone wypłaty w {year}",
+    "emptyMessage": "Brak potwierdzonych wypłat dywidend w {year}."
+  },
+  "Settings": {
+    "title": "Ustawienia",
+    "notifPrefsTitle": "Preferencje powiadomień",
+    "notifPrefsDesc": "Wybierz, jak chcesz być informowany/a o nadchodzących i potwierdzonych wypłatach dywidend.",
+    "emailNotifications": "Powiadomienia e-mail",
+    "inAppNotifications": "Powiadomienia w aplikacji",
+    "save": "Zapisz",
+    "yourDataTitle": "Twoje dane",
+    "yourDataDesc": "Wyeksportuj wszystko, co o Tobie przechowujemy, lub trwale usuń swoje konto.",
+    "exportButton": "Eksportuj moje dane",
+    "exporting": "Eksportowanie…",
+    "deleteButton": "Usuń moje konto",
+    "deleting": "Usuwanie…",
+    "deleteConfirm": "Usunąć konto? To trwale usuwa Twoje pozycje, transakcje, historię dywidend i dostęp do konta. Tej operacji nie można cofnąć.",
+    "privacyLink": "Polityka prywatności"
+  },
+  "Privacy": {
+    "title": "Polityka prywatności",
+    "draftNotice": "Wersja robocza — ostatnia aktualizacja {date}. Dokument nie został jeszcze zweryfikowany przez prawnika.",
+    "whoWeAreTitle": "Kto jest administratorem",
+    "whoWeAreBody": "Dividend Tax Tracker jest prowadzony przez [YOUR NAME], osobę fizyczną z siedzibą w Polsce — jeszcze nie zarejestrowaną firmę. Do czasu zmiany tego stanu [YOUR NAME] jest administratorem danych osobowych przetwarzanych przez tę aplikację.",
+    "whatWeCollectTitle": "Co zbieramy",
+    "whatWeCollectBody": "Twój adres e-mail (a jeśli logujesz się przez Google — podstawowe dane profilu udostępniane przez Google); pozycje, transakcje i tickery, które wprowadzasz; oraz wyliczone przez nas kwoty dywidend i podatku na podstawie tych danych oraz publicznych źródeł rynkowych i kursowych.",
+    "whoElseSeesItTitle": "Kto jeszcze ma do nich dostęp",
+    "whoElseSeesItBody": "Zewnętrzny dostawca bazy danych i uwierzytelniania hostuje naszą infrastrukturę i przetwarza dane Twojego konta oraz pozycji w naszym imieniu. Dostawca danych rynkowych otrzymuje tickery, które śledzisz, ale nie Twoją tożsamość. Serwis kursowy polskiego banku centralnego nie otrzymuje żadnych danych osobowych — te zapytania nie odnoszą się do Ciebie ani Twoich pozycji.",
+    "howLongTitle": "Jak długo je przechowujemy",
+    "howLongBody": "Do momentu usunięcia konta. Dokumenty istotne podatkowo warto przechowywać przez co najmniej 6 lat, zgodnie z typowymi polskimi normami przechowywania dokumentacji podatkowej, ale to Twoja decyzja — my tego nie egzekwujemy.",
+    "yourRightsTitle": "Twoje prawa",
+    "yourRightsBefore": "W każdej chwili możesz wyeksportować wszystko, co o Tobie przechowujemy, lub trwale usunąć swoje konto i wszystkie powiązane dane w",
+    "yourRightsAfter": ". Poszczególne pozycje możesz samodzielnie poprawiać lub usuwać z poziomu panelu.",
+    "notTaxAdviceTitle": "To nie jest porada podatkowa",
+    "notTaxAdviceBody": "Wszystko, co wylicza ta aplikacja, jest szacunkiem pomocnym w planowaniu — to nie jest profesjonalna porada podatkowa i może nie uwzględniać każdego niuansu umowy o unikaniu podwójnego opodatkowania. Zweryfikuj z wykwalifikowanym specjalistą przed złożeniem rozliczenia.",
+    "contactTitle": "Kontakt",
+    "contactBefore": "Pytania dotyczące Twoich danych lub cokolwiek innego — użyj odnośnika",
+    "contactAfter": "w stopce poniżej."
+  },
+  "Notifications": {
+    "title": "Powiadomienia",
+    "empty": "Brak powiadomień.",
+    "markAllRead": "Oznacz wszystkie jako przeczytane",
+    "upcoming": "nadchodząca dywidenda",
+    "confirmed": "dywidenda potwierdzona",
+    "payDate": "Data wypłaty: {date}",
+    "setAside": "do odłożenia {amount}"
+  }
+}

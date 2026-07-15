@@ -18,5 +18,8 @@ export async function addHoldingViaModal(
   if (acquiredDate) {
     await page.fill("#acquiredDate", acquiredDate);
   }
-  await page.locator('dialog button[type="submit"]').click();
+  // Scoped to the currently-open dialog — the dashboard footer's feedback
+  // modal is also a <dialog> in the DOM (just closed), and a plain
+  // `dialog button[type="submit"]` selector matches both.
+  await page.locator('dialog[open] button[type="submit"]').click();
 }

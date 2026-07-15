@@ -1,14 +1,19 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
-import { markAllNotificationsRead, markNotificationRead } from "@/app/dashboard/notifications-actions";
+import {
+  markAllNotificationsRead,
+  markNotificationRead,
+} from "@/app/[locale]/dashboard/notifications-actions";
+import { useRouter } from "@/i18n/navigation";
 import { formatPln } from "@/lib/format";
 import type { NotificationItem } from "@/lib/notifications/types";
 
 export function NotificationBell({ notifications }: { notifications: NotificationItem[] }) {
   const [open, setOpen] = useState(false);
   const router = useRouter();
+  const t = useTranslations("Notifications");
   const unreadCount = notifications.filter((n) => !n.read).length;
 
   async function handleMarkRead(id: string) {
@@ -25,8 +30,8 @@ export function NotificationBell({ notifications }: { notifications: Notificatio
     <div className="relative">
       <button
         onClick={() => setOpen((o) => !o)}
-        aria-label="Notifications"
-        className="relative flex h-8 w-8 items-center justify-center rounded-full border border-neutral-700 text-neutral-300 transition-colors hover:border-emerald-500/50 hover:text-emerald-400"
+        aria-label={t("title")}
+        className="relative flex h-8 w-8 items-center justify-center text-neutral-300 transition-colors hover:text-emerald-400"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -36,7 +41,7 @@ export function NotificationBell({ notifications }: { notifications: Notificatio
           strokeWidth={2}
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="h-4 w-4"
+          className="h-5 w-5"
           aria-hidden
         >
           <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
@@ -55,21 +60,19 @@ export function NotificationBell({ notifications }: { notifications: Notificatio
           <div className="fixed inset-0 z-10" onClick={() => setOpen(false)} />
           <div className="absolute right-0 z-20 mt-2 w-80 rounded-xl border border-neutral-800 bg-neutral-950 shadow-xl">
             <div className="flex items-center justify-between border-b border-neutral-800 px-4 py-3">
-              <span className="text-sm font-medium text-neutral-300">Notifications</span>
+              <span className="text-sm font-medium text-neutral-300">{t("title")}</span>
               {unreadCount > 0 && (
                 <button
                   onClick={handleMarkAllRead}
                   className="text-xs text-emerald-400 hover:text-emerald-300"
                 >
-                  Mark all read
+                  {t("markAllRead")}
                 </button>
               )}
             </div>
             <div className="max-h-96 overflow-y-auto">
               {notifications.length === 0 ? (
-                <p className="px-4 py-6 text-center text-sm text-neutral-500">
-                  No notifications yet.
-                </p>
+                <p className="px-4 py-6 text-center text-sm text-neutral-500">{t("empty")}</p>
               ) : (
                 notifications.map((n) => (
                   <button
@@ -83,18 +86,20 @@ export function NotificationBell({ notifications }: { notifications: Notificatio
                       {!n.read && <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />}
                       {n.ticker}
                       <span className="text-xs font-normal text-neutral-500">
-                        {n.type === "upcoming" ? "upcoming dividend" : "dividend confirmed"}
+                        {n.type === "upcoming" ? t("upcoming") : t("confirmed")}
                       </span>
                     </div>
                     <div className="mt-1 text-xs text-neutral-400">
                       {n.grossAmountForeign !== null &&
                         `${n.grossAmountForeign.toFixed(2)} ${n.foreignCurrency ?? ""}`}
                       {n.amountToSetAsidePln !== null && (
-                        <> · set aside {formatPln(n.amountToSetAsidePln)}</>
+                        <> · {t("setAside", { amount: formatPln(n.amountToSetAsidePln) })}</>
                       )}
                     </div>
                     {n.payDate && (
-                      <div className="mt-0.5 text-xs text-neutral-500">Pay date: {n.payDate}</div>
+                      <div className="mt-0.5 text-xs text-neutral-500">
+                        {t("payDate", { date: n.payDate })}
+                      </div>
                     )}
                   </button>
                 ))
