@@ -8,12 +8,15 @@ export function SiteHeader() {
   return (
     <header className="relative z-10 border-b border-neutral-900">
       <div className="mx-auto flex w-full max-w-5xl items-center justify-between px-6 py-4">
-        <Link href="/" className="flex items-center gap-2.5">
-          <div className="flex h-7 w-7 items-center justify-center rounded-md bg-gradient-to-br from-emerald-400 to-emerald-600 text-xs font-bold text-neutral-950">
-            D
-          </div>
+        <Link href="/" className="flex items-center gap-2">
+          <span className="text-2xl leading-none" aria-hidden>
+            💸
+          </span>
           <span className="font-medium tracking-tight text-neutral-100">
             Dividend Tax Tracker
+          </span>
+          <span className="rounded-full border border-neutral-700 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-neutral-400 uppercase">
+            {t("beta")}
           </span>
         </Link>
 

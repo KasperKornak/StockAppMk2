@@ -74,11 +74,14 @@ export default function SignupPage() {
             className="rounded-md border border-neutral-700 bg-neutral-900 px-3 py-2 text-neutral-100 placeholder:text-neutral-500 focus:border-emerald-500/50 focus:outline-none"
           />
           {turnstileSiteKey && (
-            <TurnstileWidget
-              siteKey={turnstileSiteKey}
-              language={locale}
-              onVerify={setCaptchaToken}
-            />
+            <div className="flex flex-col gap-1.5">
+              <TurnstileWidget
+                siteKey={turnstileSiteKey}
+                language={locale}
+                onVerify={setCaptchaToken}
+              />
+              {!captchaToken && <p className="text-xs text-neutral-500">{t("captchaHint")}</p>}
+            </div>
           )}
           {error && <p className="text-sm text-red-400">{error}</p>}
           <button

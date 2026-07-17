@@ -6,7 +6,8 @@
   "SiteHeader": {
     "howItWorks": "How it works",
     "login": "Log in",
-    "signup": "Sign up"
+    "signup": "Sign up",
+    "beta": "Beta"
   },
   "SiteFooter": {
     "appName": "Dividend Tax Tracker",
@@ -53,7 +54,8 @@
     "submit": "Log in",
     "google": "Continue with Google",
     "noAccount": "No account?",
-    "signUpLink": "Sign up"
+    "signUpLink": "Sign up",
+    "captchaHint": "Complete the security check above to continue."
   },
   "Signup": {
     "title": "Create an account",
@@ -63,14 +65,16 @@
     "passwordPlaceholder": "Password",
     "submit": "Sign up",
     "alreadyHaveAccount": "Already have an account?",
-    "loginLink": "Log in"
+    "loginLink": "Log in",
+    "captchaHint": "Complete the security check above to continue."
   },
   "DashboardNav": {
     "holdings": "Holdings",
     "taxYears": "Tax Years",
     "settings": "Settings",
     "logout": "Log out",
-    "backToDashboard": "← Back to dashboard"
+    "backToDashboard": "← Back to dashboard",
+    "beta": "Beta"
   },
   "DashboardLayout": {
     "disclaimer": "Estimates only, not tax advice — verify with a professional before filing.",

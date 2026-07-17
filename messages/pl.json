@@ -6,7 +6,8 @@
   "SiteHeader": {
     "howItWorks": "Jak to działa",
     "login": "Zaloguj się",
-    "signup": "Zarejestruj się"
+    "signup": "Zarejestruj się",
+    "beta": "Beta"
   },
   "SiteFooter": {
     "appName": "Dividend Tax Tracker",
@@ -53,7 +54,8 @@
     "submit": "Zaloguj się",
     "google": "Kontynuuj z Google",
     "noAccount": "Nie masz konta?",
-    "signUpLink": "Zarejestruj się"
+    "signUpLink": "Zarejestruj się",
+    "captchaHint": "Ukończ weryfikację bezpieczeństwa powyżej, aby kontynuować."
   },
   "Signup": {
     "title": "Utwórz konto",
@@ -63,14 +65,16 @@
     "passwordPlaceholder": "Hasło",
     "submit": "Zarejestruj się",
     "alreadyHaveAccount": "Masz już konto?",
-    "loginLink": "Zaloguj się"
+    "loginLink": "Zaloguj się",
+    "captchaHint": "Ukończ weryfikację bezpieczeństwa powyżej, aby kontynuować."
   },
   "DashboardNav": {
     "holdings": "Pozycje",
     "taxYears": "Lata podatkowe",
     "settings": "Ustawienia",
     "logout": "Wyloguj się",
-    "backToDashboard": "← Powrót do panelu"
+    "backToDashboard": "← Powrót do panelu",
+    "beta": "Beta"
   },
   "DashboardLayout": {
     "disclaimer": "Wyłącznie szacunki, to nie jest porada podatkowa — zweryfikuj ze specjalistą przed rozliczeniem.",
