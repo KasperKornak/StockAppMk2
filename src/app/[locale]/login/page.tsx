@@ -3,9 +3,12 @@
 import { useLocale, useTranslations } from "next-intl";
 import { useState } from "react";
 import { SiteHeader } from "@/components/site-header";
+import { TurnstileWidget } from "@/components/turnstile-widget";
 import { Link, useRouter } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import { createClient } from "@/lib/supabase/client";
+
+const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
 // FR-AUTH-003/004: email/password + OAuth login.
 export default function LoginPage() {
@@ -15,12 +18,17 @@ export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setError(null);
     const supabase = createClient();
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    const { error } = await supabase.auth.signInWithPassword({
+      email,
+      password,
+      options: captchaToken ? { captchaToken } : undefined,
+    });
     if (error) {
       setError(error.message);
       return;
@@ -65,10 +73,18 @@ export default function LoginPage() {
             onChange={(e) => setPassword(e.target.value)}
             className="rounded-md border border-neutral-700 bg-neutral-900 px-3 py-2 text-neutral-100 placeholder:text-neutral-500 focus:border-emerald-500/50 focus:outline-none"
           />
+          {turnstileSiteKey && (
+            <TurnstileWidget
+              siteKey={turnstileSiteKey}
+              language={locale}
+              onVerify={setCaptchaToken}
+            />
+          )}
           {error && <p className="text-sm text-red-400">{error}</p>}
           <button
             type="submit"
-            className="h-11 rounded-full bg-emerald-500 font-medium text-neutral-950 transition-colors hover:bg-emerald-400"
+            disabled={Boolean(turnstileSiteKey) && !captchaToken}
+            className="h-11 rounded-full bg-emerald-500 font-medium text-neutral-950 transition-colors hover:bg-emerald-400 disabled:opacity-50"
           >
             {t("submit")}
           </button>
