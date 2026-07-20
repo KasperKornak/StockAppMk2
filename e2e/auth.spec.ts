@@ -19,7 +19,7 @@ test.describe("Auth", () => {
 
       // Either outcome proves the form reached Supabase for real; Supabase's
       // free-tier email rate limit is expected to trigger occasionally.
-      await expect(page.locator("body")).toContainText(/check your email|rate limit/i, {
+      await expect(page.locator("body")).toContainText(/Sprawdź skrzynkę e-mail|rate limit/i, {
         timeout: 10000,
       });
     } finally {
@@ -50,7 +50,7 @@ test.describe("Auth", () => {
     const user = await createConfirmedTestUser();
     try {
       await loginAs(page, user.email, user.password);
-      await page.click('button:has-text("Log out")');
+      await page.click('button:has-text("Wyloguj się")');
       await page.waitForURL("http://localhost:3000/");
       await page.goto("/dashboard");
       await page.waitForURL("**/login");

@@ -1,5 +1,14 @@
 import { defineConfig } from "@playwright/test";
 
+// KNOWN LIMITATION: every spec here logs in, and Cloudflare Turnstile is
+// designed to block headless/automated browsers — so with a real
+// NEXT_PUBLIC_TURNSTILE_SITE_KEY set, the login submit button never
+// enables, and with it unset, Supabase's server-side captcha enforcement
+// rejects the request outright ("captcha protection: request disallowed").
+// There is no in-between. To run this suite locally, temporarily disable
+// "Captcha protection" in Supabase Dashboard > Authentication, then
+// re-enable it afterward. (Not an issue in CI — GitHub Actions only runs
+// unit tests, not this e2e suite.)
 export default defineConfig({
   testDir: "./e2e",
   fullyParallel: false,

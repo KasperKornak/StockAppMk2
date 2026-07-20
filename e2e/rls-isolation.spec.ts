@@ -11,11 +11,11 @@ test.describe("RLS isolation", () => {
       await addHoldingViaModal(page, { ticker: "AAPL", quantity: "10" });
       await expect(page.locator("text=AAPL")).toBeVisible({ timeout: 15000 });
 
-      await page.click('button:has-text("Log out")');
+      await page.click('button:has-text("Wyloguj się")');
       await page.waitForURL("http://localhost:3000/");
 
       await loginAs(page, userB.email, userB.password);
-      await expect(page.locator("text=No holdings yet")).toBeVisible();
+      await expect(page.locator("text=Brak pozycji")).toBeVisible();
       await expect(page.locator("text=AAPL")).not.toBeVisible();
     } finally {
       await deleteTestUser(userA.id);
@@ -34,7 +34,7 @@ test.describe("RLS isolation", () => {
       await page.waitForURL("**/dashboard/holdings/**");
       const holdingUrl = page.url();
 
-      await page.click('button:has-text("Log out")');
+      await page.click('button:has-text("Wyloguj się")');
       await page.waitForURL("http://localhost:3000/");
 
       await loginAs(page, userB.email, userB.password);

@@ -37,9 +37,9 @@ test("in-app notifications are created by sync and can be marked read", async ({
     expect(notifications!.every((n) => n.read_at === null)).toBe(true);
 
     await page.reload();
-    await page.click('button[aria-label="Notifications"]');
+    await page.click('button[aria-label="Powiadomienia"]');
     const firstNotification = page
-      .locator('button:has-text("dividend confirmed"), button:has-text("upcoming dividend")')
+      .locator('button:has-text("dywidenda potwierdzona"), button:has-text("nadchodząca dywidenda")')
       .first();
     await expect(firstNotification).toBeVisible({ timeout: 10000 });
     await firstNotification.click();

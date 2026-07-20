@@ -26,7 +26,7 @@ export function DashboardHeader({
               💸
             </span>
             <span className="font-medium tracking-tight text-neutral-100">
-              Dividend Tax Tracker
+              odlicz.com
             </span>
             <span className="rounded-full border border-neutral-700 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-neutral-400 uppercase">
               {t("beta")}

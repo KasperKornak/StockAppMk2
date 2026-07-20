@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "title": "Dividend Tax Tracker",
+    "title": "odlicz.com",
     "description": "Śledź swoje pozycje dywidendowe i wiedz dokładnie, ile podatku odłożyć od każdej wypłaty."
   },
   "SiteHeader": {
@@ -10,7 +10,7 @@
     "beta": "Beta"
   },
   "SiteFooter": {
-    "appName": "Dividend Tax Tracker",
+    "appName": "odlicz.com",
     "disclaimer": "To nie jest porada podatkowa — zawsze skonsultuj się ze specjalistą.",
     "madeIn": "Zrobione w Bronowicach z ❤️"
   },
@@ -226,7 +226,7 @@
     "title": "Polityka prywatności",
     "draftNotice": "Wersja robocza — ostatnia aktualizacja {date}. Dokument nie został jeszcze zweryfikowany przez prawnika.",
     "whoWeAreTitle": "Kto jest administratorem",
-    "whoWeAreBody": "Dividend Tax Tracker jest prowadzony przez [YOUR NAME], osobę fizyczną z siedzibą w Polsce — jeszcze nie zarejestrowaną firmę. Do czasu zmiany tego stanu [YOUR NAME] jest administratorem danych osobowych przetwarzanych przez tę aplikację.",
+    "whoWeAreBody": "odlicz.com jest prowadzony przez [YOUR NAME], osobę fizyczną z siedzibą w Polsce — jeszcze nie zarejestrowaną firmę. Do czasu zmiany tego stanu [YOUR NAME] jest administratorem danych osobowych przetwarzanych przez tę aplikację.",
     "whatWeCollectTitle": "Co zbieramy",
     "whatWeCollectBody": "Twój adres e-mail (a jeśli logujesz się przez Google — podstawowe dane profilu udostępniane przez Google); pozycje, transakcje i tickery, które wprowadzasz; oraz wyliczone przez nas kwoty dywidend i podatku na podstawie tych danych oraz publicznych źródeł rynkowych i kursowych.",
     "whoElseSeesItTitle": "Kto jeszcze ma do nich dostęp",
@@ -240,7 +240,7 @@
     "notTaxAdviceBody": "Wszystko, co wylicza ta aplikacja, jest szacunkiem pomocnym w planowaniu — to nie jest profesjonalna porada podatkowa i może nie uwzględniać każdego niuansu umowy o unikaniu podwójnego opodatkowania. Zweryfikuj z wykwalifikowanym specjalistą przed złożeniem rozliczenia.",
     "contactTitle": "Kontakt",
     "contactBefore": "Pytania dotyczące Twoich danych lub cokolwiek innego — użyj odnośnika",
-    "contactAfter": "w stopce poniżej."
+    "contactAfter": "w stopce poniżej albo napisz na kontakt@odlicz.com."
   },
   "Notifications": {
     "title": "Powiadomienia",

@@ -12,7 +12,7 @@ export async function addHoldingViaModal(
   page: Page,
   { ticker, quantity, acquiredDate }: { ticker: string; quantity: string; acquiredDate?: string },
 ): Promise<void> {
-  await page.getByText("+ Add holding", { exact: true }).click();
+  await page.getByText("+ Dodaj pozycję", { exact: true }).click();
   await page.fill("#ticker", ticker);
   await page.fill("#quantity", quantity);
   if (acquiredDate) {

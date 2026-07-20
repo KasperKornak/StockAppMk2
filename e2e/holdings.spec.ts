@@ -27,7 +27,7 @@ test.describe("Holdings", () => {
       // before attempting the duplicate, rather than a fixed guess-timeout.
       await expect(page.locator("text=AAPL")).toBeVisible({ timeout: 20000 });
       await addHoldingViaModal(page, { ticker: "AAPL", quantity: "10" });
-      await expect(page.locator("text=/already have a holding/i")).toBeVisible({
+      await expect(page.locator("text=/masz już pozycję/i")).toBeVisible({
         timeout: 20000,
       });
     } finally {
@@ -40,8 +40,10 @@ test.describe("Holdings", () => {
     try {
       await loginAs(page, user.email, user.password);
       await addHoldingViaModal(page, { ticker: "ZZZNOTATICKER", quantity: "1" });
-      await expect(page.locator("text=/isn't supported yet/i")).toBeVisible({ timeout: 15000 });
-      await page.click("text=/Request support/i");
+      await expect(page.locator("text=/nie jest jeszcze obsługiwany/i")).toBeVisible({
+        timeout: 15000,
+      });
+      await page.click("text=/Zgłoś zapotrzebowanie/i");
 
       await expect
         .poll(async () => {
@@ -68,8 +70,8 @@ test.describe("Holdings", () => {
       await page.waitForURL("**/dashboard/holdings/**");
       await page.selectOption("#transactionType", "sell");
       await page.fill("#txQuantity", "100");
-      await page.click('button:has-text("Add transaction")');
-      await expect(page.locator("text=/only 5 held/i")).toBeVisible({ timeout: 10000 });
+      await page.click('button:has-text("Dodaj transakcję")');
+      await expect(page.locator("text=/tylko 5/i")).toBeVisible({ timeout: 10000 });
     } finally {
       await deleteTestUser(user.id);
     }
@@ -87,7 +89,7 @@ test.describe("Holdings", () => {
       const holdingId = page.url().split("/").pop()!;
 
       page.once("dialog", (dialog) => dialog.accept());
-      await page.click("text=Delete holding");
+      await page.click("text=Usuń pozycję");
       await page.waitForURL("**/dashboard");
 
       const { data: holdingRows } = await supabaseAdmin

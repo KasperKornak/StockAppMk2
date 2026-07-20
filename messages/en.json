@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "title": "Dividend Tax Tracker",
+    "title": "odlicz.com",
     "description": "Track your dividend-paying holdings and know exactly how much Polish tax to set aside on every payout."
   },
   "SiteHeader": {
@@ -10,7 +10,7 @@
     "beta": "Beta"
   },
   "SiteFooter": {
-    "appName": "Dividend Tax Tracker",
+    "appName": "odlicz.com",
     "disclaimer": "Not tax advice — always verify with a professional.",
     "madeIn": "Made in Bronowice with ❤️"
   },
@@ -226,7 +226,7 @@
     "title": "Privacy Policy",
     "draftNotice": "Draft — last updated {date}. This has not yet been reviewed by a lawyer.",
     "whoWeAreTitle": "Who we are",
-    "whoWeAreBody": "Dividend Tax Tracker is operated by [YOUR NAME], an individual based in Poland — not yet a registered company. Until that changes, [YOUR NAME] is the data controller for the personal data this app processes.",
+    "whoWeAreBody": "odlicz.com is operated by [YOUR NAME], an individual based in Poland — not yet a registered company. Until that changes, [YOUR NAME] is the data controller for the personal data this app processes.",
     "whatWeCollectTitle": "What we collect",
     "whatWeCollectBody": "Your email address (and, if you sign in with Google, the basic profile info Google shares); the holdings, transactions, and tickers you enter; and the dividend and tax figures we calculate from that data using public market and exchange-rate sources.",
     "whoElseSeesItTitle": "Who else sees it",
@@ -240,7 +240,7 @@
     "notTaxAdviceBody": "Everything this app calculates is an estimate to help you plan — it is not professional tax advice and may not reflect every treaty nuance. Verify with a qualified professional before filing.",
     "contactTitle": "Contact",
     "contactBefore": "Questions about your data, or anything else — use the",
-    "contactAfter": "link in the footer below."
+    "contactAfter": "link in the footer below, or email kontakt@odlicz.com."
   },
   "Notifications": {
     "title": "Notifications",
