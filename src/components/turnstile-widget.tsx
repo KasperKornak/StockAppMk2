@@ -36,7 +36,15 @@ export function TurnstileWidget({
 }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const widgetIdRef = useRef<string | null>(null);
-  const [scriptLoaded, setScriptLoaded] = useState(false);
+  // Client-side navigation (e.g. login <-> signup) doesn't remove the
+  // <script> tag from a previous page, so next/script's onLoad only fires
+  // once ever — never again for a fresh TurnstileWidget instance mounted on
+  // the second page. Read the external script state directly as the initial
+  // value instead of waiting forever for a load event that already happened
+  // before this component existed.
+  const [scriptLoaded, setScriptLoaded] = useState(
+    () => typeof window !== "undefined" && Boolean(window.turnstile),
+  );
 
   // Ref so the render effect below doesn't need onVerify in its deps —
   // callers typically pass an inline setState function that's stable in
