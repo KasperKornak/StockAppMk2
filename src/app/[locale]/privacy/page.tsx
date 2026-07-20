@@ -39,7 +39,7 @@ export default async function PrivacyPage() {
       )}
       <div className="mx-auto w-full max-w-2xl flex-1 px-6 py-16 text-neutral-300">
         <h1 className="mb-2 text-2xl font-semibold text-neutral-50">{t("title")}</h1>
-        <p className="mb-8 text-sm text-neutral-500">{t("draftNotice", { date: "2026-07-16" })}</p>
+        <p className="mb-8 text-sm text-neutral-500">{t("draftNotice", { date: "2026-07-20" })}</p>
 
         <div className="space-y-6 text-sm leading-6">
           <section>
@@ -53,6 +53,11 @@ export default async function PrivacyPage() {
           </section>
 
           <section>
+            <h2 className="mb-2 font-medium text-neutral-100">{t("legalBasisTitle")}</h2>
+            <p>{t("legalBasisBody")}</p>
+          </section>
+
+          <section>
             <h2 className="mb-2 font-medium text-neutral-100">{t("whoElseSeesItTitle")}</h2>
             <p>{t("whoElseSeesItBody")}</p>
           </section>
@@ -63,7 +68,13 @@ export default async function PrivacyPage() {
           </section>
 
           <section>
+            <h2 className="mb-2 font-medium text-neutral-100">{t("cookiesTitle")}</h2>
+            <p>{t("cookiesBody")}</p>
+          </section>
+
+          <section>
             <h2 className="mb-2 font-medium text-neutral-100">{t("yourRightsTitle")}</h2>
+            <p className="mb-2">{t("yourRightsIntro")}</p>
             <p>
               {t("yourRightsBefore")}{" "}
               <Link
@@ -74,11 +85,17 @@ export default async function PrivacyPage() {
               </Link>
               {t("yourRightsAfter")}
             </p>
+            <p className="mt-2">{t("yourRightsComplaint")}</p>
           </section>
 
           <section>
             <h2 className="mb-2 font-medium text-neutral-100">{t("notTaxAdviceTitle")}</h2>
             <p>{t("notTaxAdviceBody")}</p>
+          </section>
+
+          <section>
+            <h2 className="mb-2 font-medium text-neutral-100">{t("policyChangesTitle")}</h2>
+            <p>{t("policyChangesBody")}</p>
           </section>
 
           <section>
