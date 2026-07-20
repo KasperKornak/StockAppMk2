@@ -38,6 +38,7 @@
     "title": "Know exactly how much tax to set aside on every dividend.",
     "subtitle": "Add your holdings, and get notified before and after every payout with the exact PLN amount owed after foreign withholding tax credits — calculated using the official NBP exchange rate.",
     "getStarted": "Get started",
+    "goToDashboard": "Go to dashboard",
     "login": "Log in",
     "howItWorksTitle": "How it works",
     "step1Title": "Add your holdings",
@@ -97,6 +98,7 @@
     "whtOverrideMark": "Withholding rate overridden to {rate}",
     "emptyHoldings": "No holdings yet. Add your first ticker to start tracking dividends.",
     "recentActivity": "Recent dividend activity",
+    "syncFrequencyNote": "Synced automatically once a day — new holdings or payouts can take up to 24 hours to appear.",
     "viewByTaxYear": "View by tax year →",
     "emptyRecentActivity": "No dividend activity yet — this fills in once the daily sync finds payouts for your holdings."
   },
@@ -262,7 +264,6 @@
   },
   "NotFound": {
     "title": "Page not found",
-    "body": "The page you're looking for doesn't exist or may have been moved.",
     "backHome": "Back to home"
   },
   "ErrorPage": {

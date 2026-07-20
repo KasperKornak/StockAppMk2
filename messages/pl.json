@@ -38,6 +38,7 @@
     "title": "Wiedz dokładnie, ile podatku odłożyć od każdej dywidendy.",
     "subtitle": "Dodaj swoje pozycje, a przed i po każdej wypłacie otrzymasz powiadomienie z dokładną kwotą w PLN należną po uwzględnieniu ulgi z tytułu podatku zapłaconego za granicą — wyliczoną według oficjalnego kursu NBP.",
     "getStarted": "Zacznij teraz",
+    "goToDashboard": "Przejdź do panelu",
     "login": "Zaloguj się",
     "howItWorksTitle": "Jak to działa",
     "step1Title": "Dodaj swoje pozycje",
@@ -97,6 +98,7 @@
     "whtOverrideMark": "Stawka podatku u źródła nadpisana na {rate}",
     "emptyHoldings": "Brak pozycji. Dodaj pierwszy ticker, aby zacząć śledzić dywidendy.",
     "recentActivity": "Ostatnia aktywność dywidendowa",
+    "syncFrequencyNote": "Synchronizacja odbywa się automatycznie raz dziennie — nowe pozycje lub wypłaty mogą pojawić się z opóźnieniem do 24 godzin.",
     "viewByTaxYear": "Zobacz według roku podatkowego →",
     "emptyRecentActivity": "Brak aktywności dywidendowej — pojawi się, gdy codzienna synchronizacja znajdzie wypłaty dla Twoich pozycji."
   },
@@ -262,7 +264,6 @@
   },
   "NotFound": {
     "title": "Nie znaleziono strony",
-    "body": "Strona, której szukasz, nie istnieje lub została przeniesiona.",
     "backHome": "Wróć na stronę główną"
   },
   "ErrorPage": {

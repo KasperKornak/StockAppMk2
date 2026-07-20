@@ -19,9 +19,9 @@ export function DashboardHeader({
 
   return (
     <header className="relative z-10 border-b border-neutral-900">
-      <div className="mx-auto flex w-full max-w-5xl items-center justify-between gap-6 px-6 py-4">
-        <div className="flex items-center gap-8">
-          <Link href="/dashboard" className="flex items-center gap-2">
+      <div className="mx-auto flex w-full max-w-5xl flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-4 sm:px-6">
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+          <Link href="/dashboard" className="flex shrink-0 items-center gap-2">
             <span className="text-2xl leading-none" aria-hidden>
               💸
             </span>
@@ -32,13 +32,13 @@ export function DashboardHeader({
               {t("beta")}
             </span>
           </Link>
-          <nav className="flex items-center gap-5 text-sm">
+          <nav className="flex flex-wrap items-center gap-4 text-sm">
             <Link
               href="/dashboard"
               className={
                 pathname === "/dashboard"
-                  ? "text-neutral-100"
-                  : "text-neutral-500 transition-colors hover:text-neutral-300"
+                  ? "whitespace-nowrap text-neutral-100"
+                  : "whitespace-nowrap text-neutral-500 transition-colors hover:text-neutral-300"
               }
             >
               {t("holdings")}
@@ -47,8 +47,8 @@ export function DashboardHeader({
               href="/dashboard/tax-years"
               className={
                 pathname === "/dashboard/tax-years"
-                  ? "text-neutral-100"
-                  : "text-neutral-500 transition-colors hover:text-neutral-300"
+                  ? "whitespace-nowrap text-neutral-100"
+                  : "whitespace-nowrap text-neutral-500 transition-colors hover:text-neutral-300"
               }
             >
               {t("taxYears")}
@@ -57,8 +57,8 @@ export function DashboardHeader({
               href="/dashboard/settings"
               className={
                 pathname === "/dashboard/settings"
-                  ? "text-neutral-100"
-                  : "text-neutral-500 transition-colors hover:text-neutral-300"
+                  ? "whitespace-nowrap text-neutral-100"
+                  : "whitespace-nowrap text-neutral-500 transition-colors hover:text-neutral-300"
               }
             >
               {t("settings")}
@@ -66,7 +66,7 @@ export function DashboardHeader({
           </nav>
         </div>
 
-        <div className="flex items-center gap-4 text-sm">
+        <div className="flex flex-wrap items-center gap-3 text-sm">
           <LanguageSwitcher />
           <NotificationBell notifications={notifications} />
           <span className="hidden max-w-[16ch] truncate text-neutral-500 sm:inline" title={userEmail}>
@@ -75,7 +75,7 @@ export function DashboardHeader({
           <form action={logout}>
             <button
               type="submit"
-              className="text-neutral-400 transition-colors hover:text-emerald-400"
+              className="whitespace-nowrap text-neutral-400 transition-colors hover:text-emerald-400"
             >
               {t("logout")}
             </button>

@@ -1,10 +1,15 @@
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { Link } from "@/i18n/navigation";
+import { createClient } from "@/lib/supabase/server";
 
-export default function Home() {
-  const t = useTranslations("Landing");
+export default async function Home() {
+  const t = await getTranslations("Landing");
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
   const steps = [
     { number: "01", title: t("step1Title"), description: t("step1Description") },
     { number: "02", title: t("step2Title"), description: t("step2Description") },
@@ -29,18 +34,29 @@ export default function Home() {
         </h1>
         <p className="max-w-xl text-lg leading-8 text-neutral-400">{t("subtitle")}</p>
         <div className="flex gap-3">
-          <Link
-            href="/signup"
-            className="inline-flex h-12 items-center justify-center rounded-full bg-emerald-500 px-6 text-base font-medium text-neutral-950 transition-colors hover:bg-emerald-400"
-          >
-            {t("getStarted")}
-          </Link>
-          <Link
-            href="/login"
-            className="inline-flex h-12 items-center justify-center rounded-full border border-neutral-700 px-6 text-base font-medium text-neutral-100 transition-colors hover:border-emerald-500/50 hover:text-emerald-400"
-          >
-            {t("login")}
-          </Link>
+          {user ? (
+            <Link
+              href="/dashboard"
+              className="inline-flex h-12 items-center justify-center rounded-full bg-emerald-500 px-6 text-base font-medium text-neutral-950 transition-colors hover:bg-emerald-400"
+            >
+              {t("goToDashboard")}
+            </Link>
+          ) : (
+            <>
+              <Link
+                href="/signup"
+                className="inline-flex h-12 items-center justify-center rounded-full bg-emerald-500 px-6 text-base font-medium text-neutral-950 transition-colors hover:bg-emerald-400"
+              >
+                {t("getStarted")}
+              </Link>
+              <Link
+                href="/login"
+                className="inline-flex h-12 items-center justify-center rounded-full border border-neutral-700 px-6 text-base font-medium text-neutral-100 transition-colors hover:border-emerald-500/50 hover:text-emerald-400"
+              >
+                {t("login")}
+              </Link>
+            </>
+          )}
         </div>
       </main>
 

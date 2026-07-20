@@ -116,73 +116,139 @@ export default async function DashboardPage() {
         </div>
 
         {holdings && holdings.length > 0 ? (
-          <div className="overflow-hidden rounded-xl border border-neutral-800">
-            <div
-              className="grid gap-4 border-b border-neutral-800 bg-neutral-900/60 px-5 py-2.5 text-xs font-medium tracking-wider text-neutral-500 uppercase"
-              style={{ gridTemplateColumns: holdingColumns }}
-            >
-              <span>{t("colTicker")}</span>
-              <span>{t("colDomicile")}</span>
-              <span className="text-right">{t("colQty")}</span>
-              <span className="text-right">{t("colAvgPrice")}</span>
-              <span className="text-right">{t("colMarketValue")}</span>
-              <span className="text-right" title={t("colYtdDividendsTooltip")}>
-                {t("colYtdDividends")}
-              </span>
-              <span className="text-right" title={t("colTaxSetAsideTooltip")}>
-                {t("colTaxSetAside")}
-              </span>
-            </div>
-            {holdings.map((holding, i) => {
-              const holdingTransactions = transactionsByHolding.get(holding.id) ?? [];
-              const quantity = computeQuantityAtDate(holdingTransactions);
-              const avgPrice = computeAveragePrice(holdingTransactions);
-              const price = priceByTicker.get(holding.ticker);
-              const marketValue = price !== undefined ? price * quantity : null;
-              const ytdReceivedPln = receivedByHolding.get(holding.id) ?? 0;
-              const ytdSetAsidePln = setAsideByHolding.get(holding.id) ?? 0;
+          <div className="rounded-xl border border-neutral-800">
+            {/* Mobile: stacked cards — seven columns can't fit a phone width. */}
+            <div className="divide-y divide-neutral-800/70 sm:hidden">
+              {holdings.map((holding) => {
+                const holdingTransactions = transactionsByHolding.get(holding.id) ?? [];
+                const quantity = computeQuantityAtDate(holdingTransactions);
+                const price = priceByTicker.get(holding.ticker);
+                const marketValue = price !== undefined ? price * quantity : null;
+                const ytdReceivedPln = receivedByHolding.get(holding.id) ?? 0;
+                const ytdSetAsidePln = setAsideByHolding.get(holding.id) ?? 0;
 
-              return (
-                <div
-                  key={holding.id}
-                  style={{ gridTemplateColumns: holdingColumns }}
-                  className={`grid items-center gap-4 px-5 py-4 transition-colors hover:bg-neutral-900/40 ${
-                    i !== holdings.length - 1 ? "border-b border-neutral-800/70" : ""
-                  }`}
-                >
+                return (
                   <Link
+                    key={holding.id}
                     href={`/dashboard/holdings/${holding.id}`}
-                    className="flex items-center gap-1.5 font-medium text-neutral-100 hover:text-emerald-400"
+                    className="block p-4 transition-colors hover:bg-neutral-900/40"
                   >
-                    {holding.ticker}
-                    {holding.withholding_rate_override !== null && (
-                      <span
-                        title={t("whtOverrideMark", {
-                          rate: formatRate(holding.withholding_rate_override),
-                        })}
-                        className="inline-block h-1.5 w-1.5 rounded-full bg-amber-400"
-                      />
-                    )}
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="flex items-center gap-1.5 font-medium text-neutral-100">
+                        {holding.ticker}
+                        {holding.withholding_rate_override !== null && (
+                          <span
+                            title={t("whtOverrideMark", {
+                              rate: formatRate(holding.withholding_rate_override),
+                            })}
+                            className="inline-block h-1.5 w-1.5 rounded-full bg-amber-400"
+                          />
+                        )}
+                      </span>
+                      <span className="text-sm text-neutral-400">{holding.domicile ?? "—"}</span>
+                    </div>
+                    <div className="mt-3 grid grid-cols-2 gap-x-3 gap-y-2 text-sm">
+                      <div>
+                        <div className="text-xs text-neutral-500">{t("colQty")}</div>
+                        <div className="tabular-nums text-neutral-300">{quantity}</div>
+                      </div>
+                      <div>
+                        <div className="text-xs text-neutral-500">{t("colMarketValue")}</div>
+                        <div className="tabular-nums text-neutral-300">
+                          {marketValue !== null ? marketValue.toFixed(2) : "—"}
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-xs text-neutral-500">{t("colYtdDividends")}</div>
+                        <div className="tabular-nums text-neutral-300">
+                          {formatPln(ytdReceivedPln)}
+                        </div>
+                      </div>
+                      <div>
+                        <div className="text-xs text-neutral-500">{t("colTaxSetAside")}</div>
+                        <div className="font-medium tabular-nums text-emerald-400">
+                          {formatPln(ytdSetAsidePln)}
+                        </div>
+                      </div>
+                    </div>
                   </Link>
-                  <span className="text-sm text-neutral-400">{holding.domicile ?? "—"}</span>
-                  <span className="text-right text-sm tabular-nums text-neutral-400">
-                    {quantity}
+                );
+              })}
+            </div>
+
+            {/* Desktop/tablet: full grid table */}
+            <div className="hidden overflow-x-auto sm:block">
+              <div className="min-w-[720px]">
+                <div
+                  className="grid gap-4 border-b border-neutral-800 bg-neutral-900/60 px-5 py-2.5 text-xs font-medium tracking-wider text-neutral-500 uppercase"
+                  style={{ gridTemplateColumns: holdingColumns }}
+                >
+                  <span>{t("colTicker")}</span>
+                  <span>{t("colDomicile")}</span>
+                  <span className="text-right">{t("colQty")}</span>
+                  <span className="text-right">{t("colAvgPrice")}</span>
+                  <span className="text-right">{t("colMarketValue")}</span>
+                  <span className="text-right" title={t("colYtdDividendsTooltip")}>
+                    {t("colYtdDividends")}
                   </span>
-                  <span className="text-right text-sm tabular-nums text-neutral-400">
-                    {avgPrice !== null ? avgPrice.toFixed(2) : "—"}
-                  </span>
-                  <span className="text-right text-sm tabular-nums text-neutral-400">
-                    {marketValue !== null ? marketValue.toFixed(2) : "—"}
-                  </span>
-                  <span className="text-right text-sm tabular-nums text-neutral-400">
-                    {formatPln(ytdReceivedPln)}
-                  </span>
-                  <span className="text-right text-sm font-medium tabular-nums text-emerald-400">
-                    {formatPln(ytdSetAsidePln)}
+                  <span className="text-right" title={t("colTaxSetAsideTooltip")}>
+                    {t("colTaxSetAside")}
                   </span>
                 </div>
-              );
-            })}
+                {holdings.map((holding, i) => {
+                  const holdingTransactions = transactionsByHolding.get(holding.id) ?? [];
+                  const quantity = computeQuantityAtDate(holdingTransactions);
+                  const avgPrice = computeAveragePrice(holdingTransactions);
+                  const price = priceByTicker.get(holding.ticker);
+                  const marketValue = price !== undefined ? price * quantity : null;
+                  const ytdReceivedPln = receivedByHolding.get(holding.id) ?? 0;
+                  const ytdSetAsidePln = setAsideByHolding.get(holding.id) ?? 0;
+
+                  return (
+                    <div
+                      key={holding.id}
+                      style={{ gridTemplateColumns: holdingColumns }}
+                      className={`grid items-center gap-4 px-5 py-4 transition-colors hover:bg-neutral-900/40 ${
+                        i !== holdings.length - 1 ? "border-b border-neutral-800/70" : ""
+                      }`}
+                    >
+                      <Link
+                        href={`/dashboard/holdings/${holding.id}`}
+                        className="flex items-center gap-1.5 font-medium text-neutral-100 hover:text-emerald-400"
+                      >
+                        {holding.ticker}
+                        {holding.withholding_rate_override !== null && (
+                          <span
+                            title={t("whtOverrideMark", {
+                              rate: formatRate(holding.withholding_rate_override),
+                            })}
+                            className="inline-block h-1.5 w-1.5 rounded-full bg-amber-400"
+                          />
+                        )}
+                      </Link>
+                      <span className="whitespace-nowrap text-sm text-neutral-400">
+                        {holding.domicile ?? "—"}
+                      </span>
+                      <span className="text-right text-sm tabular-nums text-neutral-400">
+                        {quantity}
+                      </span>
+                      <span className="text-right text-sm tabular-nums text-neutral-400">
+                        {avgPrice !== null ? avgPrice.toFixed(2) : "—"}
+                      </span>
+                      <span className="text-right text-sm tabular-nums text-neutral-400">
+                        {marketValue !== null ? marketValue.toFixed(2) : "—"}
+                      </span>
+                      <span className="text-right text-sm tabular-nums text-neutral-400">
+                        {formatPln(ytdReceivedPln)}
+                      </span>
+                      <span className="text-right text-sm font-medium tabular-nums text-emerald-400">
+                        {formatPln(ytdSetAsidePln)}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         ) : (
           <p className="rounded-xl border border-neutral-800 px-5 py-8 text-center text-neutral-400">
@@ -192,12 +258,13 @@ export default async function DashboardPage() {
 
         <AddHoldingForm />
 
-        <div className="mt-10 mb-5 flex items-center justify-between">
+        <div className="mt-10 mb-1 flex items-center justify-between">
           <h2 className="text-sm font-medium text-neutral-300">{t("recentActivity")}</h2>
           <Link href="/dashboard/tax-years" className="text-sm text-emerald-400 hover:text-emerald-300">
             {t("viewByTaxYear")}
           </Link>
         </div>
+        <p className="mb-4 text-xs text-neutral-500">{t("syncFrequencyNote")}</p>
 
         <DividendEventsTable events={typedRecentEvents} emptyMessage={t("emptyRecentActivity")} />
       </div>
