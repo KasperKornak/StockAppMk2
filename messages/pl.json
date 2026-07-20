@@ -250,5 +250,16 @@
     "confirmed": "dywidenda potwierdzona",
     "payDate": "Data wypłaty: {date}",
     "setAside": "do odłożenia {amount}"
+  },
+  "NotFound": {
+    "title": "Nie znaleziono strony",
+    "body": "Strona, której szukasz, nie istnieje lub została przeniesiona.",
+    "backHome": "Wróć na stronę główną"
+  },
+  "ErrorPage": {
+    "title": "Coś poszło nie tak",
+    "body": "Wystąpił nieoczekiwany błąd. Możesz spróbować ponownie lub wrócić na stronę główną.",
+    "retry": "Spróbuj ponownie",
+    "backHome": "Wróć na stronę główną"
   }
 }
