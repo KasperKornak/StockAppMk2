@@ -12,9 +12,7 @@ export default async function NotFound() {
 
   return (
     <div className="mx-auto flex w-full max-w-sm flex-1 flex-col items-center justify-center gap-3 px-6 py-24 text-center">
-      <div className="text-6xl" aria-hidden>
-        🧭
-      </div>
+      <div className="text-6xl font-bold tracking-tight text-emerald-400">404</div>
       <h1 className="text-xl font-semibold text-neutral-50">{t("title")}</h1>
       <Link
         href={user ? "/dashboard" : "/"}

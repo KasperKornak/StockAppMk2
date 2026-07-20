@@ -2,7 +2,7 @@ import { useTranslations } from "next-intl";
 import { formatPln } from "@/lib/format";
 import { DividendCalculationInfo } from "./dividend-calculation-info";
 
-const eventColumns = "0.6fr 0.7fr 0.8fr 0.9fr 0.9fr 0.9fr 0.9fr 0.3fr";
+const eventColumns = "0.6fr 0.7fr 0.8fr 0.9fr 0.9fr 0.9fr 0.3fr";
 
 export interface DividendEventRow {
   id: string;
@@ -69,10 +69,10 @@ export function DividendEventsTable({
 
   return (
     <div className="rounded-xl border border-neutral-800">
-      {/* Mobile: stacked cards — the grid table below needs more width than
-          any phone has, and forcing horizontal scroll there is worse UX
-          than just re-laying-out the same data vertically. */}
-      <div className="divide-y divide-neutral-800/70 sm:hidden">
+      {/* Stacked cards below lg — the grid table needs more width than
+          phones and most tablet/split-screen widths have, and forcing
+          horizontal scroll there is worse UX than re-laying-out vertically. */}
+      <div className="divide-y divide-neutral-800/70 lg:hidden">
         {rows.map(({ event, afterTaxesPln, statusLabel, statusClass }) => (
           <div key={event.id} className="p-4">
             <div className="flex items-center justify-between gap-2">
@@ -127,9 +127,11 @@ export function DividendEventsTable({
         ))}
       </div>
 
-      {/* Desktop/tablet: full grid table */}
-      <div className="hidden overflow-x-auto sm:block">
-        <div className="min-w-[820px]">
+      {/* Desktop: full grid table (After-taxes-in-foreign-currency is
+          dropped here to keep the min-width reasonable — it's still in the
+          "i" calculation breakdown). */}
+      <div className="hidden overflow-x-auto lg:block">
+        <div className="min-w-[700px]">
           <div
             className="grid gap-4 border-b border-neutral-800 bg-neutral-900/60 px-5 py-2.5 text-xs font-medium tracking-wider text-neutral-500 uppercase"
             style={{ gridTemplateColumns: eventColumns }}
@@ -138,12 +140,11 @@ export function DividendEventsTable({
             <span>{t("colStatus")}</span>
             <span>{t("colPayDate")}</span>
             <span className="text-right">{t("colGross")}</span>
-            <span className="text-right">{t("colAfterTaxes")}</span>
             <span className="text-right">{t("colAfterTaxesPln")}</span>
             <span className="text-right">{t("colSetAside")}</span>
             <span />
           </div>
-          {rows.map(({ event, afterTaxesForeign, afterTaxesPln, statusLabel, statusClass }, i) => (
+          {rows.map(({ event, afterTaxesPln, statusLabel, statusClass }, i) => (
             <div
               key={event.id}
               style={{ gridTemplateColumns: eventColumns }}
@@ -167,11 +168,6 @@ export function DividendEventsTable({
               <span className="whitespace-nowrap text-right text-sm tabular-nums text-neutral-400">
                 {event.gross_amount_foreign !== null
                   ? `${event.gross_amount_foreign.toFixed(2)} ${event.foreign_currency ?? ""}`
-                  : "—"}
-              </span>
-              <span className="whitespace-nowrap text-right text-sm tabular-nums text-neutral-400">
-                {afterTaxesForeign !== null
-                  ? `${afterTaxesForeign.toFixed(2)} ${event.foreign_currency ?? ""}`
                   : "—"}
               </span>
               <span className="whitespace-nowrap text-right text-sm tabular-nums text-neutral-400">

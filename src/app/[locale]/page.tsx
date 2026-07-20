@@ -4,6 +4,11 @@ import { SiteHeader } from "@/components/site-header";
 import { Link } from "@/i18n/navigation";
 import { createClient } from "@/lib/supabase/server";
 
+// Reads the session cookie to decide the hero CTA (dashboard vs. sign
+// up/login) — must never be served from a cached/prerendered shell, or a
+// logged-in visitor landing here directly would see the logged-out version.
+export const dynamic = "force-dynamic";
+
 export default async function Home() {
   const t = await getTranslations("Landing");
   const supabase = await createClient();

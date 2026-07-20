@@ -54,16 +54,30 @@ function createRateCache(supabase: SupabaseClient) {
 }
 
 /**
- * Daily sync (FR-DIV-001/003): fetches dividend history once per unique
- * ticker across all users (not per holding — see Market Data Provider NFR),
- * caches it, then fans out new dividend events to each holding on that
- * ticker using shares held as of each dividend's ex-dividend date (not
- * today's quantity — see holding_transactions), and finalizes any
- * "upcoming" events whose pay date has now passed.
+ * Daily sync (FR-DIV-001/003): finalizes matured events first (see ordering
+ * note below), then fetches dividend history once per unique ticker across
+ * all users (not per holding — see Market Data Provider NFR), caches it,
+ * and fans out new dividend events to each holding on that ticker using
+ * shares held as of each dividend's ex-dividend date (not today's
+ * quantity — see holding_transactions).
  */
 export async function syncDividendsForAllHoldings(
   supabase: SupabaseClient,
 ): Promise<SyncResult> {
+  const lookupNbpRate = createRateCache(supabase);
+
+  // Run these two FIRST, before the rate-limited per-ticker Massive loop
+  // below. Neither calls Massive at all — qualify is a pure date check,
+  // and finalize only needs NBP (fast, permanently cached) — so already-
+  // pending events actually get confirmed even if the ticker loop times
+  // out and never completes. This ordering matters: a real production
+  // incident showed the ticker loop alone exceeding Vercel's maxDuration
+  // once enough unique tickers accumulated, which meant finalize (running
+  // last, after the loop) never got a turn on ANY invocation — dividends
+  // sat at "qualified" forever despite the pay date having long passed.
+  const eventsQualified = await qualifyMaturedExDates(supabase);
+  const eventsFinalized = await finalizeMaturedDividendEvents(supabase, lookupNbpRate);
+
   const { data: holdings, error: holdingsError } = await supabase
     .from("holdings")
     .select("id, user_id, ticker, domicile, w8ben_confirmed, withholding_rate_override");
@@ -93,7 +107,6 @@ export async function syncDividendsForAllHoldings(
   }
 
   const tickers = [...new Set(typedHoldings.map((h) => h.ticker))];
-  const lookupNbpRate = createRateCache(supabase);
 
   let eventsCreated = 0;
   let eventsSkippedNoShares = 0;
@@ -155,9 +168,6 @@ export async function syncDividendsForAllHoldings(
       // Non-critical — market value is a display nicety, not tax-critical.
     }
   }
-
-  const eventsQualified = await qualifyMaturedExDates(supabase);
-  const eventsFinalized = await finalizeMaturedDividendEvents(supabase, lookupNbpRate);
 
   return {
     tickersSynced: tickers.length,

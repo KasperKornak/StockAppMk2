@@ -4,3 +4,11 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
+
+/* Tailwind's Preflight base reset intentionally sets cursor: default on
+   <button> (treating it like a native OS form control) instead of leaving
+   the browser's normal pointer cursor — undo that site-wide rather than
+   adding cursor-pointer to every individual button. */
+button:not(:disabled) {
+  cursor: pointer;
+}

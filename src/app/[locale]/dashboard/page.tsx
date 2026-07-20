@@ -117,8 +117,9 @@ export default async function DashboardPage() {
 
         {holdings && holdings.length > 0 ? (
           <div className="rounded-xl border border-neutral-800">
-            {/* Mobile: stacked cards — seven columns can't fit a phone width. */}
-            <div className="divide-y divide-neutral-800/70 sm:hidden">
+            {/* Stacked cards below lg — seven columns don't fit phone or
+                most tablet/split-screen widths. */}
+            <div className="divide-y divide-neutral-800/70 lg:hidden">
               {holdings.map((holding) => {
                 const holdingTransactions = transactionsByHolding.get(holding.id) ?? [];
                 const quantity = computeQuantityAtDate(holdingTransactions);
@@ -176,8 +177,8 @@ export default async function DashboardPage() {
               })}
             </div>
 
-            {/* Desktop/tablet: full grid table */}
-            <div className="hidden overflow-x-auto sm:block">
+            {/* Desktop: full grid table */}
+            <div className="hidden overflow-x-auto lg:block">
               <div className="min-w-[720px]">
                 <div
                   className="grid gap-4 border-b border-neutral-800 bg-neutral-900/60 px-5 py-2.5 text-xs font-medium tracking-wider text-neutral-500 uppercase"

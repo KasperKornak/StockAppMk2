@@ -4,13 +4,20 @@ import { revalidatePath } from "next/cache";
 import { createClient } from "@/lib/supabase/server";
 import { createServiceRoleClient } from "@/lib/supabase/service-role";
 
+export interface UpdateNotificationPreferencesState {
+  saved?: boolean;
+}
+
 // FR-NOTIF-001: users independently toggle email/in-app notifications.
-export async function updateNotificationPreferences(formData: FormData): Promise<void> {
+export async function updateNotificationPreferences(
+  _prevState: UpdateNotificationPreferencesState,
+  formData: FormData,
+): Promise<UpdateNotificationPreferencesState> {
   const supabase = await createClient();
   const {
     data: { user },
   } = await supabase.auth.getUser();
-  if (!user) return;
+  if (!user) return {};
 
   const inAppEnabled = formData.get("inAppEnabled") === "on";
 
@@ -22,6 +29,7 @@ export async function updateNotificationPreferences(formData: FormData): Promise
     .eq("user_id", user.id);
 
   revalidatePath("/dashboard/settings");
+  return { saved: true };
 }
 
 // GDPR data export — every table is scoped by the caller's own RLS-enforced
