@@ -14,11 +14,10 @@ export default async function SettingsPage() {
 
   const { data: preferences } = await supabase
     .from("notification_preferences")
-    .select("email_enabled, in_app_enabled")
+    .select("in_app_enabled")
     .eq("user_id", user!.id)
     .maybeSingle();
 
-  const emailEnabled = preferences?.email_enabled ?? true;
   const inAppEnabled = preferences?.in_app_enabled ?? true;
 
   return (
@@ -30,14 +29,16 @@ export default async function SettingsPage() {
         <p className="mt-1 text-sm text-neutral-500">{t("notifPrefsDesc")}</p>
 
         <form action={updateNotificationPreferences} className="mt-5 flex flex-col gap-4">
-          <label className="flex items-center gap-3 text-sm text-neutral-100">
+          <label className="flex items-center gap-3 text-sm text-neutral-500">
             <input
-              name="emailEnabled"
               type="checkbox"
-              defaultChecked={emailEnabled}
+              disabled
               className="h-4 w-4 accent-emerald-500"
             />
             {t("emailNotifications")}
+            <span className="rounded-full border border-neutral-700 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-neutral-500 uppercase">
+              {t("comingSoon")}
+            </span>
           </label>
           <label className="flex items-center gap-3 text-sm text-neutral-100">
             <input

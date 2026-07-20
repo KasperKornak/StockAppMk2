@@ -12,12 +12,13 @@ export async function updateNotificationPreferences(formData: FormData): Promise
   } = await supabase.auth.getUser();
   if (!user) return;
 
-  const emailEnabled = formData.get("emailEnabled") === "on";
   const inAppEnabled = formData.get("inAppEnabled") === "on";
 
+  // email_enabled isn't touched here — email notifications aren't wired up
+  // yet (see specs/roadmap.md), and the Settings UI disables that checkbox.
   await supabase
     .from("notification_preferences")
-    .update({ email_enabled: emailEnabled, in_app_enabled: inAppEnabled })
+    .update({ in_app_enabled: inAppEnabled })
     .eq("user_id", user.id);
 
   revalidatePath("/dashboard/settings");
