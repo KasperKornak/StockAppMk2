@@ -7,6 +7,7 @@
     "howItWorks": "Jak to działa",
     "login": "Zaloguj się",
     "signup": "Zarejestruj się",
+    "dashboard": "Panel",
     "beta": "Beta"
   },
   "SiteFooter": {
@@ -108,6 +109,7 @@
     "description": "To zapisuje pierwszą transakcję dla tego tickera — dywidendy wypłacone przed tą datą nie zostaną uwzględnione, ponieważ nie wiemy, ile akcji posiadałeś/aś wtedy.",
     "tickerLabel": "Ticker",
     "tickerPlaceholder": "AAPL",
+    "tickerNoMatches": "Brak podpowiedzi — nadal możesz wpisać dowolny ticker, sprawdzimy go po wysłaniu",
     "quantityLabel": "Ilość",
     "pricePaidLabel": "Cena zakupu za akcję (opcjonalnie)",
     "dateAcquiredLabel": "Data nabycia",
@@ -134,8 +136,13 @@
     "colSetAside": "Do odłożenia",
     "statusUpcoming": "nadchodząca",
     "statusQualified": "zakwalifikowana",
-    "statusConfirmed": "potwierdzona",
-    "infoButtonLabel": "Jak to obliczono"
+    "statusConfirmed": "wypłacona",
+    "infoButtonLabel": "Jak to obliczono",
+    "statusLegendTitle": "Co oznaczają te statusy?",
+    "statusUpcomingExplain": "Dzień ex-dywidendy jeszcze nie minął — wypłata nie jest jeszcze przesądzona.",
+    "statusQualifiedExplain": "Dzień ex-dywidendy minął, więc masz prawo do tej wypłaty, ale jeszcze jej nie otrzymałeś/aś.",
+    "statusPaidOutExplain": "Dywidenda została wypłacona, a kwoty podatku w PLN są ostateczne.",
+    "close": "Zamknij"
   },
   "DividendCalculationInfo": {
     "title": "Jak to obliczono",

@@ -7,6 +7,7 @@
     "howItWorks": "How it works",
     "login": "Log in",
     "signup": "Sign up",
+    "dashboard": "Dashboard",
     "beta": "Beta"
   },
   "SiteFooter": {
@@ -108,6 +109,7 @@
     "description": "This records your first transaction for the ticker — dividends paid before this date won't be counted, since we don't know how many shares you held then.",
     "tickerLabel": "Ticker",
     "tickerPlaceholder": "AAPL",
+    "tickerNoMatches": "No suggestions — you can still type any ticker and we'll check it on submit",
     "quantityLabel": "Quantity",
     "pricePaidLabel": "Price paid per share (optional)",
     "dateAcquiredLabel": "Date acquired",
@@ -134,8 +136,13 @@
     "colSetAside": "Set aside",
     "statusUpcoming": "upcoming",
     "statusQualified": "qualified",
-    "statusConfirmed": "confirmed",
-    "infoButtonLabel": "How this was calculated"
+    "statusConfirmed": "paid out",
+    "infoButtonLabel": "How this was calculated",
+    "statusLegendTitle": "What do these statuses mean?",
+    "statusUpcomingExplain": "The ex-dividend date hasn't passed yet — the payout isn't locked in.",
+    "statusQualifiedExplain": "The ex-dividend date has passed, so you're entitled to this payout, but it hasn't been paid yet.",
+    "statusPaidOutExplain": "The dividend has been paid, and the PLN tax figures are final.",
+    "close": "Close"
   },
   "DividendCalculationInfo": {
     "title": "How this was calculated",

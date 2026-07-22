@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
 import { formatPln } from "@/lib/format";
 import { DividendCalculationInfo } from "./dividend-calculation-info";
+import { StatusLegend } from "./status-legend";
 
 const eventColumns = "0.6fr 0.7fr 0.8fr 0.9fr 0.9fr 0.9fr 0.3fr";
 
@@ -72,8 +73,13 @@ export function DividendEventsTable({
       {/* Stacked cards below lg — the grid table needs more width than
           phones and most tablet/split-screen widths have, and forcing
           horizontal scroll there is worse UX than re-laying-out vertically. */}
-      <div className="divide-y divide-neutral-800/70 lg:hidden">
-        {rows.map(({ event, afterTaxesPln, statusLabel, statusClass }) => (
+      <div className="lg:hidden">
+        <div className="flex items-center gap-1.5 border-b border-neutral-800 bg-neutral-900/60 px-4 py-2 text-xs text-neutral-500">
+          {t("colStatus")}
+          <StatusLegend />
+        </div>
+        <div className="divide-y divide-neutral-800/70">
+          {rows.map(({ event, afterTaxesPln, statusLabel, statusClass }) => (
           <div key={event.id} className="p-4">
             <div className="flex items-center justify-between gap-2">
               <span className="font-medium text-neutral-100">{tickerOf(event)}</span>
@@ -124,7 +130,8 @@ export function DividendEventsTable({
               />
             </div>
           </div>
-        ))}
+          ))}
+        </div>
       </div>
 
       {/* Desktop: full grid table (After-taxes-in-foreign-currency is
@@ -137,7 +144,10 @@ export function DividendEventsTable({
             style={{ gridTemplateColumns: eventColumns }}
           >
             <span>{t("colTicker")}</span>
-            <span>{t("colStatus")}</span>
+            <span className="flex items-center gap-1.5">
+              {t("colStatus")}
+              <StatusLegend />
+            </span>
             <span>{t("colPayDate")}</span>
             <span className="text-right">{t("colGross")}</span>
             <span className="text-right">{t("colAfterTaxesPln")}</span>

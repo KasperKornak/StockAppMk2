@@ -74,6 +74,11 @@ export async function proxy(request: NextRequest) {
 export const config = {
   // Runs for every page route except API routes, the OAuth callback (its
   // redirect URI is registered verbatim with Google/Supabase and must not
-  // gain a locale prefix), the design-preview dev tool, and static assets.
-  matcher: ["/((?!api|auth|design-preview|_next|.*\\..*).*)"],
+  // gain a locale prefix), the design-preview dev tool, static assets, and
+  // the dynamically-generated icon/apple-icon routes — those have no file
+  // extension in their URL (they're generated at request time, not served
+  // from a static file), so the .*\..* exclusion below doesn't catch them;
+  // without this, next-intl's middleware hijacked /icon as if it were a
+  // translatable page and 404'd it, breaking the favicon in every browser.
+  matcher: ["/((?!api|auth|design-preview|icon|apple-icon|_next|.*\\..*).*)"],
 };

@@ -2,7 +2,7 @@ import { useTranslations } from "next-intl";
 import { LanguageSwitcher } from "@/components/language-switcher";
 import { Link } from "@/i18n/navigation";
 
-export function SiteHeader() {
+export function SiteHeader({ authenticated = false }: { authenticated?: boolean }) {
   const t = useTranslations("SiteHeader");
 
   return (
@@ -27,18 +27,29 @@ export function SiteHeader() {
           >
             {t("howItWorks")}
           </Link>
-          <Link
-            href="/login"
-            className="whitespace-nowrap text-neutral-300 transition-colors hover:text-neutral-100"
-          >
-            {t("login")}
-          </Link>
-          <Link
-            href="/signup"
-            className="whitespace-nowrap rounded-full bg-emerald-500 px-4 py-2 font-medium text-neutral-950 transition-colors hover:bg-emerald-400"
-          >
-            {t("signup")}
-          </Link>
+          {authenticated ? (
+            <Link
+              href="/dashboard"
+              className="whitespace-nowrap rounded-full bg-emerald-500 px-4 py-2 font-medium text-neutral-950 transition-colors hover:bg-emerald-400"
+            >
+              {t("dashboard")}
+            </Link>
+          ) : (
+            <>
+              <Link
+                href="/login"
+                className="whitespace-nowrap text-neutral-300 transition-colors hover:text-neutral-100"
+              >
+                {t("login")}
+              </Link>
+              <Link
+                href="/signup"
+                className="whitespace-nowrap rounded-full bg-emerald-500 px-4 py-2 font-medium text-neutral-950 transition-colors hover:bg-emerald-400"
+              >
+                {t("signup")}
+              </Link>
+            </>
+          )}
           <LanguageSwitcher />
         </nav>
       </div>

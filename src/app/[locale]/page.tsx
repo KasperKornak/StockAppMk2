@@ -28,7 +28,7 @@ export default async function Home() {
         className="pointer-events-none absolute -top-40 left-1/2 h-80 w-[640px] -translate-x-1/2 rounded-full bg-emerald-500/10 blur-3xl"
       />
 
-      <SiteHeader />
+      <SiteHeader authenticated={Boolean(user)} />
 
       <main className="relative mx-auto flex w-full max-w-2xl flex-1 flex-col justify-center gap-6 px-6 py-24">
         <p className="text-sm font-medium tracking-wide text-neutral-500 uppercase">

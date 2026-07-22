@@ -3,6 +3,7 @@
 import { useTranslations } from "next-intl";
 import { useActionState, useEffect, useRef, useState } from "react";
 import { addHolding, requestTickerSupport, type AddHoldingState } from "./actions";
+import { TickerCombobox } from "./ticker-combobox";
 
 const initialState: AddHoldingState = {};
 
@@ -72,12 +73,10 @@ function AddHoldingFormContent({ onClose }: { onClose: () => void }) {
           <label htmlFor="ticker" className="text-sm text-neutral-500">
             {t("tickerLabel")}
           </label>
-          <input
-            id="ticker"
-            name="ticker"
-            required
+          <TickerCombobox
+            inputClassName={inputClasses}
             placeholder={t("tickerPlaceholder")}
-            className={inputClasses}
+            noMatchesLabel={t("tickerNoMatches")}
           />
         </div>
         <div className="flex flex-col gap-1">
