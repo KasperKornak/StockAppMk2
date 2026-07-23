@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "odlicz.com",
-    "description": "Track your dividend-paying holdings and know exactly how much Polish tax to set aside on every payout."
+    "description": "Track your dividend-paying holdings and know exactly how much money to set aside on every payout."
   },
   "SiteHeader": {
     "howItWorks": "How it works",
@@ -12,7 +12,7 @@
   },
   "SiteFooter": {
     "appName": "odlicz.com",
-    "disclaimer": "Not tax advice — always verify with a professional.",
+    "disclaimer": "Not tax advice - always verify with a professional.",
     "madeIn": "Made in Bronowice with ❤️"
   },
   "Feedback": {
@@ -36,8 +36,8 @@
   },
   "Landing": {
     "eyebrow": "For Polish dividend investors",
-    "title": "Know exactly how much tax to set aside on every dividend.",
-    "subtitle": "Add your holdings, and get notified before and after every payout with the exact PLN amount owed after foreign withholding tax credits — calculated using the official NBP exchange rate.",
+    "title": "Know exactly how much money to set aside on every dividend for PIT.",
+    "subtitle": "Add your holdings, and get notified before and after every payout with the exact PLN amount owed after foreign withholding tax credits - calculated using the official NBP exchange rate.",
     "getStarted": "Get started",
     "goToDashboard": "Go to dashboard",
     "login": "Log in",
@@ -79,7 +79,7 @@
     "beta": "Beta"
   },
   "DashboardLayout": {
-    "disclaimer": "Estimates only, not tax advice — verify with a professional before filing.",
+    "disclaimer": "Estimates only, not tax advice - verify with a professional before filing.",
     "verifyEmailTitle": "Verify your email to continue",
     "verifyEmailBody": "We sent a verification link to {email}. Confirm it to unlock your holdings and dividend tracking."
   },
@@ -235,7 +235,7 @@
   },
   "Privacy": {
     "title": "Privacy Policy",
-    "draftNotice": "Draft — last updated {date}. This has not yet been reviewed by a lawyer.",
+    "draftNotice": "Last updated 23.07.2026. This has not yet been reviewed by a lawyer.",
     "whoWeAreTitle": "Who we are",
     "whoWeAreBody": "odlicz.com is operated by Kasper Kornak, an individual based in Poland — not yet a registered company. Until that changes, Kasper Kornak is the data controller for the personal data this app processes. Questions or requests about your data can be sent to kontakt@odlicz.com.",
     "whatWeCollectTitle": "What we collect",

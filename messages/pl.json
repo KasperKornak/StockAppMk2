@@ -1,7 +1,7 @@
 {
   "metadata": {
     "title": "odlicz.com",
-    "description": "Śledź swoje pozycje dywidendowe i wiedz dokładnie, ile podatku odłożyć od każdej wypłaty."
+    "description": "Śledź swoje pozycje i odkładaj na bieżąco pieniądze na PIT!"
   },
   "SiteHeader": {
     "howItWorks": "Jak to działa",
@@ -12,23 +12,23 @@
   },
   "SiteFooter": {
     "appName": "odlicz.com",
-    "disclaimer": "To nie jest porada podatkowa — zawsze skonsultuj się ze specjalistą.",
+    "disclaimer": "To nie jest porada podatkowa - zawsze skonsultuj się ze specjalistą.",
     "madeIn": "Zrobione w Bronowicach z ❤️"
   },
   "Feedback": {
     "button": "Opinie",
     "title": "Opinie",
-    "description": "Błąd, propozycja funkcji, pytanie o Twoje dane — cokolwiek to jest, trafia prosto tutaj.",
-    "messagePlaceholder": "Co masz na myśli?",
+    "description": "Błąd, propozycja funkcji, pytanie o Twoje dane - zgłoś to tutaj.",
+    "messagePlaceholder": "Co tam?",
     "emailLabel": "E-mail (opcjonalnie — tylko jeśli chcesz odpowiedź)",
     "emailPlaceholder": "ty@przyklad.pl",
     "send": "Wyślij",
     "sending": "Wysyłanie…",
-    "success": "Dzięki — dotarło.",
+    "success": "Dzięki — poszło!",
     "close": "Zamknij",
     "errorEmpty": "Wpisz wiadomość.",
-    "errorTooLong": "To trochę za długie — zmieść się w 4000 znakach.",
-    "errorGeneric": "Coś poszło nie tak przy wysyłaniu — spróbuj ponownie."
+    "errorTooLong": "Trochę za długie — użyj do 4000 znaków.",
+    "errorGeneric": "Coś poszło nie tak — spróbuj ponownie."
   },
   "LanguageSwitcher": {
     "en": "English",
@@ -36,9 +36,9 @@
   },
   "Landing": {
     "eyebrow": "Dla polskich inwestorów dywidendowych",
-    "title": "Wiedz dokładnie, ile podatku odłożyć od każdej dywidendy.",
-    "subtitle": "Dodaj swoje pozycje, a przed i po każdej wypłacie otrzymasz powiadomienie z dokładną kwotą w PLN należną po uwzględnieniu ulgi z tytułu podatku zapłaconego za granicą — wyliczoną według oficjalnego kursu NBP.",
-    "getStarted": "Zacznij teraz",
+    "title": "Wiedz dokładnie, ile pieniędzy odłożyć od każdej dywidendy.",
+    "subtitle": "Dodaj swoje pozycje, a przed i po każdej wypłacie dywidendy otrzymasz powiadomienie z dokładną kwotą w PLN należną po uwzględnieniu umów o unikaniu podwójnego opodatkowania — wyliczoną według oficjalnego kursu NBP.",
+    "getStarted": "Zaczynamy",
     "goToDashboard": "Przejdź do panelu",
     "login": "Zaloguj się",
     "howItWorksTitle": "Jak to działa",
@@ -47,7 +47,7 @@
     "step2Title": "Śledzimy każdą wypłatę",
     "step2Description": "Nadchodzące i potwierdzone dywidendy wykrywane automatycznie, przeliczane po oficjalnym kursie NBP.",
     "step3Title": "Wiedz, ile odłożyć",
-    "step3Description": "Zobacz dokładną kwotę w PLN należną po uwzględnieniu ulgi z tytułu podatku zagranicznego — zanim przyjdzie czas rozliczenia."
+    "step3Description": "Zobacz dokładną kwotę w PLN należną po uwzględnieniu umów o unikaniu podwójnego opodatkowania — zanim przyjdzie czas rozliczenia."
   },
   "Login": {
     "title": "Zaloguj się",
@@ -98,15 +98,15 @@
     "colTaxSetAsideTooltip": "Szacowana kwota w PLN do odłożenia na podatek Belki od tegorocznych dywidend",
     "whtOverrideMark": "Stawka podatku u źródła nadpisana na {rate}",
     "emptyHoldings": "Brak pozycji. Dodaj pierwszy ticker, aby zacząć śledzić dywidendy.",
-    "recentActivity": "Ostatnia aktywność dywidendowa",
+    "recentActivity": "Ostatnia aktywność",
     "syncFrequencyNote": "Synchronizacja odbywa się automatycznie raz dziennie — nowe pozycje lub wypłaty mogą pojawić się z opóźnieniem do 24 godzin.",
     "viewByTaxYear": "Zobacz według roku podatkowego →",
-    "emptyRecentActivity": "Brak aktywności dywidendowej — pojawi się, gdy codzienna synchronizacja znajdzie wypłaty dla Twoich pozycji."
+    "emptyRecentActivity": "Brak aktywności — pojawi się, gdy znajdziemy wypłaty związane z twoimi aktywami."
   },
   "AddHoldingForm": {
     "openButton": "+ Dodaj pozycję",
     "title": "Dodaj pozycję",
-    "description": "To zapisuje pierwszą transakcję dla tego tickera — dywidendy wypłacone przed tą datą nie zostaną uwzględnione, ponieważ nie wiemy, ile akcji posiadałeś/aś wtedy.",
+    "description": "To zapisuje pierwszą transakcję dla tego tickera — dywidendy wypłacone przed tą datą nie zostaną uwzględnione.",
     "tickerLabel": "Ticker",
     "tickerPlaceholder": "AAPL",
     "tickerNoMatches": "Brak podpowiedzi — nadal możesz wpisać dowolny ticker, sprawdzimy go po wysłaniu",
@@ -119,7 +119,7 @@
     "requestSupport": "Zgłoś zapotrzebowanie na {ticker}"
   },
   "AddHoldingErrors": {
-    "tickerAndQuantityRequired": "Ticker i dodatnia ilość są wymagane",
+    "tickerAndQuantityRequired": "Ticker i dodatnia ilość akcji są wymagane",
     "dateRequired": "Data nabycia jest wymagana",
     "loginRequired": "Zaloguj się, aby kontynuować",
     "unsupportedTicker": "Ten ticker nie jest jeszcze obsługiwany",
@@ -139,8 +139,8 @@
     "statusConfirmed": "wypłacona",
     "infoButtonLabel": "Jak to obliczono",
     "statusLegendTitle": "Co oznaczają te statusy?",
-    "statusUpcomingExplain": "Dzień ex-dywidendy jeszcze nie minął — wypłata nie jest jeszcze przesądzona.",
-    "statusQualifiedExplain": "Dzień ex-dywidendy minął, więc masz prawo do tej wypłaty, ale jeszcze jej nie otrzymałeś/aś.",
+    "statusUpcomingExplain": "Dzień ex-dividend jeszcze nie minął — wypłata nie jest jeszcze przesądzona.",
+    "statusQualifiedExplain": "Dzień ex-dividend minął, więc masz prawo do tej wypłaty, ale jeszcze jej nie otrzymałeś/aś.",
     "statusPaidOutExplain": "Dywidenda została wypłacona, a kwoty podatku w PLN są ostateczne.",
     "close": "Zamknij"
   },
@@ -235,7 +235,7 @@
   },
   "Privacy": {
     "title": "Polityka prywatności",
-    "draftNotice": "Wersja robocza — ostatnia aktualizacja {date}. Dokument nie został jeszcze zweryfikowany przez prawnika.",
+    "draftNotice": "Ostatnia aktualizacja 23.07.2026. Dokument nie został jeszcze zweryfikowany przez prawnika.",
     "whoWeAreTitle": "Kto jest administratorem",
     "whoWeAreBody": "odlicz.com jest prowadzony przez Kaspra Kornaka, osobę fizyczną z siedzibą w Polsce — jeszcze nie zarejestrowaną firmę. Do czasu zmiany tego stanu Kasper Kornak jest administratorem danych osobowych przetwarzanych przez tę aplikację. Pytania i wnioski dotyczące Twoich danych możesz kierować na kontakt@odlicz.com.",
     "whatWeCollectTitle": "Co zbieramy",
