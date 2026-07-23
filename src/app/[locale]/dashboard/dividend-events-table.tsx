@@ -162,7 +162,7 @@ export function DividendEventsTable({
             <div
               key={event.id}
               style={{ gridTemplateColumns: eventColumns }}
-              className={`grid items-center gap-4 px-5 py-4 ${
+              className={`grid items-center gap-4 px-5 py-4 text-center ${
                 i !== rows.length - 1 ? "border-b border-neutral-800/70" : ""
               }`}
             >
@@ -179,20 +179,20 @@ export function DividendEventsTable({
               <span className="whitespace-nowrap text-sm text-neutral-400">
                 {event.pay_date ?? "—"}
               </span>
-              <span className="whitespace-nowrap text-right text-sm tabular-nums text-neutral-400">
+              <span className="whitespace-nowrap text-sm tabular-nums text-neutral-400">
                 {event.gross_amount_foreign !== null
                   ? `${event.gross_amount_foreign.toFixed(2)} ${event.foreign_currency ?? ""}`
                   : "—"}
               </span>
-              <span className="whitespace-nowrap text-right text-sm tabular-nums text-neutral-400">
+              <span className="whitespace-nowrap text-sm tabular-nums text-neutral-400">
                 {afterTaxesPln !== null ? formatPln(afterTaxesPln) : "—"}
               </span>
-              <span className="whitespace-nowrap text-right text-sm font-medium tabular-nums text-neutral-100">
+              <span className="whitespace-nowrap text-sm font-medium tabular-nums text-neutral-100">
                 {event.amount_to_set_aside_pln !== null
                   ? formatPln(event.amount_to_set_aside_pln)
                   : "—"}
               </span>
-              <span className="flex justify-end">
+              <span className="flex justify-center">
                 <DividendCalculationInfo
                   details={{
                     grossAmountForeign: event.gross_amount_foreign,
