@@ -8,10 +8,10 @@ export function SiteFooter({ defaultEmail }: { defaultEmail?: string }) {
 
   return (
     <footer className="relative border-t border-neutral-900 px-6 py-8">
-      <div className="mx-auto flex w-full max-w-4xl flex-wrap items-center justify-between gap-2 text-sm text-neutral-500">
+      <div className="mx-auto grid w-full max-w-4xl grid-cols-1 items-center gap-3 text-center text-sm text-neutral-500 sm:grid-cols-3 sm:text-left">
         <span>{t("appName")}</span>
-        <span>{t("disclaimer")}</span>
-        <div className="flex items-center gap-4">
+        <span className="sm:text-center">{t("disclaimer")}</span>
+        <div className="flex items-center justify-center gap-4 sm:justify-end">
           <FeedbackButton defaultEmail={defaultEmail} />
           <Link href="/privacy" className="underline hover:text-neutral-300">
             {tSettings("privacyLink")}

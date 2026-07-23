@@ -1,6 +1,6 @@
 export default function DashboardLoading() {
   return (
-    <div className="mx-auto w-full max-w-3xl flex-1 animate-pulse px-6 py-12">
+    <div className="mx-auto w-full max-w-5xl flex-1 animate-pulse px-6 py-12">
       <div className="mb-10 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-neutral-800/80 bg-neutral-800/80">
         <div className="h-24 bg-neutral-950" />
         <div className="h-24 bg-neutral-950" />

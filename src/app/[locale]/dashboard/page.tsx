@@ -6,7 +6,11 @@ import { createClient } from "@/lib/supabase/server";
 import { AddHoldingForm } from "./add-holding-form";
 import { DIVIDEND_EVENTS_SELECT, DividendEventsTable, type DividendEventRow } from "./dividend-events-table";
 
-const holdingColumns = "0.9fr 0.6fr 0.5fr 0.7fr 0.8fr 0.8fr 0.8fr";
+// minmax(0, Xfr), not bare Xfr — otherwise a column's min-content size (e.g.
+// a long market-value-with-currency string) can force that track wider than
+// its fr share, shifting every column after it.
+const holdingColumns =
+  "minmax(0,0.9fr) minmax(0,0.6fr) minmax(0,0.5fr) minmax(0,0.7fr) minmax(0,1fr) minmax(0,0.8fr) minmax(0,0.8fr)";
 
 // FR-DASH-001/002: portfolio overview + YTD tax set-aside summary, backed by
 // the real dividend_events the daily sync job (FR-DIV-001/003) produces.
@@ -19,7 +23,7 @@ export default async function DashboardPage() {
   // year, and the two dividend_events reads don't depend on holdings.
   const [{ data: holdings }, { data: confirmedThisYear }, { data: recentEvents }] =
     await Promise.all([
-      supabase.from("holdings").select("id, ticker, domicile, withholding_rate_override"),
+      supabase.from("holdings").select("id, ticker, domicile, currency, withholding_rate_override"),
       supabase
         .from("dividend_events")
         .select("holding_id, gross_amount_pln, amount_to_set_aside_pln")
@@ -91,7 +95,7 @@ export default async function DashboardPage() {
         className="pointer-events-none absolute -top-40 left-1/2 h-80 w-[640px] -translate-x-1/2 rounded-full bg-emerald-500/10 blur-3xl"
       />
 
-      <div className="relative mx-auto w-full max-w-3xl flex-1 px-6 py-12">
+      <div className="relative mx-auto w-full max-w-5xl flex-1 px-6 py-12">
         <div className="mb-10 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-neutral-800/80 bg-neutral-800/80">
           <div className="bg-neutral-950 p-6">
             <div className="text-xs font-medium tracking-wider text-neutral-500 uppercase">
@@ -156,7 +160,9 @@ export default async function DashboardPage() {
                       <div>
                         <div className="text-xs text-neutral-500">{t("colMarketValue")}</div>
                         <div className="tabular-nums text-neutral-300">
-                          {marketValue !== null ? marketValue.toFixed(2) : "—"}
+                          {marketValue !== null
+                            ? `${marketValue.toFixed(2)} ${holding.currency ?? ""}`
+                            : "—"}
                         </div>
                       </div>
                       <div>
@@ -236,8 +242,10 @@ export default async function DashboardPage() {
                       <span className="text-right text-sm tabular-nums text-neutral-400">
                         {avgPrice !== null ? avgPrice.toFixed(2) : "—"}
                       </span>
-                      <span className="text-right text-sm tabular-nums text-neutral-400">
-                        {marketValue !== null ? marketValue.toFixed(2) : "—"}
+                      <span className="whitespace-nowrap text-right text-sm tabular-nums text-neutral-400">
+                        {marketValue !== null
+                          ? `${marketValue.toFixed(2)} ${holding.currency ?? ""}`
+                          : "—"}
                       </span>
                       <span className="text-right text-sm tabular-nums text-neutral-400">
                         {formatPln(ytdReceivedPln)}

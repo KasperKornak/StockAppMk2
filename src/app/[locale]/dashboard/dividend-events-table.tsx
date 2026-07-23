@@ -3,7 +3,11 @@ import { formatPln } from "@/lib/format";
 import { DividendCalculationInfo } from "./dividend-calculation-info";
 import { StatusLegend } from "./status-legend";
 
-const eventColumns = "0.6fr 0.7fr 0.8fr 0.9fr 0.9fr 0.9fr 0.3fr";
+// minmax(0, Xfr), not bare Xfr — otherwise a column's min-content size (e.g.
+// the "zakwalifikowana" status pill) can force that track wider than its fr
+// share, shifting every column after it.
+const eventColumns =
+  "minmax(0,0.6fr) minmax(0,1fr) minmax(0,0.8fr) minmax(0,0.9fr) minmax(0,0.9fr) minmax(0,0.9fr) minmax(0,0.3fr)";
 
 export interface DividendEventRow {
   id: string;
@@ -140,18 +144,18 @@ export function DividendEventsTable({
       <div className="hidden overflow-x-auto lg:block">
         <div className="min-w-[700px]">
           <div
-            className="grid gap-4 border-b border-neutral-800 bg-neutral-900/60 px-5 py-2.5 text-xs font-medium tracking-wider text-neutral-500 uppercase"
+            className="grid items-center gap-4 border-b border-neutral-800 bg-neutral-900/60 px-5 py-2.5 text-center text-xs font-medium tracking-wider text-neutral-500 uppercase"
             style={{ gridTemplateColumns: eventColumns }}
           >
             <span>{t("colTicker")}</span>
-            <span className="flex items-center gap-1.5">
+            <span className="flex items-center justify-center gap-1.5">
               {t("colStatus")}
               <StatusLegend />
             </span>
             <span>{t("colPayDate")}</span>
-            <span className="text-right">{t("colGross")}</span>
-            <span className="text-right">{t("colAfterTaxesPln")}</span>
-            <span className="text-right">{t("colSetAside")}</span>
+            <span>{t("colGross")}</span>
+            <span>{t("colAfterTaxesPln")}</span>
+            <span>{t("colSetAside")}</span>
             <span />
           </div>
           {rows.map(({ event, afterTaxesPln, statusLabel, statusClass }, i) => (
