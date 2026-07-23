@@ -1,6 +1,6 @@
 export default function TaxYearsLoading() {
   return (
-    <div className="mx-auto w-full max-w-3xl flex-1 animate-pulse px-6 py-12">
+    <div className="mx-auto w-full max-w-5xl flex-1 animate-pulse px-6 py-12">
       <div className="mb-5 h-4 w-24 rounded bg-neutral-800" />
       <div className="mb-8 flex gap-2">
         <div className="h-8 w-16 rounded-full bg-neutral-800" />

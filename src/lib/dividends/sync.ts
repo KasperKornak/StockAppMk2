@@ -78,9 +78,14 @@ export async function syncDividendsForAllHoldings(
   const eventsQualified = await qualifyMaturedExDates(supabase);
   const eventsFinalized = await finalizeMaturedDividendEvents(supabase, lookupNbpRate);
 
+  // Removed (soft-deleted, see 0014_holdings_soft_delete.sql) holdings are
+  // excluded — no point spending Massive rate-limit budget generating new
+  // upcoming dividends for a position the user took off their dashboard.
+  // Their existing dividend_events history is untouched either way.
   const { data: holdings, error: holdingsError } = await supabase
     .from("holdings")
-    .select("id, user_id, ticker, domicile, w8ben_confirmed, withholding_rate_override");
+    .select("id, user_id, ticker, domicile, w8ben_confirmed, withholding_rate_override")
+    .is("deleted_at", null);
   if (holdingsError) throw holdingsError;
 
   const typedHoldings = (holdings ?? []) as HoldingRow[];

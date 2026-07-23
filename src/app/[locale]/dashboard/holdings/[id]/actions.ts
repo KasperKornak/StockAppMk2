@@ -107,11 +107,17 @@ export async function deleteTransaction(formData: FormData): Promise<void> {
   revalidatePath("/dashboard");
 }
 
-// Removes the holding entirely (transactions and dividend_events cascade —
-// see 0001_init.sql). Deleting its last transaction alone doesn't do this;
-// it just leaves a 0-quantity holding sitting in the list.
+// Soft delete (see 0014_holdings_soft_delete.sql) — a hard delete used to
+// cascade away holding_transactions and every dividend_events row for this
+// holding, destroying real tax history for already-paid-out dividends.
+// Setting deleted_at just excludes it from the active holdings list; its
+// transactions and dividend events stay intact and still show up in Recent
+// Activity / Tax Years.
 export async function deleteHolding(holdingId: string): Promise<void> {
   const supabase = await createClient();
-  await supabase.from("holdings").delete().eq("id", holdingId);
+  await supabase
+    .from("holdings")
+    .update({ deleted_at: new Date().toISOString() })
+    .eq("id", holdingId);
   revalidatePath("/dashboard");
 }

@@ -23,7 +23,10 @@ export default async function DashboardPage() {
   // year, and the two dividend_events reads don't depend on holdings.
   const [{ data: holdings }, { data: confirmedThisYear }, { data: recentEvents }] =
     await Promise.all([
-      supabase.from("holdings").select("id, ticker, domicile, currency, withholding_rate_override"),
+      supabase
+        .from("holdings")
+        .select("id, ticker, domicile, currency, withholding_rate_override")
+        .is("deleted_at", null),
       supabase
         .from("dividend_events")
         .select("holding_id, gross_amount_pln, amount_to_set_aside_pln")
@@ -239,8 +242,8 @@ export default async function DashboardPage() {
                       <span className="text-right text-sm tabular-nums text-neutral-400">
                         {quantity}
                       </span>
-                      <span className="text-right text-sm tabular-nums text-neutral-400">
-                        {avgPrice !== null ? avgPrice.toFixed(2) : "—"}
+                      <span className="whitespace-nowrap text-right text-sm tabular-nums text-neutral-400">
+                        {avgPrice !== null ? `${avgPrice.toFixed(2)} ${holding.currency ?? ""}` : "—"}
                       </span>
                       <span className="whitespace-nowrap text-right text-sm tabular-nums text-neutral-400">
                         {marketValue !== null

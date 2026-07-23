@@ -19,7 +19,7 @@ export function DashboardHeader({
 
   return (
     <header className="relative z-10 border-b border-neutral-900">
-      <div className="mx-auto flex w-full max-w-5xl flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-4 sm:px-6">
+      <div className="mx-auto flex w-full max-w-5xl flex-wrap items-center justify-between gap-x-4 gap-y-4 px-4 py-4 sm:px-6">
         <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
           <Link href="/dashboard" className="flex shrink-0 items-center gap-2">
             <span className="text-2xl leading-none" aria-hidden>
@@ -62,6 +62,16 @@ export function DashboardHeader({
               }
             >
               {t("settings")}
+            </Link>
+            <Link
+              href="/help"
+              className={
+                pathname === "/help"
+                  ? "whitespace-nowrap text-neutral-100"
+                  : "whitespace-nowrap text-neutral-500 transition-colors hover:text-neutral-300"
+              }
+            >
+              {t("help")}
             </Link>
           </nav>
         </div>

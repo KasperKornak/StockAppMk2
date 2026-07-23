@@ -58,7 +58,13 @@ export function NotificationBell({ notifications }: { notifications: Notificatio
         <>
           {/* Click-outside-to-close backdrop */}
           <div className="fixed inset-0 z-10" onClick={() => setOpen(false)} />
-          <div className="absolute right-0 z-20 mt-2 w-80 rounded-xl border border-neutral-800 bg-neutral-950 shadow-xl">
+          {/* Anchored to the viewport on mobile (inset-x-4) — anchoring to
+              this button's own tiny wrapper via `right-0` let the fixed
+              320px-wide panel grow left past the screen edge whenever the
+              bell wasn't the rightmost element in the header row. From sm
+              up there's enough room for the original button-relative
+              positioning. */}
+          <div className="fixed inset-x-4 top-16 z-20 rounded-xl border border-neutral-800 bg-neutral-950 shadow-xl sm:absolute sm:inset-x-auto sm:top-auto sm:right-0 sm:mt-2 sm:w-80">
             <div className="flex items-center justify-between border-b border-neutral-800 px-4 py-3">
               <span className="text-sm font-medium text-neutral-300">{t("title")}</span>
               {unreadCount > 0 && (

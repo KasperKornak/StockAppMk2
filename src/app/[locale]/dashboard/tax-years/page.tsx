@@ -68,7 +68,7 @@ export default async function TaxYearsPage({
   }
 
   return (
-    <div className="mx-auto w-full max-w-3xl flex-1 px-6 py-12">
+    <div className="mx-auto w-full max-w-5xl flex-1 px-6 py-12">
       <h1 className="mb-5 text-sm font-medium text-neutral-300">{t("title")}</h1>
 
       <div className="mb-8 flex flex-wrap gap-2">
@@ -110,31 +110,63 @@ export default async function TaxYearsPage({
         <>
           <h2 className="mb-4 text-sm font-medium text-neutral-300">{t("byHoldingTitle")}</h2>
           <div className="mb-8 overflow-hidden rounded-xl border border-neutral-800">
-            <div className="grid grid-cols-4 gap-4 border-b border-neutral-800 bg-neutral-900/60 px-5 py-2.5 text-xs font-medium tracking-wider text-neutral-500 uppercase">
-              <span>{t("colTicker")}</span>
-              <span className="text-right">{t("colPayouts")}</span>
-              <span className="text-right">{t("colReceived")}</span>
-              <span className="text-right">{t("colSetAside")}</span>
+            {/* Stacked cards below lg — same reasoning as the dashboard's
+                holdings/dividend-events tables: four columns don't fit phone
+                or most tablet/split-screen widths. */}
+            <div className="divide-y divide-neutral-800/70 lg:hidden">
+              {[...byTicker.entries()].map(([ticker, totals]) => (
+                <div key={ticker} className="p-4">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-medium text-neutral-100">{ticker}</span>
+                    <span className="text-xs text-neutral-500">
+                      {t("colPayouts")}: {totals.count}
+                    </span>
+                  </div>
+                  <div className="mt-3 grid grid-cols-2 gap-x-3 gap-y-2 text-sm">
+                    <div>
+                      <div className="text-xs text-neutral-500">{t("colReceived")}</div>
+                      <div className="tabular-nums text-neutral-300">
+                        {formatPln(totals.receivedPln)}
+                      </div>
+                    </div>
+                    <div>
+                      <div className="text-xs text-neutral-500">{t("colSetAside")}</div>
+                      <div className="font-medium tabular-nums text-neutral-100">
+                        {formatPln(totals.setAsidePln)}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
-            {[...byTicker.entries()].map(([ticker, totals], i, arr) => (
-              <div
-                key={ticker}
-                className={`grid grid-cols-4 items-center gap-4 px-5 py-3 ${
-                  i !== arr.length - 1 ? "border-b border-neutral-800/70" : ""
-                }`}
-              >
-                <span className="font-medium text-neutral-100">{ticker}</span>
-                <span className="text-right text-sm tabular-nums text-neutral-400">
-                  {totals.count}
-                </span>
-                <span className="text-right text-sm tabular-nums text-neutral-400">
-                  {formatPln(totals.receivedPln)}
-                </span>
-                <span className="text-right text-sm font-medium tabular-nums text-neutral-100">
-                  {formatPln(totals.setAsidePln)}
-                </span>
+
+            {/* minmax(0, 1fr) via Tailwind's grid-cols-4 already keeps track
+                widths content-independent, same fix as the other tables. */}
+            <div className="hidden lg:block">
+              <div className="grid grid-cols-4 items-center gap-4 border-b border-neutral-800 bg-neutral-900/60 px-5 py-2.5 text-center text-xs font-medium tracking-wider text-neutral-500 uppercase">
+                <span>{t("colTicker")}</span>
+                <span>{t("colPayouts")}</span>
+                <span>{t("colReceived")}</span>
+                <span>{t("colSetAside")}</span>
               </div>
-            ))}
+              {[...byTicker.entries()].map(([ticker, totals], i, arr) => (
+                <div
+                  key={ticker}
+                  className={`grid grid-cols-4 items-center gap-4 px-5 py-3 text-center ${
+                    i !== arr.length - 1 ? "border-b border-neutral-800/70" : ""
+                  }`}
+                >
+                  <span className="font-medium text-neutral-100">{ticker}</span>
+                  <span className="text-sm tabular-nums text-neutral-400">{totals.count}</span>
+                  <span className="text-sm tabular-nums text-neutral-400">
+                    {formatPln(totals.receivedPln)}
+                  </span>
+                  <span className="text-sm font-medium tabular-nums text-neutral-100">
+                    {formatPln(totals.setAsidePln)}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
         </>
       )}

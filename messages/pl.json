@@ -13,7 +13,8 @@
   "SiteFooter": {
     "appName": "odlicz.com",
     "disclaimer": "To nie jest porada podatkowa - zawsze skonsultuj się ze specjalistą.",
-    "madeIn": "Zrobione w Bronowicach z ❤️"
+    "madeIn": "Zrobione w Bronowicach z ❤️",
+    "helpLink": "Pomoc"
   },
   "Feedback": {
     "button": "Opinie",
@@ -28,7 +29,8 @@
     "close": "Zamknij",
     "errorEmpty": "Wpisz wiadomość.",
     "errorTooLong": "Trochę za długie — użyj do 4000 znaków.",
-    "errorGeneric": "Coś poszło nie tak — spróbuj ponownie."
+    "errorGeneric": "Coś poszło nie tak — spróbuj ponownie.",
+    "errorRateLimited": "Zbyt wiele wiadomości w krótkim czasie — spróbuj ponownie za chwilę."
   },
   "LanguageSwitcher": {
     "en": "English",
@@ -74,6 +76,7 @@
     "holdings": "Pozycje",
     "taxYears": "Lata podatkowe",
     "settings": "Ustawienia",
+    "help": "Pomoc",
     "logout": "Wyloguj się",
     "backToDashboard": "← Powrót do panelu",
     "beta": "Beta"
@@ -92,7 +95,7 @@
     "colQty": "Ilość",
     "colAvgPrice": "Śr. cena",
     "colMarketValue": "Wartość rynkowa",
-    "colYtdDividends": "Dywidendy od pocz. roku",
+    "colYtdDividends": "Dywidendy od pocz. roku (brutto)",
     "colYtdDividendsTooltip": "Dywidendy brutto otrzymane w tym roku, przed opodatkowaniem",
     "colTaxSetAside": "Do odłożenia na podatek",
     "colTaxSetAsideTooltip": "Szacowana kwota w PLN do odłożenia na podatek Belki od tegorocznych dywidend",
@@ -173,7 +176,7 @@
     "emptyTransactions": "Brak transakcji.",
     "deleteHoldingButton": "Usuń pozycję",
     "deleteHoldingDeleting": "Usuwanie…",
-    "deleteHoldingConfirm": "Usunąć {ticker}? To usuwa pozycję oraz wszystkie jej transakcje i historię dywidend."
+    "deleteHoldingConfirm": "Usunąć {ticker} z pozycji? Historia transakcji i dywidend nadal będzie widoczna w Ostatniej aktywności i Latach podatkowych."
   },
   "HoldingSettingsForm": {
     "title": "Ustawienia podatkowe",
@@ -243,7 +246,13 @@
     "legalBasisTitle": "Podstawa prawna przetwarzania",
     "legalBasisBody": "Dane Twojego konta i pozycji przetwarzamy, ponieważ jest to niezbędne do świadczenia usługi, na którą się zarejestrowałeś/aś (art. 6 ust. 1 lit. b RODO — wykonanie umowy). Weryfikacja antybotowa podczas logowania/rejestracji oraz podstawowe środki bezpieczeństwa opierają się na naszym prawnie uzasadnionym interesie w utrzymaniu niezawodności i bezpieczeństwa usługi (art. 6 ust. 1 lit. f RODO).",
     "whoElseSeesItTitle": "Kto jeszcze ma do nich dostęp",
-    "whoElseSeesItBody": "Supabase (baza danych i uwierzytelnianie) oraz Vercel (hosting) przetwarzają dane Twojego konta i pozycji w naszym imieniu, na podstawie swoich standardowych umów powierzenia przetwarzania, w tym standardowych klauzul umownych dla transferu danych poza Europejski Obszar Gospodarczy. Cloudflare zapewnia weryfikację antybotową podczas logowania/rejestracji oraz przekazuje wiadomości wysłane na nasz adres kontaktowy — poza tym nie ma dostępu do danych Twojego konta. Jeśli logujesz się przez Google, Google przetwarza podstawowe dane profilu zgodnie z własną polityką prywatności. Dostawca danych rynkowych otrzymuje tickery, które śledzisz, ale nie Twoją tożsamość — nigdy nie widzi Twojego konta, ilości posiadanych akcji ani żadnych innych danych osobowych. Serwis kursowy Narodowego Banku Polskiego (NBP) nie otrzymuje żadnych danych osobowych — te zapytania nie odnoszą się do Ciebie ani Twoich pozycji.",
+    "whoElseSeesItIntro": "Poniższe podmioty przetwarzają dane w naszym imieniu, na podstawie swoich standardowych umów powierzenia przetwarzania, w tym standardowych klauzul umownych dla transferu danych poza Europejski Obszar Gospodarczy:",
+    "whoElseSeesItSupabase": "Supabase (baza danych i uwierzytelnianie) — przechowuje dane Twojego konta i pozycji.",
+    "whoElseSeesItVercel": "Vercel (hosting) — obsługuje aplikację i uruchamia codzienną synchronizację dywidend.",
+    "whoElseSeesItCloudflare": "Cloudflare — zapewnia weryfikację antybotową podczas logowania/rejestracji oraz przekazuje wiadomości wysłane na nasz adres kontaktowy. Poza tym nie ma dostępu do danych Twojego konta.",
+    "whoElseSeesItGoogle": "Google — tylko jeśli logujesz się przez Google, przetwarza podstawowe dane profilu zgodnie z własną polityką prywatności.",
+    "whoElseSeesItMarketData": "Dostawca danych rynkowych — otrzymuje tickery, które śledzisz, ale nie Twoją tożsamość. Nigdy nie widzi Twojego konta, ilości posiadanych akcji ani żadnych innych danych osobowych.",
+    "whoElseSeesItNbp": "Serwis kursowy Narodowego Banku Polskiego (NBP) — nie otrzymuje żadnych danych osobowych; te zapytania nie odnoszą się do Ciebie ani Twoich pozycji.",
     "howLongTitle": "Jak długo je przechowujemy",
     "howLongBody": "Do momentu usunięcia konta. Dokumenty istotne podatkowo warto przechowywać przez co najmniej 6 lat, zgodnie z typowymi polskimi normami przechowywania dokumentacji podatkowej, ale to Twoja decyzja — my tego nie egzekwujemy.",
     "cookiesTitle": "Pliki cookie",
@@ -260,6 +269,26 @@
     "contactTitle": "Kontakt",
     "contactBefore": "Pytania dotyczące Twoich danych lub cokolwiek innego — użyj odnośnika",
     "contactAfter": "w stopce poniżej albo napisz na kontakt@odlicz.com."
+  },
+  "Help": {
+    "title": "Pomoc",
+    "intro": "Krótki przewodnik po tym, jak działa odlicz.com i co oznacza to, co widzisz na panelu.",
+    "taxCalcTitle": "Jak działa wyliczenie podatku",
+    "taxCalcBody": "Polscy rezydenci podatkowi płacą 19% podatku Belki od dochodów z dywidend. Jeśli zagraniczny broker już pobrał podatek u źródła, możesz odliczyć go od polskiego podatku — odliczenie jest ograniczone do niższej z trzech wartości: rzeczywistego podatku u źródła, stawki wynikającej z umowy o unikaniu podwójnego opodatkowania dla danego kraju, lub polskiego podatku należnego. Kwoty w PLN wyliczamy według oficjalnego kursu NBP z dnia poprzedzającego dzień wypłaty (kurs, którego NBP używa w tym celu), a kwota \"do odłożenia\" to po prostu polski podatek należny pomniejszony o to odliczenie.",
+    "statusesTitle": "Co oznaczają statusy dywidend",
+    "statusesBody": "Każda dywidenda przechodzi przez trzy etapy: nadchodząca (dzień ex-dywidendy jeszcze nie minął, więc wypłata nie jest jeszcze przesądzona), zakwalifikowana (dzień ex-dywidendy minął — masz do niej prawo, ale jeszcze jej nie wypłacono) oraz wypłacona (dywidenda została wypłacona, a kwoty podatku w PLN są ostateczne). Możesz też kliknąć małe \"?\" przy kolumnie Status, aby zobaczyć to samo wyjaśnienie na miejscu.",
+    "w8benTitle": "W-8BEN i stawki podatku u źródła",
+    "w8benBody": "Formularz W-8BEN (składany u Twojego brokera, nie u nas) obniża domyślny amerykański podatek u źródła od dywidend z 30% do 15%. Potwierdź go przy dodawaniu pozycji z USA — albo później na stronie szczegółów tej pozycji — a my użyjemy 15% zamiast 30% przy sugerowanej stawce podatku u źródła. Możesz też ręcznie nadpisać sugerowaną stawkę dla danej pozycji, jeśli Twoja rzeczywista sytuacja jest inna.",
+    "addingHoldingsTitle": "Dodawanie pozycji i zgłaszanie tickerów",
+    "addingHoldingsBody": "Użyj przycisku \"+ Dodaj pozycję\" na panelu — podpowiedzi tickerów pokazują popularne symbole, ale możesz wpisać dowolny; sprawdzimy go u naszego dostawcy danych rynkowych po wysłaniu formularza. Jeśli dany ticker nie jest jeszcze obsługiwany, zobaczysz opcję \"Zgłoś zapotrzebowanie\", która da nam znać, że jest na niego popyt. Dodanie tickera, który już posiadasz, dopisuje nową transakcję zakupu do istniejącej pozycji zamiast tworzyć duplikat.",
+    "notificationsTitle": "Powiadomienia",
+    "notificationsBody": "Powiadomienia w aplikacji pojawiają się, gdy dywidenda staje się nadchodząca, a potem ponownie, gdy zostanie wypłacona. Powiadomienia e-mail są planowane, ale jeszcze nie działają — przełącznik w Ustawieniach jest oznaczony jako \"wkrótce\".",
+    "taxYearsTitle": "Widok Lata podatkowe",
+    "taxYearsBody": "Strona Lata podatkowe grupuje każdą wypłaconą dywidendę według roku kalendarzowego i tickera, dzięki czemu od razu widzisz sumy dla konkretnego roku rozliczeniowego.",
+    "dataTitle": "Twoje dane",
+    "dataBody": "W dowolnym momencie możesz wyeksportować wszystko, co o Tobie przechowujemy, albo trwale usunąć konto wraz ze wszystkimi powiązanymi danymi — z poziomu Ustawień. Szczegóły dotyczące tego, co zbieramy i dlaczego, znajdziesz w Polityce prywatności.",
+    "stillStuckTitle": "Nadal masz pytanie?",
+    "stillStuckBody": "Użyj przycisku Opinie w stopce — trafi bezpośrednio do nas."
   },
   "Notifications": {
     "title": "Powiadomienia",

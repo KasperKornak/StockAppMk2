@@ -60,6 +60,9 @@ function FeedbackFormContent({
 }) {
   const t = useTranslations("Feedback");
   const [state, formAction, pending] = useActionState(submitFeedback, initialState);
+  // Set once when the form mounts — the server rejects submissions sent
+  // implausibly soon after (see MIN_FILL_TIME_MS in feedback-actions.ts).
+  const [renderedAt] = useState(() => Date.now());
 
   return (
     <div className="p-5">
@@ -90,6 +93,18 @@ function FeedbackFormContent({
         <>
           <p className="mb-4 text-sm text-neutral-500">{t("description")}</p>
           <form action={formAction} className="flex flex-col gap-3">
+            {/* Honeypot — hidden from real users via CSS (not `type="hidden"`,
+                which some bots skip filling), a scripted bot filling every
+                field will still fill this one. */}
+            <input
+              type="text"
+              name="website"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              className="absolute h-px w-px overflow-hidden opacity-0"
+            />
+            <input type="hidden" name="renderedAt" value={renderedAt} />
             <textarea
               name="message"
               required

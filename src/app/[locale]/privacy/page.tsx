@@ -59,7 +59,15 @@ export default async function PrivacyPage() {
 
           <section>
             <h2 className="mb-2 font-medium text-neutral-100">{t("whoElseSeesItTitle")}</h2>
-            <p>{t("whoElseSeesItBody")}</p>
+            <p className="mb-2">{t("whoElseSeesItIntro")}</p>
+            <ul className="list-disc space-y-1.5 pl-5">
+              <li>{t("whoElseSeesItSupabase")}</li>
+              <li>{t("whoElseSeesItVercel")}</li>
+              <li>{t("whoElseSeesItCloudflare")}</li>
+              <li>{t("whoElseSeesItGoogle")}</li>
+              <li>{t("whoElseSeesItMarketData")}</li>
+              <li>{t("whoElseSeesItNbp")}</li>
+            </ul>
           </section>
 
           <section>

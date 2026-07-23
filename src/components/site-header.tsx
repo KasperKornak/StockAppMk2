@@ -7,7 +7,7 @@ export function SiteHeader({ authenticated = false }: { authenticated?: boolean 
 
   return (
     <header className="relative z-10 border-b border-neutral-900">
-      <div className="mx-auto flex w-full max-w-5xl flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-4 sm:px-6">
+      <div className="mx-auto flex w-full max-w-5xl flex-wrap items-center justify-between gap-x-4 gap-y-4 px-4 py-4 sm:px-6">
         <Link href="/" className="flex shrink-0 items-center gap-2">
           <span className="text-2xl leading-none" aria-hidden>
             💸

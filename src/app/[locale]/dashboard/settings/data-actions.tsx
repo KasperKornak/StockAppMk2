@@ -40,18 +40,18 @@ export function DataActions() {
     <div className="mt-6 rounded-xl border border-neutral-800 p-5">
       <h2 className="text-sm font-medium text-neutral-300">{t("yourDataTitle")}</h2>
       <p className="mt-1 text-sm text-neutral-500">{t("yourDataDesc")}</p>
-      <div className="mt-4 flex gap-3">
+      <div className="mt-4 flex flex-col gap-3 sm:flex-row">
         <button
           onClick={handleExport}
           disabled={exporting}
-          className="h-10 rounded-full border border-neutral-700 px-5 font-medium text-neutral-100 transition-colors hover:border-emerald-500/50 hover:text-emerald-400 disabled:opacity-50"
+          className="min-h-10 rounded-full border border-neutral-700 px-5 py-2 font-medium text-neutral-100 transition-colors hover:border-emerald-500/50 hover:text-emerald-400 disabled:opacity-50"
         >
           {exporting ? t("exporting") : t("exportButton")}
         </button>
         <button
           onClick={handleDelete}
           disabled={deleting}
-          className="h-10 rounded-full border border-red-900 px-5 font-medium text-red-400 transition-colors hover:bg-red-950/50 disabled:opacity-50"
+          className="min-h-10 rounded-full border border-red-900 px-5 py-2 font-medium text-red-400 transition-colors hover:bg-red-950/50 disabled:opacity-50"
         >
           {deleting ? t("deleting") : t("deleteButton")}
         </button>

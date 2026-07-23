@@ -19,6 +19,11 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  // Turnstile tokens are single-use — Cloudflare rejects a token that's
+  // already been verified once. Bumping this key remounts the widget (fresh
+  // token) after any failed attempt, so a retry doesn't resend the same
+  // now-consumed token and hit "captcha protection: request disallowed".
+  const [turnstileKey, setTurnstileKey] = useState(0);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -31,6 +36,8 @@ export default function LoginPage() {
     });
     if (error) {
       setError(error.message);
+      setCaptchaToken(null);
+      setTurnstileKey((k) => k + 1);
       return;
     }
     router.push("/dashboard");
@@ -76,6 +83,7 @@ export default function LoginPage() {
           {turnstileSiteKey && (
             <div className="flex flex-col gap-1.5">
               <TurnstileWidget
+                key={turnstileKey}
                 siteKey={turnstileSiteKey}
                 language={locale}
                 onVerify={setCaptchaToken}

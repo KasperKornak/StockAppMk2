@@ -12,6 +12,9 @@ export function SiteFooter({ defaultEmail }: { defaultEmail?: string }) {
         <span>{t("appName")}</span>
         <span className="sm:text-center">{t("disclaimer")}</span>
         <div className="flex items-center justify-center gap-4 sm:justify-end">
+          <Link href="/help" className="underline hover:text-neutral-300">
+            {t("helpLink")}
+          </Link>
           <FeedbackButton defaultEmail={defaultEmail} />
           <Link href="/privacy" className="underline hover:text-neutral-300">
             {tSettings("privacyLink")}

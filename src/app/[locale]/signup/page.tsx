@@ -19,6 +19,11 @@ export default function SignupPage() {
   const [error, setError] = useState<string | null>(null);
   const [submitted, setSubmitted] = useState(false);
   const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  // Turnstile tokens are single-use — Cloudflare rejects a token that's
+  // already been verified once. Bumping this key remounts the widget (fresh
+  // token) after any failed attempt, so a retry doesn't resend the same
+  // now-consumed token and hit "captcha protection: request disallowed".
+  const [turnstileKey, setTurnstileKey] = useState(0);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -31,6 +36,8 @@ export default function SignupPage() {
     });
     if (error) {
       setError(error.message);
+      setCaptchaToken(null);
+      setTurnstileKey((k) => k + 1);
       return;
     }
     setSubmitted(true);
@@ -66,7 +73,7 @@ export default function SignupPage() {
           <input
             type="password"
             required
-            minLength={8}
+            minLength={10}
             aria-label={t("passwordPlaceholder")}
             placeholder={t("passwordPlaceholder")}
             value={password}
@@ -76,6 +83,7 @@ export default function SignupPage() {
           {turnstileSiteKey && (
             <div className="flex flex-col gap-1.5">
               <TurnstileWidget
+                key={turnstileKey}
                 siteKey={turnstileSiteKey}
                 language={locale}
                 onVerify={setCaptchaToken}

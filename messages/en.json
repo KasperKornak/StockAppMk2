@@ -13,7 +13,8 @@
   "SiteFooter": {
     "appName": "odlicz.com",
     "disclaimer": "Not tax advice - always verify with a professional.",
-    "madeIn": "Made in Bronowice with ❤️"
+    "madeIn": "Made in Bronowice with ❤️",
+    "helpLink": "Help"
   },
   "Feedback": {
     "button": "Feedback",
@@ -28,7 +29,8 @@
     "close": "Close",
     "errorEmpty": "Please enter a message.",
     "errorTooLong": "That's a bit long — please keep it under 4000 characters.",
-    "errorGeneric": "Something went wrong sending that — please try again."
+    "errorGeneric": "Something went wrong sending that — please try again.",
+    "errorRateLimited": "Too many messages sent recently — please try again in a bit."
   },
   "LanguageSwitcher": {
     "en": "English",
@@ -74,6 +76,7 @@
     "holdings": "Holdings",
     "taxYears": "Tax Years",
     "settings": "Settings",
+    "help": "Help",
     "logout": "Log out",
     "backToDashboard": "← Back to dashboard",
     "beta": "Beta"
@@ -92,7 +95,7 @@
     "colQty": "Qty",
     "colAvgPrice": "Avg price",
     "colMarketValue": "Market value",
-    "colYtdDividends": "YTD dividends",
+    "colYtdDividends": "YTD dividends (gross)",
     "colYtdDividendsTooltip": "Gross dividends received this year, before tax",
     "colTaxSetAside": "Tax set aside",
     "colTaxSetAsideTooltip": "Estimated PLN to set aside for Belka tax on this year's dividends",
@@ -171,9 +174,9 @@
     "colPrice": "Price",
     "delete": "Delete",
     "emptyTransactions": "No transactions yet.",
-    "deleteHoldingButton": "Delete holding",
-    "deleteHoldingDeleting": "Deleting…",
-    "deleteHoldingConfirm": "Delete {ticker}? This removes the holding and all its transactions and dividend history."
+    "deleteHoldingButton": "Remove holding",
+    "deleteHoldingDeleting": "Removing…",
+    "deleteHoldingConfirm": "Remove {ticker} from your holdings? Its transaction and dividend history will still be visible in Recent Activity and Tax Years."
   },
   "HoldingSettingsForm": {
     "title": "Tax settings",
@@ -243,7 +246,13 @@
     "legalBasisTitle": "Legal basis for processing",
     "legalBasisBody": "We process your account and holdings data because it's necessary to provide the service you signed up for (Article 6(1)(b) GDPR — performance of a contract). Bot-protection checks during login/signup and basic security measures rely on our legitimate interest in keeping the service reliable and abuse-free (Article 6(1)(f) GDPR).",
     "whoElseSeesItTitle": "Who else sees it",
-    "whoElseSeesItBody": "Supabase (database and authentication) and Vercel (hosting) process your account and holdings data on our behalf, under their standard data processing terms, including Standard Contractual Clauses for any transfer outside the European Economic Area. Cloudflare provides bot-protection during login/signup and forwards messages sent to our contact email — it doesn't otherwise see your account data. If you sign in with Google, Google processes your basic profile info under its own privacy policy. A market data provider receives the ticker symbols you track, not your identity — it never sees your account, holdings quantities, or any other personal data. The National Bank of Poland (NBP) exchange-rate service receives no personal data at all — those lookups don't reference you or your holdings.",
+    "whoElseSeesItIntro": "The following third parties process data on our behalf, under their standard data processing terms, including Standard Contractual Clauses for any transfer outside the European Economic Area:",
+    "whoElseSeesItSupabase": "Supabase (database and authentication) — stores your account and holdings data.",
+    "whoElseSeesItVercel": "Vercel (hosting) — serves the application and runs the daily dividend sync job.",
+    "whoElseSeesItCloudflare": "Cloudflare — provides bot protection during login/signup, and forwards messages sent to our contact email. It doesn't otherwise see your account data.",
+    "whoElseSeesItGoogle": "Google — only if you sign in with Google, processes your basic profile info under its own privacy policy.",
+    "whoElseSeesItMarketData": "A market data provider — receives the ticker symbols you track, not your identity. It never sees your account, holdings quantities, or any other personal data.",
+    "whoElseSeesItNbp": "The National Bank of Poland (NBP) exchange-rate service — receives no personal data at all; those lookups don't reference you or your holdings.",
     "howLongTitle": "How long we keep it",
     "howLongBody": "Until you delete your account. Tax-relevant records are worth keeping for at least 6 years to match typical Polish tax documentation retention norms, but that's your call, not something we enforce.",
     "cookiesTitle": "Cookies",
@@ -260,6 +269,26 @@
     "contactTitle": "Contact",
     "contactBefore": "Questions about your data, or anything else — use the",
     "contactAfter": "link in the footer below, or email kontakt@odlicz.com."
+  },
+  "Help": {
+    "title": "Help",
+    "intro": "A quick guide to how odlicz.com works, and what everything on the dashboard means.",
+    "taxCalcTitle": "How the tax calculation works",
+    "taxCalcBody": "Polish tax residents owe 19% Belka tax on dividend income. When a foreign broker already withholds tax at source, you can credit that against your Polish tax — capped at the lower of the actual foreign withholding, the tax-treaty rate for that country, or the Polish tax due. We calculate the PLN amounts using the official NBP exchange rate for the day before the pay date (the rate NBP itself uses for this purpose), and the amount shown as \"set aside\" is simply the Polish tax due minus that foreign tax credit.",
+    "statusesTitle": "What the dividend statuses mean",
+    "statusesBody": "Each dividend goes through three stages: upcoming (the ex-dividend date hasn't passed yet, so the payout isn't locked in), qualified (the ex-dividend date has passed — you're entitled to it, but it hasn't been paid), and paid out (the dividend has been paid and the PLN tax figures are final). You can also tap the small \"?\" next to the Status column for the same explanation in place.",
+    "w8benTitle": "W-8BEN and withholding rates",
+    "w8benBody": "A W-8BEN form (filed with your broker, not with us) reduces the default US withholding tax on dividends from 30% to 15%. Confirm it when adding a US holding — or later from that holding's detail page — and we'll use 15% instead of 30% when suggesting the withholding rate. You can also manually override the suggested rate per holding if your actual situation differs.",
+    "addingHoldingsTitle": "Adding holdings and ticker support",
+    "addingHoldingsBody": "Use \"+ Add holding\" on the dashboard — the ticker autocomplete suggests common tickers, but you can type any symbol; we validate it against our market data provider when you submit. If a ticker isn't supported yet, you'll see a \"Request support\" option that lets us know there's demand for it. Adding a ticker you already hold adds a new buy transaction to the existing position instead of creating a duplicate.",
+    "notificationsTitle": "Notifications",
+    "notificationsBody": "In-app notifications fire when a dividend becomes upcoming and again once it's paid out. Email notifications are planned but not live yet — the Settings toggle for them is flagged \"coming soon\".",
+    "taxYearsTitle": "Tax Years view",
+    "taxYearsBody": "The Tax Years page groups every paid-out dividend by calendar year and by ticker, so you can see totals for a specific filing year at a glance.",
+    "dataTitle": "Your data",
+    "dataBody": "You can export everything we store about you, or permanently delete your account and all associated data, at any time from Settings. See the Privacy Policy for details on what we collect and why.",
+    "stillStuckTitle": "Still stuck?",
+    "stillStuckBody": "Use the Feedback button in the footer — it reaches us directly."
   },
   "Notifications": {
     "title": "Notifications",

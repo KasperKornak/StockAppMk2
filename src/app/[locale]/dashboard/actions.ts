@@ -46,6 +46,41 @@ export async function addHolding(
     return { error: t("loginRequired") };
   }
 
+  // Already holding this ticker — add a buy transaction to the existing
+  // holding instead of erroring, so this dialog also covers "I bought more
+  // shares of something I already track" without making the user go find
+  // the holding detail page first.
+  const { data: existingHolding } = await supabase
+    .from("holdings")
+    .select("id, w8ben_confirmed")
+    .eq("user_id", user.id)
+    .eq("ticker", ticker)
+    .is("deleted_at", null)
+    .maybeSingle();
+
+  if (existingHolding) {
+    if (w8benConfirmed && !existingHolding.w8ben_confirmed) {
+      await supabase
+        .from("holdings")
+        .update({ w8ben_confirmed: true })
+        .eq("id", existingHolding.id);
+    }
+
+    const { error: transactionError } = await supabase.from("holding_transactions").insert({
+      holding_id: existingHolding.id,
+      transaction_type: "buy",
+      quantity,
+      price,
+      transaction_date: acquiredDate,
+    });
+    if (transactionError) {
+      return { error: t("transactionFailed") };
+    }
+
+    revalidatePath("/dashboard");
+    return { success: true };
+  }
+
   const overview = await massiveProvider.getTickerOverview(ticker);
   if (!overview) {
     return { error: t("unsupportedTicker"), unsupportedTicker: ticker };

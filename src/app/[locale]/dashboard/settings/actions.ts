@@ -34,6 +34,9 @@ export async function updateNotificationPreferences(
 
 // GDPR data export — every table is scoped by the caller's own RLS-enforced
 // session, so plain unfiltered selects can't leak another user's rows.
+// Shaped as holdings-with-nested-history rather than a straight per-table
+// dump: no internal ids/foreign keys, so it doesn't read like a raw
+// database export to someone who isn't a DB admin.
 export async function exportMyData(): Promise<string> {
   const supabase = await createClient();
   const {
@@ -41,26 +44,70 @@ export async function exportMyData(): Promise<string> {
   } = await supabase.auth.getUser();
   if (!user) throw new Error("Not authenticated");
 
-  const [profile, holdings, transactions, dividendEvents, notifications, preferences] =
-    await Promise.all([
-      supabase.from("profiles").select("*").eq("id", user.id).maybeSingle(),
-      supabase.from("holdings").select("*"),
-      supabase.from("holding_transactions").select("*"),
-      supabase.from("dividend_events").select("*"),
-      supabase.from("notifications").select("*"),
-      supabase.from("notification_preferences").select("*").eq("user_id", user.id).maybeSingle(),
-    ]);
+  const [profile, holdings, transactions, dividendEvents, preferences] = await Promise.all([
+    supabase.from("profiles").select("created_at").eq("id", user.id).maybeSingle(),
+    supabase
+      .from("holdings")
+      .select("id, ticker, domicile, currency, w8ben_confirmed, withholding_rate_override, deleted_at"),
+    supabase
+      .from("holding_transactions")
+      .select("holding_id, transaction_type, quantity, price, transaction_date"),
+    supabase
+      .from("dividend_events")
+      .select(
+        "holding_id, status, ex_dividend_date, pay_date, gross_amount_foreign, foreign_currency, foreign_withholding_rate, nbp_fx_rate, gross_amount_pln, polish_tax_due_pln, foreign_tax_credit_pln, amount_to_set_aside_pln",
+      ),
+    supabase.from("notification_preferences").select("email_enabled, in_app_enabled").eq("user_id", user.id).maybeSingle(),
+  ]);
+
+  const transactionsByHolding = new Map<string, typeof transactions.data>();
+  for (const row of transactions.data ?? []) {
+    const list = transactionsByHolding.get(row.holding_id) ?? [];
+    list.push(row);
+    transactionsByHolding.set(row.holding_id, list);
+  }
+  const dividendsByHolding = new Map<string, typeof dividendEvents.data>();
+  for (const row of dividendEvents.data ?? []) {
+    const list = dividendsByHolding.get(row.holding_id) ?? [];
+    list.push(row);
+    dividendsByHolding.set(row.holding_id, list);
+  }
 
   return JSON.stringify(
     {
       exportedAt: new Date().toISOString(),
-      account: { id: user.id, email: user.email },
-      profile: profile.data,
-      holdings: holdings.data,
-      holdingTransactions: transactions.data,
-      dividendEvents: dividendEvents.data,
-      notifications: notifications.data,
-      notificationPreferences: preferences.data,
+      account: { email: user.email, memberSince: profile.data?.created_at ?? null },
+      notificationPreferences: {
+        emailEnabled: preferences.data?.email_enabled ?? null,
+        inAppEnabled: preferences.data?.in_app_enabled ?? null,
+      },
+      holdings: (holdings.data ?? []).map((h) => ({
+        ticker: h.ticker,
+        domicile: h.domicile,
+        currency: h.currency,
+        w8benConfirmed: h.w8ben_confirmed,
+        withholdingRateOverride: h.withholding_rate_override,
+        removedFromDashboard: h.deleted_at !== null,
+        transactions: (transactionsByHolding.get(h.id) ?? []).map((tx) => ({
+          type: tx.transaction_type,
+          quantity: tx.quantity,
+          price: tx.price,
+          date: tx.transaction_date,
+        })),
+        dividends: (dividendsByHolding.get(h.id) ?? []).map((d) => ({
+          status: d.status,
+          exDividendDate: d.ex_dividend_date,
+          payDate: d.pay_date,
+          grossAmountForeign: d.gross_amount_foreign,
+          foreignCurrency: d.foreign_currency,
+          foreignWithholdingRate: d.foreign_withholding_rate,
+          nbpFxRate: d.nbp_fx_rate,
+          grossAmountPln: d.gross_amount_pln,
+          polishTaxDuePln: d.polish_tax_due_pln,
+          foreignTaxCreditPln: d.foreign_tax_credit_pln,
+          amountToSetAsidePln: d.amount_to_set_aside_pln,
+        })),
+      })),
     },
     null,
     2,
