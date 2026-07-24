@@ -21,6 +21,19 @@ export async function generateMetadata({
       template: `%s | ${t("title")}`,
     },
     description: t("description"),
+    // `images` isn't set here — Next.js auto-merges the file-convention
+    // opengraph-image.tsx into this.
+    openGraph: {
+      title: t("title"),
+      description: t("description"),
+      locale: locale === "pl" ? "pl_PL" : "en_US",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("title"),
+      description: t("description"),
+    },
   };
 }
 

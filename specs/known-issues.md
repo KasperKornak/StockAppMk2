@@ -6,12 +6,10 @@ Tracked list of open bugs/feedback, consolidated because the volume from manual 
 
 - **Mobile: footer feels unreachable.** After the responsive table fix, Feedback/Privacy Policy/"Made in Bronowice" require noticeably more scrolling on the dashboard than expected. Needs a look — may just be normal page length with the new card layout, may not be an actual bug.
 
-## Needs the owner to apply pending migrations
-
-- `supabase/migrations/0013_feedback_rate_limit.sql` and `0014_holdings_soft_delete.sql` are written but not yet applied to production — see chat for the exact apply steps.
-
 ## Resolved (for reference — remove once confirmed stable in production)
 
+- `npm audit` high-severity findings in `next`/nested `postcss`/`sharp` — bumped `next` to 16.2.11 and added `overrides` pinning `sharp`/`postcss` to patched versions. `npm audit --audit-level=high` (the CI gate) now reports 0 vulnerabilities.
+- Migrations `0013_feedback_rate_limit.sql` and `0014_holdings_soft_delete.sql` — applied by the owner; verified against production data (service-role query) that no rows were lost.
 - Feedback form had no anti-spam protection at all (open insert policy, no rate limit) — added a honeypot field + fill-time check, and a per-IP rate limit (5/hour).
 - Deleting a holding hard-deleted its dividend history, including already-paid-out dividends — switched to soft delete (`deleted_at`), so history stays visible in Recent Activity / Tax Years.
 - Data export read like a raw database dump (internal ids/foreign keys) — reshaped into a nested, human-readable format instead.
