@@ -35,4 +35,9 @@ jobs:
 
       # Moderate-severity advisories are common in transitive deps and not
       # worth blocking every PR over; high/critical still fail the build.
-      - run: npm audit --audit-level=high
+      # Scoped to production deps only (--omit=dev): devDependencies like
+      # eslint's plugin chain never ship to production or run against
+      # untrusted input, so an unfixable transitive advisory there (e.g. a
+      # ReDoS in a glob-matching lib eslint uses on our own trusted file
+      # paths) shouldn't block CI the same way a runtime dependency would.
+      - run: npm audit --omit=dev --audit-level=high
