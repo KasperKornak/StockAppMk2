@@ -77,6 +77,7 @@
     "taxYears": "Tax Years",
     "settings": "Settings",
     "help": "Help",
+    "comingSoon": "Coming soon",
     "logout": "Log out",
     "backToDashboard": "← Back to dashboard",
     "beta": "Beta"
@@ -272,6 +273,7 @@
   },
   "Help": {
     "title": "Help",
+    "comingSoonBody": "We're still polishing this page — check back soon.",
     "intro": "A quick guide to how odlicz.com works, and what everything on the dashboard means.",
     "taxCalcTitle": "How the tax calculation works",
     "taxCalcBody": "Polish tax residents owe 19% Belka tax on dividend income. When a foreign broker already withholds tax at source, you can credit that against your Polish tax — capped at the lower of the actual foreign withholding, the tax-treaty rate for that country, or the Polish tax due. We calculate the PLN amounts using the official NBP exchange rate for the day before the pay date (the rate NBP itself uses for this purpose), and the amount shown as \"set aside\" is simply the Polish tax due minus that foreign tax credit.",

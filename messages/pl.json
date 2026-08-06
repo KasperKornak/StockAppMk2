@@ -77,6 +77,7 @@
     "taxYears": "Lata podatkowe",
     "settings": "Ustawienia",
     "help": "Pomoc",
+    "comingSoon": "Wkrótce",
     "logout": "Wyloguj się",
     "backToDashboard": "← Powrót do panelu",
     "beta": "Beta"
@@ -272,6 +273,7 @@
   },
   "Help": {
     "title": "Pomoc",
+    "comingSoonBody": "Nadal dopracowujemy tę stronę — zajrzyj tu wkrótce.",
     "intro": "Krótki przewodnik po tym, jak działa odlicz.com i co oznacza to, co widzisz na panelu.",
     "taxCalcTitle": "Jak działa wyliczenie podatku",
     "taxCalcBody": "Polscy rezydenci podatkowi płacą 19% podatku Belki od dochodów z dywidend. Jeśli zagraniczny broker już pobrał podatek u źródła, możesz odliczyć go od polskiego podatku — odliczenie jest ograniczone do niższej z trzech wartości: rzeczywistego podatku u źródła, stawki wynikającej z umowy o unikaniu podwójnego opodatkowania dla danego kraju, lub polskiego podatku należnego. Kwoty w PLN wyliczamy według oficjalnego kursu NBP z dnia poprzedzającego dzień wypłaty (kurs, którego NBP używa w tym celu), a kwota \"do odłożenia\" to po prostu polski podatek należny pomniejszony o to odliczenie.",

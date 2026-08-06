@@ -1,8 +1,19 @@
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { Link } from "@/i18n/navigation";
 import { createClient } from "@/lib/supabase/server";
+
+// Content is written but not yet polished — flip this to true (and remove
+// the `robots: { index: false }` metadata below, and re-add the nav/footer
+// links in dashboard-header.tsx and site-footer.tsx) once it's ready to go
+// live.
+const HELP_PAGE_PUBLISHED = false;
+
+export const metadata: Metadata = HELP_PAGE_PUBLISHED
+  ? {}
+  : { robots: { index: false, follow: false } };
 
 export default async function HelpPage() {
   // Public page, but reachable from within the authenticated app (dashboard
@@ -33,50 +44,59 @@ export default async function HelpPage() {
         <SiteHeader authenticated={Boolean(user)} />
       )}
       <div className="mx-auto w-full max-w-2xl flex-1 px-6 py-16 text-neutral-300">
-        <h1 className="mb-2 text-2xl font-semibold text-neutral-50">{t("title")}</h1>
-        <p className="mb-8 text-sm text-neutral-500">{t("intro")}</p>
+        {HELP_PAGE_PUBLISHED ? (
+          <>
+            <h1 className="mb-2 text-2xl font-semibold text-neutral-50">{t("title")}</h1>
+            <p className="mb-8 text-sm text-neutral-500">{t("intro")}</p>
 
-        <div className="space-y-6 text-sm leading-6">
-          <section>
-            <h2 className="mb-2 font-medium text-neutral-100">{t("taxCalcTitle")}</h2>
-            <p>{t("taxCalcBody")}</p>
-          </section>
+            <div className="space-y-6 text-sm leading-6">
+              <section>
+                <h2 className="mb-2 font-medium text-neutral-100">{t("taxCalcTitle")}</h2>
+                <p>{t("taxCalcBody")}</p>
+              </section>
 
-          <section>
-            <h2 className="mb-2 font-medium text-neutral-100">{t("statusesTitle")}</h2>
-            <p>{t("statusesBody")}</p>
-          </section>
+              <section>
+                <h2 className="mb-2 font-medium text-neutral-100">{t("statusesTitle")}</h2>
+                <p>{t("statusesBody")}</p>
+              </section>
 
-          <section>
-            <h2 className="mb-2 font-medium text-neutral-100">{t("w8benTitle")}</h2>
-            <p>{t("w8benBody")}</p>
-          </section>
+              <section>
+                <h2 className="mb-2 font-medium text-neutral-100">{t("w8benTitle")}</h2>
+                <p>{t("w8benBody")}</p>
+              </section>
 
-          <section>
-            <h2 className="mb-2 font-medium text-neutral-100">{t("addingHoldingsTitle")}</h2>
-            <p>{t("addingHoldingsBody")}</p>
-          </section>
+              <section>
+                <h2 className="mb-2 font-medium text-neutral-100">{t("addingHoldingsTitle")}</h2>
+                <p>{t("addingHoldingsBody")}</p>
+              </section>
 
-          <section>
-            <h2 className="mb-2 font-medium text-neutral-100">{t("notificationsTitle")}</h2>
-            <p>{t("notificationsBody")}</p>
-          </section>
+              <section>
+                <h2 className="mb-2 font-medium text-neutral-100">{t("notificationsTitle")}</h2>
+                <p>{t("notificationsBody")}</p>
+              </section>
 
-          <section>
-            <h2 className="mb-2 font-medium text-neutral-100">{t("taxYearsTitle")}</h2>
-            <p>{t("taxYearsBody")}</p>
-          </section>
+              <section>
+                <h2 className="mb-2 font-medium text-neutral-100">{t("taxYearsTitle")}</h2>
+                <p>{t("taxYearsBody")}</p>
+              </section>
 
-          <section>
-            <h2 className="mb-2 font-medium text-neutral-100">{t("dataTitle")}</h2>
-            <p>{t("dataBody")}</p>
-          </section>
+              <section>
+                <h2 className="mb-2 font-medium text-neutral-100">{t("dataTitle")}</h2>
+                <p>{t("dataBody")}</p>
+              </section>
 
-          <section>
-            <h2 className="mb-2 font-medium text-neutral-100">{t("stillStuckTitle")}</h2>
-            <p>{t("stillStuckBody")}</p>
-          </section>
-        </div>
+              <section>
+                <h2 className="mb-2 font-medium text-neutral-100">{t("stillStuckTitle")}</h2>
+                <p>{t("stillStuckBody")}</p>
+              </section>
+            </div>
+          </>
+        ) : (
+          <div className="text-center">
+            <h1 className="mb-2 text-2xl font-semibold text-neutral-50">{t("title")}</h1>
+            <p className="text-neutral-400">{t("comingSoonBody")}</p>
+          </div>
+        )}
       </div>
       <SiteFooter defaultEmail={user?.email} />
     </div>

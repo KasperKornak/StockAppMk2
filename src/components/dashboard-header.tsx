@@ -63,16 +63,14 @@ export function DashboardHeader({
             >
               {t("settings")}
             </Link>
-            <Link
-              href="/help"
-              className={
-                pathname === "/help"
-                  ? "whitespace-nowrap text-neutral-100"
-                  : "whitespace-nowrap text-neutral-500 transition-colors hover:text-neutral-300"
-              }
-            >
+            {/* Not a Link yet — the page exists but isn't polished enough to
+                publish (see HELP_PAGE_PUBLISHED in help/page.tsx). */}
+            <span className="flex items-center gap-1.5 whitespace-nowrap text-neutral-600">
               {t("help")}
-            </Link>
+              <span className="rounded-full border border-neutral-700 px-2 py-0.5 text-[10px] font-semibold tracking-wider text-neutral-500 uppercase">
+                {t("comingSoon")}
+              </span>
+            </span>
           </nav>
         </div>
 

@@ -4,7 +4,9 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 // Public, indexable pages only — /dashboard and friends are disallowed in
 // robots.ts and carry `robots: { index: false }` in their own metadata.
-const paths = ["", "/help", "/privacy"];
+// /help is deliberately excluded until HELP_PAGE_PUBLISHED flips to true in
+// help/page.tsx — no point indexing a "coming soon" placeholder.
+const paths = ["", "/privacy"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Polish has no URL prefix (default locale, see i18n/routing.ts),

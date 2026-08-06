@@ -5,6 +5,7 @@ import { Link } from "@/i18n/navigation";
 export function SiteFooter({ defaultEmail }: { defaultEmail?: string }) {
   const t = useTranslations("SiteFooter");
   const tSettings = useTranslations("Settings");
+  const tNav = useTranslations("DashboardNav");
 
   return (
     <footer className="relative border-t border-neutral-900 px-6 py-8">
@@ -12,9 +13,10 @@ export function SiteFooter({ defaultEmail }: { defaultEmail?: string }) {
         <span>{t("appName")}</span>
         <span className="sm:text-center">{t("disclaimer")}</span>
         <div className="flex items-center justify-center gap-4 sm:justify-end">
-          <Link href="/help" className="underline hover:text-neutral-300">
-            {t("helpLink")}
-          </Link>
+          {/* Not a Link yet — see HELP_PAGE_PUBLISHED in help/page.tsx. */}
+          <span className="text-neutral-600">
+            {t("helpLink")} <span className="text-xs">({tNav("comingSoon")})</span>
+          </span>
           <FeedbackButton defaultEmail={defaultEmail} />
           <Link href="/privacy" className="underline hover:text-neutral-300">
             {tSettings("privacyLink")}

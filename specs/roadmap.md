@@ -19,13 +19,13 @@ Last updated: 2026-07-24. Status snapshot of what's shipped vs. planned — info
 - In-app feedback/contact form (honeypot + rate-limited)
 - Ticker autocomplete (static curated list, no per-keystroke API calls)
 - English/Polish i18n, Polish as default
-- Bilingual `/help` page
 - Custom 404/error pages
 - Locale-aware `robots.ts`/`sitemap.ts` with hreflang alternates, Open Graph/Twitter card metadata
 - Security review (no high/medium findings)
 
 ## Planned, not yet built
 
+- **Bilingual `/help` page** — content is written (tax calc, statuses, W-8BEN, ticker requests, notifications, tax years, data rights) but not polished; owner wants to finish it themselves before it goes live. Currently gated behind `HELP_PAGE_PUBLISHED = false` in `help/page.tsx` (shows a "coming soon" placeholder, `noindex`, nav/footer links disabled) — flip that flag plus re-add the nav/footer links once ready.
 - **Email notifications** — the Settings toggle exists today but does nothing (only in-app notifications actually fire). Needs Resend wired up. → gets a "coming soon" tag now that it's misleading as-is.
 - **Feedback delivery alert** — new feedback currently only shows up by manually checking the `feedback` table in Supabase. Owner wants a push notification (Discord/Slack webhook, or folded into the Resend work above for email) — deferred for now, revisit later.
 - **Broker CSV/statement import** — manual transaction entry only, for now.
