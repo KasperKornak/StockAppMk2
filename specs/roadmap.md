@@ -22,13 +22,13 @@ Last updated: 2026-07-29. Status snapshot of what's shipped vs. planned — info
 - Custom 404/error pages
 - Locale-aware `robots.ts`/`sitemap.ts` with hreflang alternates, Open Graph/Twitter card metadata
 - Per-page hreflang `<link>` tags (landing, privacy, blog index, blog post)
-- Blog with one article: "Dividend Investing and Belka Tax: A Guide for Polish Investors" (`/blog/dividend-investing-belka-tax`), linked from the public header nav
+- Blog with one article: "Dividend Investing and Belka Tax: A Guide for Polish Investors" (`/blog/dividend-investing-belka-tax`), discoverable via sitemap only — no on-site nav link, by owner's choice
 - Security review (no high/medium findings)
 
 ## Planned, not yet built
 
 - **Bilingual `/help` page** — content is written (tax calc, statuses, W-8BEN, ticker requests, notifications, tax years, data rights) but not polished; owner wants to finish it themselves before it goes live. Currently gated behind `HELP_PAGE_PUBLISHED = false` in `help/page.tsx` (shows a "coming soon" placeholder, `noindex`, nav/footer links disabled) — flip that flag plus re-add the nav/footer links once ready.
-- **Email notifications** — the Settings toggle exists today but does nothing (only in-app notifications actually fire). Assessed cheap options (Resend free tier vs. Brevo) — owner to pick and create an account before this can be wired up. → gets a "coming soon" tag now that it's misleading as-is.
+- **Email notifications** — the Settings toggle exists today but does nothing (only in-app notifications actually fire), and carries a "coming soon" tag. Assessed cheap options (Resend free tier vs. Brevo), but owner wants to hold off building it until there's evidence users actually want it — no Resend account created, nothing wired up.
 - **Feedback delivery alert** — new feedback currently only shows up by manually checking the `feedback` table in Supabase. Owner wants a push notification (Discord/Slack webhook, or folded into the Resend work above for email) — deferred for now, revisit later.
 - **More blog content** — one article live; owner may want more over time (e.g. W-8BEN deep dive, PIT-38 walkthrough).
 - **Broker CSV/statement import** — manual transaction entry only, for now.
