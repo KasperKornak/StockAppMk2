@@ -26,7 +26,6 @@ export default async function DividendGuidePage() {
     data: { user },
   } = await supabase.auth.getUser();
   const t = await getTranslations("BlogDividendGuide");
-  const tLanding = await getTranslations("Landing");
 
   return (
     <div className="flex flex-1 flex-col">
@@ -77,17 +76,6 @@ export default async function DividendGuidePage() {
         <p className="mt-10 border-t border-neutral-900 pt-6 text-xs text-neutral-600">
           {t("disclaimer")}
         </p>
-
-        {!user && (
-          <div className="mt-10 rounded-xl border border-neutral-800 p-5 text-center">
-            <Link
-              href="/signup"
-              className="inline-flex h-11 items-center justify-center rounded-full bg-emerald-500 px-6 text-sm font-medium text-neutral-950 transition-colors hover:bg-emerald-400"
-            >
-              {tLanding("getStarted")}
-            </Link>
-          </div>
-        )}
       </div>
       <SiteFooter defaultEmail={user?.email} />
     </div>

@@ -5,7 +5,6 @@
   },
   "SiteHeader": {
     "howItWorks": "How it works",
-    "blog": "Blog",
     "login": "Log in",
     "signup": "Sign up",
     "dashboard": "Dashboard",
@@ -330,7 +329,7 @@
     "section3Title": "Foreign dividends: withholding tax and double-taxation treaties",
     "section3Body": "If you hold foreign stocks, the country where the company is based usually withholds its own tax before the dividend ever reaches you — for US stocks, the default rate is 30%. Poland has double-taxation treaties with most countries specifically to stop you from being taxed twice on the same income. In practice, the foreign tax already withheld is creditable against the 19% Belka tax you owe in Poland — but the credit is capped at the lowest of three numbers: the tax actually withheld abroad, the rate set by the tax treaty for that country, or the Polish tax due. That cap matters: it means the credit doesn't just cancel out an above-treaty withholding rate, and it never turns into a refund larger than what Poland itself would have charged.",
     "section4Title": "The W-8BEN form: cutting US withholding from 30% to 15%",
-    "section4Body": "For US stocks specifically, filing a W-8BEN form with your broker (not with the Polish tax office) certifies your foreign tax residency and drops the default 30% US withholding down to the US-Poland treaty rate of 15%. That still leaves roughly 4 percentage points owed to Poland after the credit (19% Polish tax minus the 15% already withheld and creditable), but it's a meaningful difference from paying 30% upfront and only crediting 19% of it. Without a W-8BEN on file, you'd have 30% withheld at source and still only be able to credit up to the Polish tax due — leaving real money on the table.",
+    "section4Body": "For US stocks specifically, filing a W-8BEN form with your broker (not with the Polish tax office) certifies your foreign tax residency and drops the default 30% US withholding down to the US-Poland treaty rate of 15%. Here's the part that catches people out: Poland only ever credits up to that 15% treaty rate, never the full amount actually withheld — so you owe roughly 4 percentage points to Poland (19% minus the 15% treaty-rate credit) either way, W-8BEN or not. What the form actually changes is how much disappears to the US: with it, 15% goes to the US and 4% to Poland, for the same 19% total you'd pay on a Polish dividend. Without it, 30% goes to the US and you still owe that same 4% to Poland on top — the extra 15 points overpaid to the US isn't creditable in Poland at all; getting it back means filing a refund claim directly with the US tax authorities, which most people never do.",
     "section5Title": "How the PLN amount is actually calculated",
     "section5Body": "Foreign dividends arrive in a foreign currency, but Belka tax is owed in PLN. Polish tax rules require converting foreign income using the National Bank of Poland's (NBP) average exchange rate from the last business day before the income was received — in practice, the day before the dividend's pay date. This is a fixed, non-negotiable reference point: two investors who received the exact same dividend on the exact same date owe the exact same PLN amount, regardless of which broker or bank they used.",
     "section6Title": "Mistakes that actually cost people money",
