@@ -1,13 +1,19 @@
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { Link } from "@/i18n/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { localeAlternates } from "@/lib/seo";
 
 // Reads the session cookie to decide the hero CTA (dashboard vs. sign
 // up/login) — must never be served from a cached/prerendered shell, or a
 // logged-in visitor landing here directly would see the logged-out version.
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = {
+  alternates: localeAlternates(""),
+};
 
 export default async function Home() {
   const t = await getTranslations("Landing");

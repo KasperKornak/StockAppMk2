@@ -5,6 +5,7 @@
   },
   "SiteHeader": {
     "howItWorks": "How it works",
+    "blog": "Blog",
     "login": "Log in",
     "signup": "Sign up",
     "dashboard": "Dashboard",
@@ -310,5 +311,34 @@
     "body": "An unexpected error occurred. You can try again or head back home.",
     "retry": "Try again",
     "backHome": "Back to home"
+  },
+  "Blog": {
+    "title": "Blog",
+    "intro": "Notes on dividend investing and Polish tax rules.",
+    "dividendGuideCardTitle": "Dividend Investing and Belka Tax: A Guide for Polish Investors",
+    "dividendGuideCardExcerpt": "How the 19% Belka tax applies to dividends, how foreign withholding tax credits work, and the mistakes that cost people money.",
+    "readMore": "Read more →"
+  },
+  "BlogDividendGuide": {
+    "title": "Dividend Investing and Belka Tax: A Guide for Polish Investors",
+    "dek": "How the 19% flat tax applies to dividend income, how foreign withholding tax credits work under Poland's tax treaties, and the mistakes that cost people money.",
+    "backToBlog": "← Blog",
+    "section1Title": "What is dividend investing?",
+    "section1Body": "Dividend investing means holding shares of companies (or funds) that regularly distribute part of their profits to shareholders in cash, rather than — or in addition to — relying on the share price going up. For a Polish investor, the appeal is straightforward: recurring cash income, often quarterly, without having to sell anything. The trade-off is that every payout is a taxable event the same year you receive it, not just when you eventually sell.",
+    "section2Title": "Belka tax: the 19% you owe on every payout",
+    "section2Body": "Poland taxes capital income — dividends included — at a flat 19% rate, commonly called \"podatek Belki\" after the finance minister who introduced it in 2002. Unlike some countries, there's no reduced rate for long-term holdings and no annual tax-free allowance for dividends: every złoty of gross dividend income is taxable at 19%, in the year it's paid.",
+    "section3Title": "Foreign dividends: withholding tax and double-taxation treaties",
+    "section3Body": "If you hold foreign stocks, the country where the company is based usually withholds its own tax before the dividend ever reaches you — for US stocks, the default rate is 30%. Poland has double-taxation treaties with most countries specifically to stop you from being taxed twice on the same income. In practice, the foreign tax already withheld is creditable against the 19% Belka tax you owe in Poland — but the credit is capped at the lowest of three numbers: the tax actually withheld abroad, the rate set by the tax treaty for that country, or the Polish tax due. That cap matters: it means the credit doesn't just cancel out an above-treaty withholding rate, and it never turns into a refund larger than what Poland itself would have charged.",
+    "section4Title": "The W-8BEN form: cutting US withholding from 30% to 15%",
+    "section4Body": "For US stocks specifically, filing a W-8BEN form with your broker (not with the Polish tax office) certifies your foreign tax residency and drops the default 30% US withholding down to the US-Poland treaty rate of 15%. That still leaves roughly 4 percentage points owed to Poland after the credit (19% Polish tax minus the 15% already withheld and creditable), but it's a meaningful difference from paying 30% upfront and only crediting 19% of it. Without a W-8BEN on file, you'd have 30% withheld at source and still only be able to credit up to the Polish tax due — leaving real money on the table.",
+    "section5Title": "How the PLN amount is actually calculated",
+    "section5Body": "Foreign dividends arrive in a foreign currency, but Belka tax is owed in PLN. Polish tax rules require converting foreign income using the National Bank of Poland's (NBP) average exchange rate from the last business day before the income was received — in practice, the day before the dividend's pay date. This is a fixed, non-negotiable reference point: two investors who received the exact same dividend on the exact same date owe the exact same PLN amount, regardless of which broker or bank they used.",
+    "section6Title": "Mistakes that actually cost people money",
+    "section6Body": "The most common one: assuming a foreign broker withholds and remits Polish tax automatically. It almost never does — foreign brokers withhold their own country's tax, not Poland's, and reporting the Belka tax on foreign dividend income to the Polish tax office is the investor's own responsibility, typically via the annual PIT-38 return. Others: not filing a W-8BEN and leaving 30% withheld on US dividends instead of 15%; not keeping a record of the ex-dividend date, pay date, gross amount, and applicable NBP rate for every single payout (needed to substantiate the calculation if ever asked); and forgetting that the treaty-rate cap means the foreign credit won't always fully offset a higher domestic withholding rate.",
+    "section7Title": "Filing: where this shows up on your tax return",
+    "section7Body": "For individuals, dividend income from abroad that hasn't already had Polish tax withheld at source is reported on the annual PIT-38 return, alongside the foreign tax credit calculated per payout. The deadline follows the standard annual filing deadline (30 April for the previous tax year).",
+    "section8Title": "Where odlicz.com fits in",
+    "section8Body": "This is exactly the bookkeeping odlicz.com automates: tracking each dividend's ex-dividend and pay dates, converting at the correct NBP rate, applying the treaty-rate cap on the foreign tax credit, and showing you the exact PLN amount to set aside — before you ever have to reconstruct it by hand at filing time.",
+    "disclaimer": "This article is general information, not tax advice, and may not reflect every treaty nuance or recent law change. Verify your specific situation with a qualified tax professional before filing."
   }
 }

@@ -1,8 +1,23 @@
+import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { Link } from "@/i18n/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { localeAlternates } from "@/lib/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "Privacy" });
+  return {
+    title: t("title"),
+    alternates: localeAlternates("/privacy"),
+  };
+}
 
 // DRAFT — grounded in what this app actually does (see specs/dividend-tax-tracker.spec.md
 // Compliance NFR + Open Questions), but not reviewed by a lawyer. Replace the

@@ -6,6 +6,7 @@ import { redirect } from "@/i18n/navigation";
 import { parseDecimal } from "@/lib/format";
 import { massiveProvider } from "@/lib/market-data/massive-provider";
 import { createClient } from "@/lib/supabase/server";
+import { KNOWN_TICKERS } from "@/lib/tickers/known-tickers";
 
 export interface AddHoldingState {
   error?: string;
@@ -81,7 +82,19 @@ export async function addHolding(
     return { success: true };
   }
 
-  const overview = await massiveProvider.getTickerOverview(ticker);
+  // Skip the Massive call entirely for tickers we already know — domicile
+  // and currency are hardcoded on KNOWN_TICKERS and match exactly what
+  // Massive's own exchange-based domicile guess would return for these
+  // (see the comment on KNOWN_TICKERS), so this changes nothing about the
+  // result, just saves a rate-limited API call for the common case.
+  const knownTicker = KNOWN_TICKERS.find((k) => k.ticker === ticker);
+  const overview = knownTicker
+    ? {
+        ticker: knownTicker.ticker,
+        domicileCountry: knownTicker.domicile,
+        currency: knownTicker.currency,
+      }
+    : await massiveProvider.getTickerOverview(ticker);
   if (!overview) {
     return { error: t("unsupportedTicker"), unsupportedTicker: ticker };
   }

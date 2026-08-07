@@ -6,7 +6,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 // robots.ts and carry `robots: { index: false }` in their own metadata.
 // /help is deliberately excluded until HELP_PAGE_PUBLISHED flips to true in
 // help/page.tsx — no point indexing a "coming soon" placeholder.
-const paths = ["", "/privacy"];
+const paths = ["", "/privacy", "/blog", "/blog/dividend-investing-belka-tax"];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Polish has no URL prefix (default locale, see i18n/routing.ts),

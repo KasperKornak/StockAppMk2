@@ -27,6 +27,12 @@ export function SiteHeader({ authenticated = false }: { authenticated?: boolean 
           >
             {t("howItWorks")}
           </Link>
+          <Link
+            href="/blog"
+            className="hidden whitespace-nowrap text-neutral-400 transition-colors hover:text-neutral-100 sm:block"
+          >
+            {t("blog")}
+          </Link>
           {authenticated ? (
             <Link
               href="/dashboard"

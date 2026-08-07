@@ -5,6 +5,7 @@
   },
   "SiteHeader": {
     "howItWorks": "Jak to działa",
+    "blog": "Blog",
     "login": "Zaloguj się",
     "signup": "Zarejestruj się",
     "dashboard": "Panel",
@@ -310,5 +311,34 @@
     "body": "Wystąpił nieoczekiwany błąd. Możesz spróbować ponownie lub wrócić na stronę główną.",
     "retry": "Spróbuj ponownie",
     "backHome": "Wróć na stronę główną"
+  },
+  "Blog": {
+    "title": "Blog",
+    "intro": "Notatki o inwestowaniu dywidendowym i polskich przepisach podatkowych.",
+    "dividendGuideCardTitle": "Inwestowanie dywidendowe a podatek Belki: przewodnik dla polskiego inwestora",
+    "dividendGuideCardExcerpt": "Jak 19% podatek Belki dotyczy dywidend, jak działa odliczenie podatku u źródła zapłaconego za granicą i jakie błędy najczęściej kosztują pieniądze.",
+    "readMore": "Czytaj dalej →"
+  },
+  "BlogDividendGuide": {
+    "title": "Inwestowanie dywidendowe a podatek Belki: przewodnik dla polskiego inwestora",
+    "dek": "Jak 19% podatek dotyczy dochodów z dywidend, jak działa odliczenie podatku u źródła na podstawie polskich umów o unikaniu podwójnego opodatkowania i jakie błędy najczęściej kosztują pieniądze.",
+    "backToBlog": "← Blog",
+    "section1Title": "Czym jest inwestowanie dywidendowe?",
+    "section1Body": "Inwestowanie dywidendowe polega na posiadaniu akcji spółek (lub funduszy), które regularnie wypłacają część zysku akcjonariuszom w gotówce — zamiast, albo obok, liczenia na wzrost kursu. Dla polskiego inwestora atut jest prosty: cykliczny dochód gotówkowy, często kwartalny, bez konieczności sprzedawania czegokolwiek. Cena tego atutu: każda wypłata to zdarzenie podatkowe w tym samym roku, w którym ją otrzymujesz — nie dopiero przy ewentualnej sprzedaży.",
+    "section2Title": "Podatek Belki: 19% od każdej wypłaty",
+    "section2Body": "Polska opodatkowuje dochody kapitałowe — w tym dywidendy — stawką liniową 19%, powszechnie nazywaną \"podatkiem Belki\" od nazwiska ministra finansów, który go wprowadził w 2002 roku. W przeciwieństwie do niektórych krajów, nie ma tu obniżonej stawki za długoterminowe trzymanie akcji ani rocznej kwoty wolnej dla dywidend: każda złotówka brutto dochodu z dywidendy podlega opodatkowaniu stawką 19% w roku jej wypłaty.",
+    "section3Title": "Dywidendy zagraniczne: podatek u źródła i umowy o unikaniu podwójnego opodatkowania",
+    "section3Body": "Jeśli posiadasz zagraniczne akcje, kraj siedziby spółki zwykle pobiera własny podatek, zanim dywidenda w ogóle do Ciebie dotrze — dla akcji z USA domyślna stawka to 30%. Polska ma umowy o unikaniu podwójnego opodatkowania z większością krajów właśnie po to, by nie płacić podwójnego podatku od tego samego dochodu. W praktyce podatek już pobrany za granicą można odliczyć od 19% podatku Belki należnego w Polsce — ale odliczenie jest ograniczone do najniższej z trzech wartości: podatku faktycznie pobranego za granicą, stawki wynikającej z umowy z danym krajem, lub polskiego podatku należnego. Ten limit ma znaczenie: odliczenie nie zniweluje w całości stawki wyższej niż traktatowa i nigdy nie zamieni się w zwrot większy, niż wyniosłaby sama polska stawka.",
+    "section4Title": "Formularz W-8BEN: jak obniżyć podatek u źródła w USA z 30% do 15%",
+    "section4Body": "Dla akcji z USA złożenie formularza W-8BEN u swojego brokera (nie w polskim urzędzie skarbowym) potwierdza Twoją rezydencję podatkową i obniża domyślny amerykański podatek u źródła z 30% do stawki traktatowej 15% wynikającej z umowy polsko-amerykańskiej. Nadal zostaje do zapłacenia w Polsce ok. 4 punktów procentowych (19% polskiego podatku minus 15% już pobrane i podlegające odliczeniu), ale to istotna różnica względem płacenia 30% z góry i odliczania z tego jedynie 19%. Bez złożonego W-8BEN pobrane zostanie 30% u źródła, a odliczyć i tak będzie można maksymalnie tyle, ile wynosi polski podatek należny — reszta przepada.",
+    "section5Title": "Jak faktycznie liczona jest kwota w PLN",
+    "section5Body": "Zagraniczne dywidendy wpływają w obcej walucie, ale podatek Belki należny jest w PLN. Polskie przepisy podatkowe wymagają przeliczenia dochodu zagranicznego według średniego kursu Narodowego Banku Polskiego (NBP) z ostatniego dnia roboczego poprzedzającego dzień uzyskania przychodu — w praktyce dnia poprzedzającego dzień wypłaty dywidendy. To stały, nienegocjowalny punkt odniesienia: dwaj inwestorzy, którzy otrzymali dokładnie tę samą dywidendę tego samego dnia, są winni dokładnie taką samą kwotę w PLN, niezależnie od brokera czy banku.",
+    "section6Title": "Błędy, które faktycznie kosztują pieniądze",
+    "section6Body": "Najczęstszy: założenie, że zagraniczny broker sam pobierze i odprowadzi polski podatek. Prawie nigdy tak nie jest — zagraniczni brokerzy pobierają podatek swojego kraju, nie Polski, a zgłoszenie podatku Belki od zagranicznych dywidend do polskiego urzędu skarbowego jest obowiązkiem samego inwestora, zwykle w rocznym zeznaniu PIT-38. Inne błędy: niezłożenie W-8BEN i pozostawienie 30% podatku pobranego od dywidend z USA zamiast 15%; brak zapisów dnia ex-dywidendy, dnia wypłaty, kwoty brutto i właściwego kursu NBP dla każdej wypłaty (potrzebnych, gdyby trzeba było uzasadnić wyliczenie); oraz zapominanie, że limit stawki traktatowej oznacza, że zagraniczne odliczenie nie zawsze w pełni zrekompensuje wyższą krajową stawkę podatku u źródła.",
+    "section7Title": "Rozliczenie: gdzie to ląduje w zeznaniu podatkowym",
+    "section7Body": "Dla osób fizycznych dochód z zagranicznych dywidend, od którego nie pobrano już polskiego podatku u źródła, wykazuje się w rocznym zeznaniu PIT-38, razem z wyliczonym dla każdej wypłaty odliczeniem podatku zagranicznego. Termin jest taki sam jak standardowy termin rocznego rozliczenia (30 kwietnia za poprzedni rok podatkowy).",
+    "section8Title": "Gdzie w tym wszystkim jest odlicz.com",
+    "section8Body": "Dokładnie to automatyzuje odlicz.com: śledzenie dnia ex-dywidendy i dnia wypłaty każdej dywidendy, przeliczenie po właściwym kursie NBP, zastosowanie limitu stawki traktatowej przy odliczeniu podatku zagranicznego i pokazanie dokładnej kwoty w PLN do odłożenia — zanim będziesz musiał/a odtwarzać to ręcznie w trakcie rozliczenia.",
+    "disclaimer": "Ten artykuł to ogólna informacja, a nie porada podatkowa, i może nie uwzględniać każdego niuansu umowy międzynarodowej ani najnowszych zmian przepisów. Zweryfikuj swoją sytuację z wykwalifikowanym doradcą podatkowym przed złożeniem rozliczenia."
   }
 }
